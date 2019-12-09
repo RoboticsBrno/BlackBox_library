@@ -3,6 +3,7 @@
 #include <SmartLeds.h>
 #include "BlackBox_pinout.hpp"
 
+
 namespace BlackBox
 {
     class BlackBox_manager
