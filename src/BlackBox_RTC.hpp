@@ -17,6 +17,7 @@ namespace BlackBox
     public:
         BlackBox_RTC(/* args */);
         ~BlackBox_RTC();
+        
     };
     
     BlackBox_RTC::BlackBox_RTC(/* args */)
