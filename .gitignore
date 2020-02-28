@@ -34,3 +34,6 @@
 .pio/*
 
 main.cpp
+
+.vscode
+.pio
