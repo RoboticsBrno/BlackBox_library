@@ -5,8 +5,9 @@
 #include <ds3231.h>
 #include <string.h>
 #include "BlackBox_pinout.hpp"
-#include "time.h"
+#include <ctime>
 #include <RtcDateTime.h>
+#include <cstdint>
 
 
 
@@ -35,7 +36,7 @@ namespace BlackBox
     BlackBox_RTC::BlackBox_RTC(bool set_time, tm *set)
     {
         memset(&dev, 0, sizeof(i2c_dev_t));
-        ESP_ERROR_CHECK(ds3231_init_desc(&dev, I2C_NUM_0, BlackBox::SDA, BlackBox::SCL));
+        ESP_ERROR_CHECK(ds3231_init_desc(&dev, I2C_NUM_0, BlackBox::SDA_GPIO, BlackBox::SCL_GPIO));
         if(set_time)
             ESP_ERROR_CHECK(ds3231_set_time(&dev, set));
     }

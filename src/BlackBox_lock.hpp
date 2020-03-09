@@ -4,6 +4,7 @@
 #include <driver/timer.h>
 
 #include "BlackBox_pinout.hpp"
+#include <cstdint>
 
 
 namespace BlackBox
@@ -13,7 +14,7 @@ namespace BlackBox
     private:
 
     public:
-        esp_err_t set(const gpio_num_t hall = GPIO_NUM_33, const gpio_num_t motor = BlackBox::LOCK);
+        void set(const gpio_num_t hall = GPIO_NUM_33, const gpio_num_t motor = BlackBox::LOCK_GPIO);
 
     };
     
