@@ -2,6 +2,7 @@
 
 #include "BlackBox_interface.hpp"
 #include "BlackBox_pinout.hpp"
+#include <cstdint>
 
 
 namespace BlackBox

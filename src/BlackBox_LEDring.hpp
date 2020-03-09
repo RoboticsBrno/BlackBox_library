@@ -3,6 +3,7 @@
 #include <SmartLeds.h>
 #include "BlackBox_pinout.hpp"
 #include "RtcDateTime.h"
+#include <cstdint>
 
 namespace BlackBox
 {
@@ -50,6 +51,8 @@ namespace BlackBox
         uint8_t operator()(){
             return m_index;
         }
+
+        operator uint8_t() const { return m_index; }
     };
 
     class Time_t

@@ -5,8 +5,9 @@
 #include <ds3231.h>
 #include <string.h>
 #include "BlackBox_pinout.hpp"
-#include <time.h>
+#include <ctime>
 #include <RtcDateTime.h>
+#include <cstdint>
 
 
 

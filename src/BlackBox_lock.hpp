@@ -4,6 +4,7 @@
 #include <driver/timer.h>
 
 #include "BlackBox_pinout.hpp"
+#include <cstdint>
 
 
 namespace BlackBox

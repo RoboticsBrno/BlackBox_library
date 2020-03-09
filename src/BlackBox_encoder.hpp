@@ -6,6 +6,7 @@
 #include <encoder.h>
 #include <esp_idf_lib_helpers.h>
 #include <functional>
+#include <cstdint>
 
 #include "BlackBox_pinout.hpp"
 
