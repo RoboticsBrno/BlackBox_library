@@ -34,6 +34,8 @@
 .pio/*
 
 main.cpp
+sdkconfig.h
+sdkconfig
 
 .vscode
 .pio

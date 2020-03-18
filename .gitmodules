@@ -1,3 +1,0 @@
-[submodule ".\\lib\\SmartLeds"]
-	path = .\\lib\\SmartLeds
-	url = https://github.com/haberturdeur/SmartLeds.git
