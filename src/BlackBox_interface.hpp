@@ -6,30 +6,28 @@
 #include <cstdint>
 #include <vector>
 
-namespace BlackBox
-{
-    class BlackBox_interface
-    {
-        friend class BlackBox_manager;
-    private:
-        BlackBox_interface();
+namespace BlackBox {
+class BlackBox_interface {
+    friend class BlackBox_manager;
 
-        BlackBox_LEDring m_LEDring;
-        BlackBox_encoder m_encoder;
-        std::vector< BlackBox_page > m_pages;
+private:
+    BlackBox_interface();
 
-        uint8_t m_active_page = 0;
+    BlackBox_LEDring m_ledRing;
+    BlackBox_encoder m_encoder;
+    std::vector<BlackBox_page> m_pages;
 
-    public:
-        ~BlackBox_interface();
+    uint8_t m_active_page = 0;
 
-        BlackBox_LEDring& LEDring() { return m_LEDring; }
-        BlackBox_encoder& encoder() { return m_encoder; }
+public:
+    ~BlackBox_interface();
 
-        index_t storePage( BlackBox_page& i_page );
-        void deletePage( index_t i_index );
-        void activatePage( index_t i_index );
-        void activateClock();
-    };
+    BlackBox_LEDring& ledRing() { return m_ledRing; }
+    BlackBox_encoder& encoder() { return m_encoder; }
 
+    index_t storePage(BlackBox_page& i_page);
+    void deletePage(index_t i_index);
+    void activatePage(index_t i_index);
+    void activateClock();
+};
 }
