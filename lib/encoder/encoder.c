@@ -15,6 +15,11 @@
 
 #define MUTEX_TIMEOUT 10
 
+#ifdef CONFIG_RE_BTN_PRESSED_LEVEL_0
+    #define CONFIG_RE_BTN_PRESSED_LEVEL 0
+#else
+    #define CONFIG_RE_BTN_PRESSED_LEVEL 1
+#endif
 
 static const char *TAG = "ENCODER";
 static rotary_encoder_t *encs[CONFIG_RE_MAX] = { 0 };
@@ -172,7 +177,7 @@ esp_err_t rotary_encoder_add(rotary_encoder_t *re)
     gpio_config_t io_conf;
     memset(&io_conf, 0, sizeof(gpio_config_t));
     io_conf.mode = GPIO_MODE_INPUT;
-    io_conf.pull_up_en = GPIO_PULLUP_DISABLE;
+    io_conf.pull_up_en = GPIO_PULLUP_ENABLE;
     io_conf.intr_type = GPIO_INTR_DISABLE;
     io_conf.pin_bit_mask = GPIO_BIT(re->pin_a) | GPIO_BIT(re->pin_b);
     if (re->pin_btn < GPIO_NUM_MAX)

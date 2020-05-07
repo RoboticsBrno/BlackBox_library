@@ -2,6 +2,7 @@
 
 #include "BlackBox_interface.hpp"
 #include "BlackBox_pinout.hpp"
+#include "BlackBox_RTC.hpp"
 #include <cstdint>
 
 namespace BlackBox {
@@ -10,6 +11,7 @@ private:
     BlackBox_manager();
 
     BlackBox_interface m_interface;
+    BlackBox_RTC m_rtc;
 
 public:
     BlackBox_manager(BlackBox_manager const&) = delete;
@@ -21,6 +23,7 @@ public:
         return instance;
     }
     BlackBox_interface& interface() { return m_interface; }
+    BlackBox_RTC& rtc() { return m_rtc; }
 };
 
 } // namespace BlackBox

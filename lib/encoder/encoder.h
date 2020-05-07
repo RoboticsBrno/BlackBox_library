@@ -17,13 +17,6 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/queue.h>
 
-#define CONFIG_RE_MAX 1
-#define CONFIG_RE_INTERVAL_US 1000
-#define CONFIG_RE_BTN_DEAD_TIME_US 10000
-#define CONFIG_RE_BTN_PRESSED_LEVEL 0
-#define CONFIG_RE_BTN_LONG_PRESS_TIME_US 500000
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif

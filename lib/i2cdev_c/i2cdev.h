@@ -17,8 +17,6 @@
 #include <freertos/semphr.h>
 #include <esp_err.h>
 
-#define CONFIG_I2CDEV_TIMEOUT 1000
-
 #ifdef __cplusplus
 extern "C" {
 #endif
