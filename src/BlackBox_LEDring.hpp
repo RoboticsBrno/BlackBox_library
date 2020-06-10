@@ -1,7 +1,6 @@
 #pragma once
 
 #include "BlackBox_pinout.hpp"
-#include "RtcDateTime.h"
 #include <SmartLeds.h>
 #include <cstdint>
 
@@ -78,11 +77,6 @@ public:
 
     Time_t(uint8_t i_hours, uint8_t i_minutes, uint8_t i_seconds)
         : m_seconds(i_seconds + (i_minutes * 60) + (i_hours * 3600))
-    {
-    }
-
-    Time_t(RtcDateTime i_datetime)
-        : m_seconds(i_datetime.Second() + (i_datetime.Minute() * 60) + (i_datetime.Hour() * 3600))
     {
     }
 
