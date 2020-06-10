@@ -1,6 +1,6 @@
 #pragma once
 
-#include "esp_system.h"
+#include "driver/gpio.h"
 
 namespace BlackBox {
 static const int LED_COUNT = 60;
