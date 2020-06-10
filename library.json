@@ -1,0 +1,28 @@
+{
+    "name": "BlackBox_library",
+    "keywords": "LED, esp32, BlackBox, puzzle",
+    "description": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RoboticsBrno/BlackBox_library.git"
+    },
+    "authors": [
+        {
+            "name": "Tomáš Rohlínek",
+            "email": "tomas.rohlinek@outlook.cz",
+            "url": "http://www.robotikabrno.cz",
+            "maintainer": true
+        }
+    ],
+    "version": "0.0.1",
+    "frameworks": [
+        "arduino",
+        "espidf"
+    ],
+    "platforms": "espressif32",
+    "license": "MIT",
+    "dependencies": [
+        {
+        }
+    ]
+}
