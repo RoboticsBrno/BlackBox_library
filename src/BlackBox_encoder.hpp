@@ -9,6 +9,7 @@
 #include <driver/gpio.h>
 #include <driver/pcnt.h>
 
+#include "eventpp/eventqueue.h"
 
 #include "BlackBox_LEDring.hpp"
 #include "BlackBox_pinout.hpp"
@@ -31,6 +32,23 @@ typedef enum {
     BUTTON_PRESSED = 1,
     BUTTON_LONGPRESSED = 2,
 } button_state_t;
+
+
+typedef enum {
+    BUTTON_RELEASE = 0,
+    BUTTON_PRESS = 1,
+    ENCODER_VALUE_CHANGE = 2,
+    BUTTON_CLICK = 3,
+    BUTTON_LONG_CLICK = 4,
+    BUTTON_DOUBLE_CLICK = 5,
+} encoder_event_t;
+
+typedef struct {
+    button_state_t buttonState;
+    uint8_t encoderValue;
+} encoder_state_t;
+
+typedef std::function<void(uint8_t)> encoder_event_callback_t;
 
 static const pcnt_config_t pcntConfig = {
     // Set PCNT input signal and control GPIOs
@@ -72,16 +90,29 @@ private:
     uint32_t m_doubleClickTimeout = DEFAULT_DOUBLE_CLICK_TIMEOUT; // 500 ms
 
 
+    mutable std::recursive_mutex m_mutex;
+
+    uint8_t m_value = 0;
+    bool m_rawButtonState = 0;
+    button_state_t m_buttonState = BUTTON_RELEASED;
+
+    uint32_t m_lastCheck = 0;
+    bool m_lastRawButtonStates[5] = { 0, 0, 0, 0, 0 };
+    uint32_t m_lastButtonChecks[5] = { 0, 0, 0, 0, 0 };
 
     void initEncoder();
     void initButton();
     void initFlags(uint8_t i_flags);
-    // void init();
+    void init();
 
     esp_err_t readEncoder();
     void readButton();
-    // esp_err_t read();
+    esp_err_t read();
 
+    eventpp::EventQueue<encoder_event_t, void(uint8_t)> m_queue;
+
+    void registerListener(encoder_event_t i_event, encoder_event_callback_t i_function);
+    void enqueue(encoder_event_t i_event);
 
 public:
     index_t valueIndex(bool i_renew = 0);
@@ -89,6 +120,13 @@ public:
     button_state_t buttonState(bool i_renew = 0);
     // bool awaitRelease(uint32_t i_releaseTimeout = m_releaseTimeout);
 
+    void onButtonPress(encoder_event_callback_t i_function);
+    void onButtonRelease(encoder_event_callback_t i_function);
+    void onEncoderValueChange(encoder_event_callback_t i_function);
+
+    void onButtonClick(encoder_event_callback_t i_function);
+    void onButtonLongClick(encoder_event_callback_t i_function);
+    void onButtonDoubleClick(encoder_event_callback_t i_function);
 
     void setReleaseTimeout(uint32_t i_releaseTimeout);
     void setDebounceTime(uint32_t i_debounceTime);

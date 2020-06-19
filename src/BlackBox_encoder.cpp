@@ -48,6 +48,7 @@ esp_err_t BlackBox_encoder::readEncoder() {
     uint8_t value = (count >= 0) ? count : (60 + count);
     if (m_value != value) {
         m_value = value;
+        enqueue(ENCODER_VALUE_CHANGE);
     }
     return err;
 }
@@ -69,8 +70,17 @@ esp_err_t BlackBox_encoder::read() {
     return readEncoder();
 }
 
+void BlackBox_encoder::registerListener(encoder_event_t i_event, encoder_event_callback_t i_function) {
+    ESP_LOGV(m_tag, "Registering event listener for %u.", i_event);
+    ESP_LOGI(m_tag, "Locking mutex.");
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
+    m_queue.appendListener(i_event, i_function);
 }
 
+void BlackBox_encoder::enqueue(encoder_event_t i_event) {
+    ESP_LOGI(m_tag, "Locking mutex.");
+    std::lock_guard<std::recursive_mutex> lock(m_mutex);
+    m_queue.enqueue(i_event, m_value);
 }
 
 index_t BlackBox_encoder::valueIndex(bool i_renew) {
@@ -96,6 +106,31 @@ button_state_t BlackBox_encoder::buttonState(bool i_renew) {
     std::lock_guard<std::recursive_mutex> lock(m_mutex);
     return m_buttonState;
 }
+
+void BlackBox_encoder::onButtonPress(encoder_event_callback_t i_function) {
+    registerListener(BUTTON_PRESS, i_function);
+}
+
+void BlackBox_encoder::onButtonRelease(encoder_event_callback_t i_function) {
+    registerListener(BUTTON_RELEASE, i_function);
+}
+
+void BlackBox_encoder::onEncoderValueChange(encoder_event_callback_t i_function) {
+    registerListener(ENCODER_VALUE_CHANGE, i_function);
+}
+
+void BlackBox_encoder::onButtonClick(encoder_event_callback_t i_function) {
+    registerListener(BUTTON_CLICK, i_function);
+}
+
+void BlackBox_encoder::onButtonLongClick(encoder_event_callback_t i_function) {
+    registerListener(BUTTON_LONG_CLICK, i_function);
+}
+
+void BlackBox_encoder::onButtonDoubleClick(encoder_event_callback_t i_function) {
+    registerListener(BUTTON_DOUBLE_CLICK, i_function);
+}
+
 void BlackBox_encoder::setReleaseTimeout(uint32_t i_releaseTimeout) {
     ESP_LOGI(m_tag, "Locking mutex.");
     std::lock_guard<std::recursive_mutex> lock(m_mutex);
