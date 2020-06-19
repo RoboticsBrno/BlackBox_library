@@ -7,57 +7,52 @@
 namespace BlackBox {
 class index_t {
 private:
-    uint8_t m_index;
+    uint8_t m_value;
 
-    void swap(index_t i_input)
-    {
-        m_index = i_input();
+    void swap(index_t i_input) {
+        m_value = i_input();
     }
 
 public:
-    index_t& operator+=(uint8_t i_input)
-    {
-        m_index = (m_index + i_input) % BlackBox::LED_COUNT;
+    index_t() = default;
+
+    index_t(uint8_t i_input) { m_value = i_input;}
+
+    index_t& operator+=(uint8_t i_input) {
+        m_value = (m_value + i_input) % BlackBox::LED_COUNT;
         return *this;
     }
 
-    index_t& operator-=(uint8_t i_input)
-    {
-        if (i_input > m_index)
-            m_index += BlackBox::LED_COUNT;
-        m_index = m_index - i_input;
+    index_t& operator-=(uint8_t i_input) {
+        if (i_input > m_value)
+            m_value += BlackBox::LED_COUNT;
+        m_value = m_value - i_input;
         return *this;
     }
 
-    index_t& operator++()
-    {
-        m_index = (m_index < BlackBox::LED_COUNT) ? m_index + 1 : 0;
+    index_t& operator++() {
+        m_value = (m_value < BlackBox::LED_COUNT) ? m_value + 1 : 0;
         return *this;
     }
 
-    index_t& operator--()
-    {
-        m_index = (m_index > 0) ? m_index - 1 : (BlackBox::LED_COUNT - 1);
+    index_t& operator--() {
+        m_value = (m_value > 0) ? m_value - 1 : (BlackBox::LED_COUNT - 1);
         return *this;
     }
 
-    index_t& operator=(index_t i_input)
-    {
+    index_t& operator=(index_t i_input) {
         swap(i_input);
         return *this;
     }
 
-    index_t& operator=(uint8_t i_input)
-    {
-        m_index = i_input % BlackBox::LED_COUNT;
+    index_t& operator=(uint8_t i_input) {
+        m_value = i_input % BlackBox::LED_COUNT;
         return *this;
     }
 
-    uint8_t operator()()
-    {
-        return m_index;
-    }
+    uint8_t operator()() { return m_value; }
 
+    uint8_t value() { return m_value; }
 };
 
 class Time_t {
@@ -66,18 +61,15 @@ private:
 
 public:
     Time_t()
-        : m_seconds(0)
-    {
+        : m_seconds(0) {
     }
 
     Time_t(uint32_t i_seconds)
-        : m_seconds(i_seconds)
-    {
+        : m_seconds(i_seconds) {
     }
 
     Time_t(uint8_t i_hours, uint8_t i_minutes, uint8_t i_seconds)
-        : m_seconds(i_seconds + (i_minutes * 60) + (i_hours * 3600))
-    {
+        : m_seconds(i_seconds + (i_minutes * 60) + (i_hours * 3600)) {
     }
 
     uint8_t getHours() { return m_seconds / 3600; }
@@ -116,95 +108,78 @@ private:
 
     void pass(Rgb i_buffer[BlackBox::LED_COUNT]);
 
-    uint8_t getIntenzity() { return m_dark_mode ? m_darkModeIntenzity : m_intenzity; }
+    uint8_t getIntenzity() { return m_darkMode ? m_darkModeIntenzity : m_intenzity; }
 
-    void writeLEDstate()
-    {
+    void writeLEDstate() {
         gpio_set_level(BlackBox::LED_TOOGLE_GPIO, m_ledState);
     }
 
 public:
-    SmartLed& leds()
-    {
+    SmartLed& leds() {
         return m_leds;
     }
 
     void init();
 
-    void toogleLEDring()
-    {
+    void toogleLEDring() {
         m_ledState = !m_ledState;
         writeLEDstate();
     }
 
-    void toogleLEDring(bool i_ledState)
-    {
+    void toogleLEDring(bool i_ledState) {
         m_ledState = i_ledState;
         writeLEDstate();
     }
 
-    void setIntenzity(uint8_t i_intenzity)
-    {
+    void setIntenzity(uint8_t i_intenzity) {
         m_intenzity = i_intenzity;
     }
 
-    void setDarkModeIntenzity(uint8_t i_intenzity)
-    {
+    void setDarkModeIntenzity(uint8_t i_intenzity) {
         m_darkModeIntenzity = i_intenzity;
     }
 
-    void toogleDarkMode()
-    {
-        m_dark_mode = !m_dark_mode;
+    void toogleDarkMode() {
+        m_darkMode = !m_darkMode;
     }
 
-    void toogleDarkMode(bool i_darkMode)
-    {
-        m_dark_mode = i_darkMode;
+    void toogleDarkMode(bool i_darkMode) {
+        m_darkMode = i_darkMode;
     }
 
-    void setSecondsColor(Rgb i_color)
-    {
+    void setSecondsColor(Rgb i_color) {
         m_secondsColor = i_color;
     }
 
-    void setMinutesColor(Rgb i_color)
-    {
+    void setMinutesColor(Rgb i_color) {
         m_minutesColor = i_color;
     }
 
-    void setHoursColor(Rgb i_color)
-    {
+    void setHoursColor(Rgb i_color) {
         m_hoursColor = i_color;
     }
 
-    void setLayerOpacity(uint8_t i_opacity)
-    {
+    void setLayerOpacity(uint8_t i_opacity) {
         m_layerOpacity = i_opacity;
     }
 
-    void setFirstPointOpacity(uint8_t i_opacity)
-    {
+    void setFirstPointOpacity(uint8_t i_opacity) {
         m_firstPointOpacity = i_opacity;
     }
 
-    void toogleForceFirstPointOpacity()
-    {
+    void toogleForceFirstPointOpacity() {
         m_forceFirstPointOpacity = !m_forceFirstPointOpacity;
     }
 
-    void toogleForceFirstPointOpacity(bool i_forceFirstPointOpacity)
-    {
+    void toogleForceFirstPointOpacity(bool i_forceFirstPointOpacity) {
         m_forceFirstPointOpacity = i_forceFirstPointOpacity;
     }
 
-    void toogle12hrMode()
-    {
+    void toogle12hrMode() {
         m_12hrMode = !m_12hrMode;
     }
 
-    void toogle12hrMode(bool i_12hrMode)
-    {
+    void toogle12hrMode(bool i_12hrMode) {
         m_12hrMode = i_12hrMode;
     }
 
