@@ -1,6 +1,5 @@
 #pragma once
 
-#include "BlackBox_interface.hpp"
 #include "BlackBox_pinout.hpp"
 #include "BlackBox_RTC.hpp"
 #include <cstdint>
