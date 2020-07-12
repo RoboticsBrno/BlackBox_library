@@ -12,16 +12,90 @@ BlackBox_LEDring::BlackBox_LEDring(bool i_initialize)
         init();
 }
 
+void BlackBox_LEDring::pass(Rgb i_buffer[BlackBox::LED_COUNT]) {
+    for (int i = 0; i < BlackBox::LED_COUNT; i++) {
+        m_leds[i] = i_buffer[i];
+    }
+}
+
+uint8_t BlackBox_LEDring::getIntenzity() {
+    return m_darkMode ? m_darkModeIntenzity : m_intenzity;
+}
+
+void BlackBox_LEDring::writeLEDstate() {
+    gpio_set_level(BlackBox::LED_TOOGLE_GPIO, m_ledState);
+}
+
+SmartLed& BlackBox_LEDring::leds() {
+    return m_leds;
+}
+
 void BlackBox_LEDring::init() {
     gpio_pad_select_gpio(BlackBox::LED_TOOGLE_GPIO);
     gpio_set_direction(BlackBox::LED_TOOGLE_GPIO, GPIO_MODE_OUTPUT);
     writeLEDstate();
 }
 
-void BlackBox_LEDring::pass(Rgb i_buffer[BlackBox::LED_COUNT]) {
-    for (int i = 0; i < BlackBox::LED_COUNT; i++) {
-        m_leds[i] = i_buffer[i];
-    }
+void BlackBox_LEDring::toogleLEDring() {
+    m_ledState = !m_ledState;
+    writeLEDstate();
+}
+
+void BlackBox_LEDring::toogleLEDring(bool i_ledState) {
+    m_ledState = i_ledState;
+    writeLEDstate();
+}
+
+void BlackBox_LEDring::setIntenzity(uint8_t i_intenzity) {
+    m_intenzity = i_intenzity;
+}
+
+void BlackBox_LEDring::setDarkModeIntenzity(uint8_t i_intenzity) {
+    m_darkModeIntenzity = i_intenzity;
+}
+
+void BlackBox_LEDring::toogleDarkMode() {
+    m_darkMode = !m_darkMode;
+}
+
+void BlackBox_LEDring::toogleDarkMode(bool i_darkMode) {
+    m_darkMode = i_darkMode;
+}
+
+void BlackBox_LEDring::setSecondsColor(Rgb i_color) {
+    m_secondsColor = i_color;
+}
+
+void BlackBox_LEDring::setMinutesColor(Rgb i_color) {
+    m_minutesColor = i_color;
+}
+
+void BlackBox_LEDring::setHoursColor(Rgb i_color) {
+    m_hoursColor = i_color;
+}
+
+void BlackBox_LEDring::setLayerOpacity(uint8_t i_opacity) {
+    m_layerOpacity = i_opacity;
+}
+
+void BlackBox_LEDring::setFirstPointOpacity(uint8_t i_opacity) {
+    m_firstPointOpacity = i_opacity;
+}
+
+void BlackBox_LEDring::toogleForceFirstPointOpacity() {
+    m_forceFirstPointOpacity = !m_forceFirstPointOpacity;
+}
+
+void BlackBox_LEDring::toogleForceFirstPointOpacity(bool i_forceFirstPointOpacity) {
+    m_forceFirstPointOpacity = i_forceFirstPointOpacity;
+}
+
+void BlackBox_LEDring::toogle12hrMode() {
+    m_12hrMode = !m_12hrMode;
+}
+
+void BlackBox_LEDring::toogle12hrMode(bool i_12hrMode) {
+    m_12hrMode = i_12hrMode;
 }
 
 void BlackBox_LEDring::prepare(Rgb i_buffer[BlackBox::LED_COUNT]) {
