@@ -130,10 +130,10 @@ void BlackBox_LEDring::show(Rgb i_buffer[BlackBox::LED_COUNT]) {
     show();
 }
 
-void BlackBox_LEDring::showTime(BlackBox::Time_t i_time) {
-    prepare(i_time);
-    show();
-}
+// void BlackBox_LEDring::showTime(BlackBox::Time_t i_time) { // FIXME: Fix this function to accept std::duration
+//     prepare(i_time);
+//     show();
+// }
 
 void BlackBox_LEDring::showCircle(Rgb i_color, uint8_t i_opacity, bool i_clear) {
     Rgb buffer[BlackBox::LED_COUNT];
