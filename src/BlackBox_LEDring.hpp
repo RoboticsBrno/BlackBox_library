@@ -8,7 +8,7 @@ namespace BlackBox {
     
 class index_t {
 private:
-    unsigned m_value;
+    int m_value;
 
     void swap(const index_t i_input) {
         m_value = i_input.m_value;
@@ -20,6 +20,9 @@ public:
 
     index_t(unsigned i_input)
         : m_value(i_input % BlackBox::LED_COUNT) {}
+
+    index_t(bool i_input)
+        : m_value(i_input ? 0 : -1) {}
 
     index_t& operator+=(const uint8_t i_input) {
         m_value = (m_value + i_input) % BlackBox::LED_COUNT;
@@ -53,7 +56,9 @@ public:
         return *this;
     }
 
-    operator unsigned() const { return m_value; }
+    operator int() const { return m_value; }
+
+    operator bool() const { return (m_value < 0) ? false : true; }
 
     uint8_t value() const { return m_value; }
 };
@@ -118,7 +123,7 @@ public:
     void toogle12hrMode(bool i_12hrMode);
 
     void prepare(Rgb i_buffer[BlackBox::LED_COUNT]);
-    void prepare(BlackBox::Time_t i_time);
+    // void prepare(BlackBox::Time_t i_time); // FIXME: Fix this function
 
     void clear();
     void show();

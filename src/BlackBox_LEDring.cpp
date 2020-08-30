@@ -105,13 +105,13 @@ void BlackBox_LEDring::prepare(Rgb i_buffer[BlackBox::LED_COUNT]) {
     pass(i_buffer);
 }
 
-void BlackBox_LEDring::prepare(BlackBox::Time_t i_time) {
-    Rgb buffer[BlackBox::LED_COUNT];
-    buffer[(i_time.getHours() * 5) % 60] += m_hoursColor;
-    buffer[i_time.getMinutes() % 60] += m_minutesColor;
-    buffer[i_time.getSeconds() % 60] += m_secondsColor;
-    prepare(buffer);
-}
+// void BlackBox_LEDring::prepare(BlackBox::Time_t i_time) {  // FIXME: Fix this function
+//     Rgb buffer[BlackBox::LED_COUNT];
+//     buffer[(i_time.getHours() * 5) % 60] += m_hoursColor;
+//     buffer[i_time.getMinutes() % 60] += m_minutesColor;
+//     buffer[i_time.getSeconds() % 60] += m_secondsColor;
+//     prepare(buffer);
+// }
 
 void BlackBox_LEDring::clear() {
     Rgb buffer[BlackBox::LED_COUNT];

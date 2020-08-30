@@ -17,11 +17,11 @@ static void convertToTime(time_t* o_time, tm* i_tm) {
     *o_time = mktime(i_tm);
 }
 
-static void convertToBBTime(Time_t* o_Time, time_t* i_time) {
-    tm _tm;
-    convertToTm(&_tm, i_time);
-    *o_Time = _tm.tm_hour * 3600 + _tm.tm_min * 60 + _tm.tm_sec;
-}
+// static void convertToBBTime(Time_t* o_Time, time_t* i_time) {
+//     tm _tm;
+//     convertToTm(&_tm, i_time);
+//     *o_Time = _tm.tm_hour * 3600 + _tm.tm_min * 60 + _tm.tm_sec;
+// }
 
 class BlackBox_RTC {
     friend class BlackBox_interface;
