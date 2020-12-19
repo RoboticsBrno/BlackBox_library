@@ -3,6 +3,7 @@
 #include "esp_log.h"
 
 #include <mutex>
+#include <stdint.h>
 
 namespace BlackBox {
 I2CTransmission::I2CTransmission()
@@ -71,6 +72,10 @@ i2c_cmd_handle_t I2CTransmission::raw() {
 void I2CTransmission::detach() {
     std::scoped_lock lock(m_mutex);
     m_handle = NULL;
+}
+
+I2CDevice::I2CDevice(uint16_t i_address)
+    : m_address(i_address) {
 }
 
 }

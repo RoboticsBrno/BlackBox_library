@@ -9,6 +9,7 @@
 
 #include "driver/i2c.h"
 #include <mutex>
+#include <stdint.h>
 
 namespace BlackBox {
 
@@ -144,5 +145,17 @@ public:
      * 
      */
     void detach();
+};
+
+/**
+ * @brief Base class for I2C devices
+ */
+class I2CDevice {
+private:
+    uint16_t m_address;
+
+public:
+    I2CDevice(uint16_t address);
+    ~I2CDevice() = default;
 };
 }
