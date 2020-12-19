@@ -78,4 +78,9 @@ I2CDevice::I2CDevice(uint16_t i_address)
     : m_address(i_address) {
 }
 
+uint16_t I2CDevice::address() 
+{
+    return m_address;
+}
+
 }

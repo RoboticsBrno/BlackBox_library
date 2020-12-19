@@ -157,5 +157,12 @@ private:
 public:
     I2CDevice(uint16_t address);
     ~I2CDevice() = default;
+
+    /**
+     * @brief Returns address of I2C device specified on inicialization
+     * 
+     * @return address 
+     */
+    uint16_t address();
 };
 }
