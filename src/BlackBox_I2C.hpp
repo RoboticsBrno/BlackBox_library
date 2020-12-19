@@ -1,7 +1,7 @@
 /**
  * @file BlackBox_I2C.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief RAII wrapper for ESP-IDFs i2c commands
+ * @brief library for working with I2C
  * 
  * @copyright Copyright (c) 2020 RoboticsBrno (RobotikaBrno)
  */
@@ -11,6 +11,10 @@
 #include <mutex>
 
 namespace BlackBox {
+
+/**
+ * @brief RAII wrapper for ESP-IDFs i2c commands
+ */
 class I2CTransmission {
 private:
     I2CTransmission(const I2CTransmission&) = delete;
