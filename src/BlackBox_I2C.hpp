@@ -160,9 +160,15 @@ public:
 
     /**
      * @brief Returns address of I2C device specified on inicialization
-     * 
      * @return address 
      */
     uint16_t address();
 };
+
+static inline esp_err_t i2cPortInit(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
+
+static inline esp_err_t i2cPortConfig(i2c_port_t, i2c_config_t);
+
+static inline esp_err_t i2cPortDeinit(i2c_port_t);
+
 }

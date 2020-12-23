@@ -78,9 +78,23 @@ I2CDevice::I2CDevice(uint16_t i_address)
     : m_address(i_address) {
 }
 
-uint16_t I2CDevice::address() 
-{
+uint16_t I2CDevice::address() {
     return m_address;
+}
+
+inline esp_err_t i2cPortInit(i2c_port_t i_port, i2c_config_t i_config, size_t i_slaveRxBuffer = 0, size_t i_slaveTxBuffer = 0, int i_intrAllockationFlag = 0) {
+    esp_err_t err = i2c_param_config(i_port, &i_config);
+    if (err != ESP_OK)
+        return err;
+    return i2c_driver_install(i_port, i_config.mode, i_slaveRxBuffer, i_slaveTxBuffer, i_intrAllockationFlag);
+}
+
+inline esp_err_t i2cPortConfig(i2c_port_t i_port, i2c_config_t i_config) {
+    return i2c_param_config(i_port, &i_config);
+}
+
+inline esp_err_t i2cPortDeinit(i2c_port_t i_port) {
+    return i2c_driver_delete(i_port);
 }
 
 }
