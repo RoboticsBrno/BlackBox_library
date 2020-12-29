@@ -165,10 +165,21 @@ public:
     uint16_t address();
 };
 
-static inline esp_err_t i2cPortInit(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
+class I2CPorts {
+private:
+    static std::mutex s_mutexes[I2C_NUM_MAX];
 
-static inline esp_err_t i2cPortConfig(i2c_port_t, i2c_config_t);
+    I2CPorts() = default;
+    I2CPorts(I2CPorts const&) = delete;
+    void operator=(I2CPorts const&) = delete;
+public:
+    static void init(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
 
-static inline esp_err_t i2cPortDeinit(i2c_port_t);
+    static void config(i2c_port_t, i2c_config_t);
+
+    static void deinit(i2c_port_t);
+
+    static bool isInitialized(i2c_port_t);
+};
 
 }

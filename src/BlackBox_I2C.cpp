@@ -82,19 +82,38 @@ uint16_t I2CDevice::address() {
     return m_address;
 }
 
-inline esp_err_t i2cPortInit(i2c_port_t i_port, i2c_config_t i_config, size_t i_slaveRxBuffer = 0, size_t i_slaveTxBuffer = 0, int i_intrAllockationFlag = 0) {
-    esp_err_t err = i2c_param_config(i_port, &i_config);
-    if (err != ESP_OK)
-        return err;
-    return i2c_driver_install(i_port, i_config.mode, i_slaveRxBuffer, i_slaveTxBuffer, i_intrAllockationFlag);
+void I2CPorts::init(i2c_port_t i_port, i2c_config_t i_config, size_t i_slaveRxBuffer, size_t i_slaveTxBuffer, int i_intrAllockationFlag) {
+    if (s_mutexes[i_port].try_lock()) {
+        ESP_ERROR_CHECK(i2c_param_config(i_port, &i_config));
+        ESP_ERROR_CHECK(i2c_driver_install(i_port, i_config.mode, i_slaveRxBuffer, i_slaveTxBuffer, i_intrAllockationFlag));
+    }
 }
 
-inline esp_err_t i2cPortConfig(i2c_port_t i_port, i2c_config_t i_config) {
-    return i2c_param_config(i_port, &i_config);
+void I2CPorts::config(i2c_port_t i_port, i2c_config_t i_config) {
+    if (isInitialized(i_port)) {
+        ESP_ERROR_CHECK(i2c_param_config(i_port, &i_config));
+    } else {
+        s_mutexes[i_port].unlock(); // oops
+        constexpr char const* tag = "I2C_Port_Guard";
+        ESP_LOGE(tag, "Trying configuring without init on port: %i", i_port);
+    }
 }
 
-inline esp_err_t i2cPortDeinit(i2c_port_t i_port) {
-    return i2c_driver_delete(i_port);
+void I2CPorts::deinit(i2c_port_t i_port) {
+    if (isInitialized(i_port)) {
+        ESP_ERROR_CHECK(i2c_driver_delete(i_port));
+        s_mutexes[i_port].unlock();
+    } else {
+        constexpr char const* tag = "I2C_Port_Guard";
+        ESP_LOGE(tag, "Trying to deinit without init on port: %i", i_port);
+    }
 }
 
+bool I2CPorts::isInitialized(i2c_port_t i_port) {
+    if (s_mutexes[i_port].try_lock()) {
+        s_mutexes[i_port].unlock(); // oops
+        return false;
+    }
+    return true;
+}
 }
