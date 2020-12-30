@@ -2,11 +2,11 @@
 
 #include <stdint.h>
 
+namespace LDCRegs {
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-enum LDC16XX_regs;
 
 union LDC16XX_dev_t {
     struct {
@@ -46,7 +46,7 @@ union LDC16XX_dev_t {
                 uint16_t unreadConversion0 : 1;
                 uint16_t reserved : 2;
                 uint16_t dataReady : 1;
-                uint16_t reserved : 1;
+                uint16_t reserved1 : 1;
                 uint16_t zeroCountError : 1;
                 uint16_t sensorAmplitudeLowError : 1;
                 uint16_t sensorAmplitudeHighError : 1;
@@ -69,7 +69,7 @@ union LDC16XX_dev_t {
                 uint16_t watchdogTimeoutErrorToINTB : 1;
                 uint16_t overRangeErrorToINTB : 1;
                 uint16_t underRangeErrorToINTB : 1;
-                uint16_t reserved : 2;
+                uint16_t reserved1 : 2;
                 uint16_t amplitudeLowErrorToOutputRegister : 1;
                 uint16_t amplitudeHighErrorToOutputRegister : 1;
                 uint16_t watchdogTimeoutErrorToOutputRegister : 1;
@@ -131,7 +131,7 @@ union LDC16XX_dev_t {
     uint16_t regs[36];
 };
 
-enum {
+enum registerAddresses {
     DATA0_MSB,
     DATA0_LSB,
 
@@ -164,7 +164,7 @@ enum {
     CLOCK_DIVIDERS2,
     CLOCK_DIVIDERS3,
 
-    STATUS,
+    DEVICE_STATUS,
 
     ERROR_CONFIG,
     CONFIG,
@@ -192,8 +192,8 @@ static const uint8_t offsettedAddresses[6] {
     0x7F,
 };
 
-static unsigned ldcGetHWAddress(unsigned i_address){
-    return (i_address<29) ? i_address : offsettedAddresses[i_address - 29];
+static unsigned ldcGetHWAddress(unsigned i_address) {
+    return (i_address < 29) ? i_address : offsettedAddresses[i_address - 29];
 }
 
 const uint16_t resetValues[MAX_ADDRESS] = {
@@ -305,7 +305,7 @@ const uint16_t writeMask[MAX_ADDRESS] = {
     0b1110000000000111,
 
     //reset
-    (1<<15),
+    (1 << 15),
 
     //drive current
     0b1111110000000000,
@@ -323,3 +323,5 @@ const uint16_t writeMask[MAX_ADDRESS] = {
 #ifdef __cplusplus
 }
 #endif
+
+}
