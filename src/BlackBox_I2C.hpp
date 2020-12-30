@@ -9,17 +9,17 @@
 
 #include "driver/i2c.h"
 #include <mutex>
-#include <stdint.h>
+#include <cstdint>
 
-namespace BlackBox {
+namespace I2C {
 
 /**
  * @brief RAII wrapper for ESP-IDFs i2c commands
  */
-class I2CTransmission {
+class Transmission {
 private:
-    I2CTransmission(const I2CTransmission&) = delete;
-    I2CTransmission& operator=(const I2CTransmission&) = delete;
+    Transmission(const Transmission&) = delete;
+    Transmission& operator=(const Transmission&) = delete;
 
     mutable std::recursive_mutex m_mutex;
     const char* m_tag = "I2C_Transmission";
@@ -29,21 +29,21 @@ private:
 
 public:
     /**
-     * @brief Construct a new clean I2CTransmission object
+     * @brief Construct a new clean Transmission object
      * 
      */
-    I2CTransmission();
+    Transmission();
 
     /**
-     * @brief Construct a new I2CTransmission object from existing handle
+     * @brief Construct a new Transmission object from existing handle
      * 
      */
-    I2CTransmission(i2c_cmd_handle_t const);
+    Transmission(i2c_cmd_handle_t const);
 
-    I2CTransmission(I2CTransmission&&) = default;
-    I2CTransmission& operator=(I2CTransmission&&) = default;
+    Transmission(Transmission&&) = default;
+    Transmission& operator=(Transmission&&) = default;
 
-    ~I2CTransmission();
+    ~Transmission();
 
     /**
      * @brief Queue start bit into transmission
@@ -73,7 +73,7 @@ public:
      *     - ESP_OK Success
      *     - ESP_ERR_INVALID_ARG Parameter error
      */
-    esp_err_t writeByte(uint8_t data, i2c_ack_type_t ackType = I2C_MASTER_ACK);
+    esp_err_t writeByte(std::uint8_t data, i2c_ack_type_t ackType = I2C_MASTER_ACK);
 
     /**
      * @brief Add read of 1 byte into transmission
@@ -85,7 +85,7 @@ public:
      *     - ESP_OK Success
      *     - ESP_ERR_INVALID_ARG Parameter error
      */
-    esp_err_t readByte(uint8_t* data, i2c_ack_type_t ackType = I2C_MASTER_ACK);
+    esp_err_t readByte(std::uint8_t* data, i2c_ack_type_t ackType = I2C_MASTER_ACK);
 
     /**
      * @brief Add write of buffer into transmission 
@@ -98,7 +98,7 @@ public:
      *     - ESP_OK Success
      *     - ESP_ERR_INVALID_ARG Parameter error
      */
-    esp_err_t write(uint8_t* data, size_t dataLength, i2c_ack_type_t ackType = I2C_MASTER_ACK);
+    esp_err_t write(std::uint8_t* data, size_t dataLength, i2c_ack_type_t ackType = I2C_MASTER_ACK);
 
     /**
      * @brief Add read of buffer into transmission
@@ -111,7 +111,7 @@ public:
      *     - ESP_OK Success
      *     - ESP_ERR_INVALID_ARG Parameter error
      */
-    esp_err_t read(uint8_t* data, size_t dataLength, i2c_ack_type_t ackType = I2C_MASTER_ACK);
+    esp_err_t read(std::uint8_t* data, size_t dataLength, i2c_ack_type_t ackType = I2C_MASTER_ACK);
 
     /**
      * @brief Send queued commands
@@ -150,29 +150,26 @@ public:
 /**
  * @brief Base class for I2C devices
  */
-class I2CDevice {
+class Device {
 private:
-    uint16_t m_address;
+    std::uint16_t m_address;
 
 public:
-    I2CDevice(uint16_t address);
-    ~I2CDevice() = default;
+    Device(std::uint16_t address);
+    virtual ~Device() = default;
 
     /**
      * @brief Returns address of I2C device specified on inicialization
      * @return address 
      */
-    uint16_t address();
+    std::uint16_t address();
 };
 
-class I2CPorts {
-private:
-    static std::mutex s_mutexes[I2C_NUM_MAX];
+namespace Ports {
+    constexpr char const* tag = "I2C_Port_Guard";
 
-    I2CPorts() = default;
-    I2CPorts(I2CPorts const&) = delete;
-    void operator=(I2CPorts const&) = delete;
-public:
+    static std::mutex mutexes[I2C_NUM_MAX];
+
     static void init(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
 
     static void config(i2c_port_t, i2c_config_t);
