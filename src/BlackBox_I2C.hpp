@@ -8,8 +8,9 @@
 #pragma once
 
 #include "driver/i2c.h"
-#include <mutex>
+#include <atomic>
 #include <cstdint>
+#include <mutex>
 
 namespace I2C {
 
@@ -151,11 +152,12 @@ public:
  * @brief Base class for I2C devices
  */
 class Device {
-private:
+protected:
     std::uint16_t m_address;
 
-public:
     Device(std::uint16_t address);
+    
+public:
     virtual ~Device() = default;
 
     /**
@@ -166,17 +168,46 @@ public:
 };
 
 namespace Ports {
-    constexpr char const* tag = "I2C_Port_Guard";
+constexpr char const* tag = "I2C_Port_Guard";
 
-    static std::mutex mutexes[I2C_NUM_MAX];
+static std::atomic<bool> initializedPorts[I2C_NUM_MAX];
 
-    static void init(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
+/**
+ * @brief Initilaize given I2C port.
+ * 
+ * @param port 
+ * @param config 
+ * @param slaveRxBuffer 
+ * @param slaveTxBuffer 
+ * @param intrAllockationFlag 
+ */
+static void init(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
 
-    static void config(i2c_port_t, i2c_config_t);
+/**
+ * @brief Configure given I2C port.
+ *        @note
+ *        The port must already be initialized otherwise the configuration won't happen
+ * 
+ * @param port 
+ * @param config 
+ */
+static void config(i2c_port_t port, i2c_config_t config);
 
-    static void deinit(i2c_port_t);
+/**
+ * @brief Deinitialize given I2C port.
+ *        @note
+ *        The port must already be initialized
+ * 
+ * @param port
+ */
+static void deinit(i2c_port_t);
 
-    static bool isInitialized(i2c_port_t);
+/**
+ * @brief Returns whether or not is given I2C port initialized
+ * 
+ * @return initialization state
+ */
+static bool isInitialized(i2c_port_t);
 };
 
 }

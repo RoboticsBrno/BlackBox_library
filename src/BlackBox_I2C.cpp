@@ -2,8 +2,8 @@
 
 #include "esp_log.h"
 
-#include <mutex>
 #include <cstdint>
+#include <mutex>
 
 namespace I2C {
 Transmission::Transmission()
@@ -84,17 +84,17 @@ std::uint16_t Device::address() {
 
 namespace Ports {
 void init(i2c_port_t i_port, i2c_config_t i_config, size_t i_slaveRxBuffer, size_t i_slaveTxBuffer, int i_intrAllockationFlag) {
-    if (mutexes[i_port].try_lock()) {
-        ESP_ERROR_CHECK(i2c_param_config(i_port, &i_config));
-        ESP_ERROR_CHECK(i2c_driver_install(i_port, i_config.mode, i_slaveRxBuffer, i_slaveTxBuffer, i_intrAllockationFlag));
-    }
+    bool expected = false;
+    if (!initializedPorts[i_port].compare_exchange_strong(expected, true))
+        return;
+    ESP_ERROR_CHECK(i2c_param_config(i_port, &i_config));
+    ESP_ERROR_CHECK(i2c_driver_install(i_port, i_config.mode, i_slaveRxBuffer, i_slaveTxBuffer, i_intrAllockationFlag));
 }
 
 void config(i2c_port_t i_port, i2c_config_t i_config) {
     if (isInitialized(i_port)) {
         ESP_ERROR_CHECK(i2c_param_config(i_port, &i_config));
     } else {
-        mutexes[i_port].unlock(); // oops
         ESP_LOGE(tag, "Trying configuring without init on port: %i", i_port);
     }
 }
@@ -102,18 +102,14 @@ void config(i2c_port_t i_port, i2c_config_t i_config) {
 void deinit(i2c_port_t i_port) {
     if (isInitialized(i_port)) {
         ESP_ERROR_CHECK(i2c_driver_delete(i_port));
-        mutexes[i_port].unlock();
+        initializedPorts[i_port].store(false);
     } else {
         ESP_LOGE(tag, "Trying to deinit without init on port: %i", i_port);
     }
 }
 
 bool isInitialized(i2c_port_t i_port) {
-    if (mutexes[i_port].try_lock()) {
-        mutexes[i_port].unlock(); // oops
-        return false;
-    }
-    return true;
+    return initializedPorts[i_port].load();
 }
 }
 }
