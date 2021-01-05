@@ -205,6 +205,8 @@ void deinit(i2c_port_t);
 /**
  * @brief Returns whether or not is given I2C port initialized
  * 
+ * @param port
+ * 
  * @return initialization state
  */
 bool isInitialized(i2c_port_t);
