@@ -181,7 +181,7 @@ static std::atomic<bool> initializedPorts[I2C_NUM_MAX];
  * @param slaveTxBuffer 
  * @param intrAllockationFlag 
  */
-static void init(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
+void init(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
 
 /**
  * @brief Configure given I2C port.
@@ -191,7 +191,7 @@ static void init(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slav
  * @param port 
  * @param config 
  */
-static void config(i2c_port_t port, i2c_config_t config);
+void config(i2c_port_t port, i2c_config_t config);
 
 /**
  * @brief Deinitialize given I2C port.
@@ -200,14 +200,14 @@ static void config(i2c_port_t port, i2c_config_t config);
  * 
  * @param port
  */
-static void deinit(i2c_port_t);
+void deinit(i2c_port_t);
 
 /**
  * @brief Returns whether or not is given I2C port initialized
  * 
  * @return initialization state
  */
-static bool isInitialized(i2c_port_t);
+bool isInitialized(i2c_port_t);
 };
 
 }
