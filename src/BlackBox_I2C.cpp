@@ -30,23 +30,23 @@ esp_err_t Transmission::stopBit() {
     return i2c_master_stop(m_handle);
 }
 
-esp_err_t Transmission::writeByte(std::uint8_t i_data, i2c_ack_type_t i_ackType) {
+esp_err_t Transmission::writeByte(std::uint8_t i_data, bool i_ackCheck) {
     std::scoped_lock lock(m_mutex);
-    return i2c_master_write_byte(m_handle, i_data, i_ackType);
+    return i2c_master_write_byte(m_handle, i_data, i_ackCheck);
 }
 
-esp_err_t Transmission::readByte(std::uint8_t* o_data, i2c_ack_type_t i_ackType) {
-    return i2c_master_read_byte(m_handle, o_data, i_ackType);
+esp_err_t Transmission::readByte(std::uint8_t* o_data, ACKValue i_ackValue) {
+    return i2c_master_read_byte(m_handle, o_data, static_cast<i2c_ack_type_t>(i_ackValue));
 }
 
-esp_err_t Transmission::write(std::uint8_t* i_data, size_t i_dataLengt, i2c_ack_type_t i_ackType) {
+esp_err_t Transmission::write(std::uint8_t* i_data, size_t i_dataLengt, bool i_ackCheck) {
     std::scoped_lock lock(m_mutex);
-    return i2c_master_write(m_handle, i_data, i_dataLengt, i_ackType);
+    return i2c_master_write(m_handle, i_data, i_dataLengt, i_ackCheck);
 }
 
-esp_err_t Transmission::read(std::uint8_t* o_data, size_t i_dataLengt, i2c_ack_type_t i_ackType) {
+esp_err_t Transmission::read(std::uint8_t* o_data, size_t i_dataLengt, ACKValue i_ackValue) {
     std::scoped_lock lock(m_mutex);
-    return i2c_master_read(m_handle, o_data, i_dataLengt, i_ackType);
+    return i2c_master_read(m_handle, o_data, i_dataLengt, static_cast<i2c_ack_type_t>(i_ackValue));
 }
 
 esp_err_t Transmission::send(i2c_port_t i_i2cNum, TickType_t i_ticksToWait) {
@@ -74,14 +74,62 @@ void Transmission::detach() {
     m_handle = NULL;
 }
 
-Device::Device(std::uint16_t i_address)
-    : m_address(i_address) {
+Device::Device(std::uint16_t i_address, i2c_port_t i_port)
+    : m_address(i_address)
+    , m_port(i_port) {
 }
 
-std::uint16_t Device::address() {
+std::uint16_t Device::address() const {
     return m_address;
 }
 
+i2c_port_t Device::port() const {
+    return m_port;
+}
+
+uint8_t Device::readByte(std::uint8_t i_registerAddress) {
+    uint8_t* data;
+    I2C::Transmission transmission;
+    transmission.startBit();
+    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte(i_registerAddress, EnableACKCheck);
+    transmission.startBit();
+    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_READ, EnableACKCheck);
+    transmission.readByte(data, NACK);
+    transmission.stopBit();
+    transmission.send(m_port);
+    return *data;
+}
+
+void Device::writeByte(std::uint8_t i_registerAddress, std::uint8_t i_data) {
+    I2C::Transmission transmission;
+    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte(i_registerAddress, EnableACKCheck);
+    transmission.writeByte(i_data, EnableACKCheck);
+    transmission.stopBit();
+    transmission.send(m_port);
+}
+
+void Device::read(std::uint8_t i_registerAddress, std::uint8_t* o_data, size_t i_dataLength) {
+    I2C::Transmission transmission;
+    transmission.startBit();
+    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte(i_registerAddress, EnableACKCheck);
+    transmission.startBit();
+    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_READ, EnableACKCheck);
+    transmission.read(o_data, LastNACK);
+    transmission.stopBit();
+    transmission.send(m_port);
+}
+
+void Device::write(std::uint8_t i_registerAddress, std::uint8_t* i_data, size_t i_dataLength) {
+    I2C::Transmission transmission;
+    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte(i_registerAddress, EnableACKCheck);
+    transmission.write(i_data, i_dataLength, EnableACKCheck);
+    transmission.stopBit();
+    transmission.send(m_port);
+}
 
 void Ports::init(i2c_port_t i_port, i2c_config_t i_config, size_t i_slaveRxBuffer, size_t i_slaveTxBuffer, int i_intrAllockationFlag) {
     bool expected = false;

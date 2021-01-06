@@ -14,6 +14,17 @@
 
 namespace I2C {
 
+enum ACKCheck{
+    DisableACKCheck = false,
+    EnableACKCheck = true,
+};
+
+enum ACKValue {
+    ACK = I2C_MASTER_ACK,
+    NACK = I2C_MASTER_NACK,
+    LastNACK = I2C_MASTER_LAST_NACK,
+};
+
 /**
  * @brief RAII wrapper for ESP-IDFs i2c commands
  */
@@ -68,38 +79,38 @@ public:
      * @brief Add write of 1 byte into transmission 
      * 
      * @param data data byte to write
-     * @param ackType enable ack checks
+     * @param ackCheck enable ack checks
      * 
      * @return
      *     - ESP_OK Success
      *     - ESP_ERR_INVALID_ARG Parameter error
      */
-    esp_err_t writeByte(std::uint8_t data, i2c_ack_type_t ackType = I2C_MASTER_ACK);
+    esp_err_t writeByte(std::uint8_t data, bool ACKCheck = EnableACKCheck);
 
     /**
      * @brief Add read of 1 byte into transmission
      * 
      * @param data buffer to put read data into
-     * @param ackType ack value for read command
+     * @param ackValue ack value for read command
      * 
      * @return
      *     - ESP_OK Success
      *     - ESP_ERR_INVALID_ARG Parameter error
      */
-    esp_err_t readByte(std::uint8_t* data, i2c_ack_type_t ackType = I2C_MASTER_ACK);
+    esp_err_t readByte(std::uint8_t* data, ACKValue = ACK);
 
     /**
      * @brief Add write of buffer into transmission 
      * 
      * @param data data byte to write
      * @param dataLength length of data
-     * @param ackType enable ack checks
+     * @param ackCheck enable ack checks
      * 
      * @return
      *     - ESP_OK Success
      *     - ESP_ERR_INVALID_ARG Parameter error
      */
-    esp_err_t write(std::uint8_t* data, size_t dataLength, i2c_ack_type_t ackType = I2C_MASTER_ACK);
+    esp_err_t write(std::uint8_t* data, size_t dataLength, bool ackCheck = EnableACKCheck);
 
     /**
      * @brief Add read of buffer into transmission
@@ -112,7 +123,7 @@ public:
      *     - ESP_OK Success
      *     - ESP_ERR_INVALID_ARG Parameter error
      */
-    esp_err_t read(std::uint8_t* data, size_t dataLength, i2c_ack_type_t ackType = I2C_MASTER_ACK);
+    esp_err_t read(std::uint8_t* data, size_t dataLength, ACKValue = ACK);
 
     /**
      * @brief Send queued commands
@@ -127,7 +138,7 @@ public:
      *     - ESP_ERR_INVALID_STATE I2C driver not installed or not in master mode.
      *     - ESP_ERR_TIMEOUT Operation timeout because the bus is busy.
      */
-    esp_err_t send(i2c_port_t i2cNum, TickType_t ticksToWait);
+    esp_err_t send(i2c_port_t i2cNum, TickType_t ticksToWait = 1000 / portTICK_RATE_MS);
 
     /**
      * @brief Reset this transmission for future use
@@ -155,8 +166,10 @@ class Device {
 protected:
     std::uint16_t m_address;
 
-    Device(std::uint16_t address);
-    
+    i2c_port_t m_port;
+
+    Device(std::uint16_t address, i2c_port_t);
+
 public:
     virtual ~Device() = default;
 
@@ -164,7 +177,17 @@ public:
      * @brief Returns address of I2C device specified on inicialization
      * @return address 
      */
-    std::uint16_t address();
+    std::uint16_t address() const;
+
+    i2c_port_t port() const;
+
+    virtual std::uint8_t readByte(std::uint8_t registerAddress);
+
+    virtual void writeByte(std::uint8_t registerAddress, std::uint8_t data);
+
+    virtual void read(std::uint8_t registerAddress, std::uint8_t* data, size_t dataLength);
+
+    virtual void write(std::uint8_t registerAddress, std::uint8_t* data, size_t dataLength);
 };
 
 namespace Ports {
