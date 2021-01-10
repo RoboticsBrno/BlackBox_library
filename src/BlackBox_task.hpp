@@ -6,13 +6,20 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 
+// FIXME: Fix this mess
+// movability:
+//  - What happens with the original function called by trampoline after move?
+// detach:
+//  - What happens with the original function called by trampoline after detaching the RAII?
+
 namespace BlackBox {
 
 class Task {
 private:
-    TaskHandle_t m_taskHandle = NULL;
+    TaskHandle_t m_taskHandle = nullptr;
     Task(const Task&) = delete;
     Task& operator=(const Task&) = delete;
+    std::function<void()> m_function;
 
 public:
     Task(std::function<void()> i_function,
@@ -24,15 +31,17 @@ public:
         uint32_t i_stackDepth,
         UBaseType_t i_priority,
         const uint32_t i_coreID);
-    Task(TaskHandle_t* const i_taskHnadle);
-    Task(Task&&) = default;
-    Task& operator=(Task&&) = default;
+    explicit Task(TaskHandle_t* const i_taskHnadle);
+    Task(Task&&);
+    Task& operator=(Task&&);
     ~Task();
 
     static void trampoline(void* i_functionPtr);
 
     TaskHandle_t* raw();
-    void detach();
+    
+    // for now this breaks the program
+    // void detach();
 
     UBaseType_t priority();
     static UBaseType_t priority(const TaskHandle_t* i_taskHandle);
