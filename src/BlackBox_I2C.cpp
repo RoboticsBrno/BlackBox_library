@@ -10,14 +10,35 @@ Transmission::Transmission()
     : m_handle(i2c_cmd_link_create()) {
 }
 
-Transmission::Transmission(i2c_cmd_handle_t const i_handle)
-    : m_handle(i_handle) {
+Transmission::Transmission(i2c_cmd_handle_t i_handle)
+    : m_handle(std::exchange(i_handle, nullptr)) {
+}
+
+Transmission::Transmission(Transmission&& other) {
+    std::scoped_lock lock(other.m_mutex);
+    m_handle = std::exchange(other.m_handle, nullptr);
+    m_sent = std::exchange(other.m_sent, true);
+}
+
+Transmission& Transmission::operator=(Transmission&& other) {
+    if (this != &other) {
+        std::scoped_lock lock(other.m_mutex, m_mutex);
+        if (m_handle != nullptr) {
+            i2c_cmd_link_delete(m_handle);
+            m_handle = nullptr;
+        }
+        m_handle = std::exchange(other.m_handle, nullptr);
+        m_sent = std::exchange(other.m_sent, true);
+    }
+    return *this;
 }
 
 Transmission::~Transmission() {
     std::scoped_lock lock(m_mutex);
-    i2c_cmd_link_delete(m_handle);
-    m_handle = NULL;
+    if (m_handle != nullptr) {
+        i2c_cmd_link_delete(m_handle);
+        m_handle = nullptr;
+    }
 }
 
 esp_err_t Transmission::startBit() {
@@ -88,22 +109,22 @@ i2c_port_t Device::port() const {
 }
 
 uint8_t Device::readByte(std::uint8_t i_registerAddress) {
-    uint8_t* data;
+    uint8_t data;
     I2C::Transmission transmission;
     transmission.startBit();
-    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
     transmission.writeByte(i_registerAddress, EnableACKCheck);
     transmission.startBit();
-    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_READ, EnableACKCheck);
-    transmission.readByte(data, NACK);
+    transmission.writeByte((m_address << 1) | I2C_MASTER_READ, EnableACKCheck);
+    transmission.readByte(&data, NACK);
     transmission.stopBit();
     transmission.send(m_port);
-    return *data;
+    return data;
 }
 
 void Device::writeByte(std::uint8_t i_registerAddress, std::uint8_t i_data) {
     I2C::Transmission transmission;
-    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
     transmission.writeByte(i_registerAddress, EnableACKCheck);
     transmission.writeByte(i_data, EnableACKCheck);
     transmission.stopBit();
@@ -113,10 +134,10 @@ void Device::writeByte(std::uint8_t i_registerAddress, std::uint8_t i_data) {
 void Device::read(std::uint8_t i_registerAddress, std::uint8_t* o_data, size_t i_dataLength) {
     I2C::Transmission transmission;
     transmission.startBit();
-    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
     transmission.writeByte(i_registerAddress, EnableACKCheck);
     transmission.startBit();
-    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_READ, EnableACKCheck);
+    transmission.writeByte((m_address << 1) | I2C_MASTER_READ, EnableACKCheck);
     transmission.read(o_data, LastNACK);
     transmission.stopBit();
     transmission.send(m_port);
@@ -124,7 +145,7 @@ void Device::read(std::uint8_t i_registerAddress, std::uint8_t* o_data, size_t i
 
 void Device::write(std::uint8_t i_registerAddress, std::uint8_t* i_data, size_t i_dataLength) {
     I2C::Transmission transmission;
-    transmission.writeByte(( m_address << 1 ) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
     transmission.writeByte(i_registerAddress, EnableACKCheck);
     transmission.write(i_data, i_dataLength, EnableACKCheck);
     transmission.stopBit();

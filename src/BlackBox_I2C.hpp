@@ -50,10 +50,10 @@ public:
      * @brief Construct a new Transmission object from existing handle
      * 
      */
-    Transmission(i2c_cmd_handle_t const);
+    explicit Transmission(i2c_cmd_handle_t);
 
-    Transmission(Transmission&&) = default;
-    Transmission& operator=(Transmission&&) = default;
+    Transmission(Transmission&&);
+    Transmission& operator=(Transmission&&);
 
     ~Transmission();
 
@@ -168,11 +168,17 @@ protected:
 
     i2c_port_t m_port;
 
-    Device(std::uint16_t address, i2c_port_t);
-
 public:
     virtual ~Device() = default;
 
+    /**
+     * @brief Construct a new Device object
+     * 
+     * @param address address of device
+     * @param port i2c port on which device is connected
+     */
+    Device(std::uint16_t address, i2c_port_t);
+    
     /**
      * @brief Returns address of I2C device specified on inicialization
      * @return address 
@@ -180,6 +186,8 @@ public:
     std::uint16_t address() const;
 
     i2c_port_t port() const;
+
+    // virtual void init(); // FIXME: Write init for i2c device
 
     virtual std::uint8_t readByte(std::uint8_t registerAddress);
 
