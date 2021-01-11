@@ -2,10 +2,10 @@
  * @file BlackBox_I2C.hpp
  * @author Tomáš Rohlínek (haberturdeur)
  * @brief library for working with I2C
- * 
- * @copyright Copyright (c) 2020 RoboticsBrno (RobotikaBrno)
  */
 #pragma once
+
+#include "BlackBox_pinout.hpp"
 
 #include "driver/i2c.h"
 #include <atomic>
@@ -14,7 +14,7 @@
 
 namespace I2C {
 
-enum ACKCheck{
+enum ACKCheck {
     DisableACKCheck = false,
     EnableACKCheck = true,
 };
@@ -178,7 +178,7 @@ public:
      * @param port i2c port on which device is connected
      */
     Device(std::uint16_t address, i2c_port_t);
-    
+
     /**
      * @brief Returns address of I2C device specified on inicialization
      * @return address 
@@ -204,6 +204,21 @@ constexpr char const* tag = "I2C_Port_Guard";
 static std::atomic<bool> initializedPorts[I2C_NUM_MAX];
 
 /**
+ * @brief Default configuration to be used with all buil-in I2C devices on BlackBox
+ */
+constexpr i2c_config_t defaultConfig = {
+    // FIXME: Make this overritable easily
+    .mode = I2C_MODE_MASTER,
+    .sda_io_num = ::BlackBox::Pins::I2C::SDA,
+    .scl_io_num = ::BlackBox::Pins::I2C::SCL,
+    .sda_pullup_en = true,
+    .scl_pullup_en = true,
+    .master = {
+        .clk_speed = 400000, // FIXME: Do all devices support this speed?
+    },
+};
+
+/**
  * @brief Initilaize given I2C port.
  * 
  * @param port 
@@ -212,7 +227,7 @@ static std::atomic<bool> initializedPorts[I2C_NUM_MAX];
  * @param slaveTxBuffer 
  * @param intrAllockationFlag 
  */
-void init(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
+void init(i2c_port_t, i2c_config_t = defaultConfig, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
 
 /**
  * @brief Configure given I2C port.
@@ -222,7 +237,7 @@ void init(i2c_port_t, i2c_config_t, size_t slaveRxBuffer = 0, size_t slaveTxBuff
  * @param port 
  * @param config 
  */
-void config(i2c_port_t port, i2c_config_t config);
+void config(i2c_port_t, i2c_config_t config = defaultConfig);
 
 /**
  * @brief Deinitialize given I2C port.
