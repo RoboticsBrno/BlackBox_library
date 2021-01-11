@@ -1,35 +1,67 @@
+/**
+ * @file BlackBox_pinout.hpp
+ * @author Tomáš Rohlínek (haberturdeur)
+ * @brief pinout of BlackBox board
+ */
+
 #pragma once
 
 #include "driver/gpio.h"
 
 namespace BlackBox {
-static const int LED_COUNT = 60;
-static const int CHANNEL = 0;
-static const gpio_num_t LED_DATA_GPIO = GPIO_NUM_14;
-static const gpio_num_t LED_TOOGLE_GPIO = GPIO_NUM_12;
 
-static const gpio_num_t SDA_GPIO = GPIO_NUM_23;
-static const gpio_num_t SCL_GPIO = GPIO_NUM_22;
+namespace Pins {
 
-static const gpio_num_t RTC_ALARM_INT_GPIO = GPIO_NUM_21;
-static const gpio_num_t RTC_SQW_GPIO = GPIO_NUM_21;
-static const gpio_num_t RTC_RST_GPIO = GPIO_NUM_15;
+namespace Leds {
+constexpr gpio_num_t Data = GPIO_NUM_18;
+}
 
-static const gpio_num_t QMC_INT_GPIO = GPIO_NUM_19;
-static const gpio_num_t MPU_INT_GPIO = GPIO_NUM_25;
+namespace I2C {
+constexpr gpio_num_t SCL = GPIO_NUM_22;
+constexpr gpio_num_t SDA = GPIO_NUM_23;
+}
 
-static const gpio_num_t ENC_SW_GPIO = GPIO_NUM_18;
-static const gpio_num_t ENC_A_GPIO = GPIO_NUM_5;
-static const gpio_num_t ENC_B_GPIO = GPIO_NUM_17;
+namespace UART {
+constexpr gpio_num_t TX = GPIO_NUM_1;
+constexpr gpio_num_t RX = GPIO_NUM_3;
+}
 
-static const gpio_num_t GPS_RX_GPIO = GPIO_NUM_16;
-static const gpio_num_t GPS_TX_GPIO = GPIO_NUM_4;
+namespace Interrupts {
+constexpr gpio_num_t LDC = GPIO_NUM_21;
 
-static const gpio_num_t ESP_SHUTDOWN_GPIO = GPIO_NUM_0;
+constexpr gpio_num_t Magnetometer = GPIO_NUM_25;
 
-static const gpio_num_t RS485_TX_GPIO = GPIO_NUM_2;
-static const gpio_num_t RS485_RX_GPIO = GPIO_NUM_27;
-static const gpio_num_t RS485_DTR_GPIO = GPIO_NUM_13;
+constexpr gpio_num_t RTC = GPIO_NUM_26;
 
-static const gpio_num_t LOCK_GPIO = GPIO_NUM_26;
+constexpr gpio_num_t Barometer = GPIO_NUM_27;
+
+constexpr gpio_num_t Gyroscope1 = GPIO_NUM_32;
+constexpr gpio_num_t Gyroscope2 = GPIO_NUM_33;
+
+constexpr gpio_num_t Accelerometer1 = GPIO_NUM_34;
+constexpr gpio_num_t Accelerometer2 = GPIO_NUM_35;
+}
+
+namespace Lock {
+constexpr gpio_num_t A = GPIO_NUM_0;
+constexpr gpio_num_t B = GPIO_NUM_4;
+
+constexpr gpio_num_t Motor = GPIO_NUM_12;
+}
+
+namespace IR {
+constexpr gpio_num_t Receiver = GPIO_NUM_2;
+constexpr gpio_num_t Transmitter = GPIO_NUM_15;
+}
+
+namespace Power {
+constexpr gpio_num_t ShutDown_All = GPIO_NUM_5;
+constexpr gpio_num_t ShutDown_Leds = GPIO_NUM_13;
+constexpr gpio_num_t ShutDown_5V = GPIO_NUM_14;
+constexpr gpio_num_t ShutDown_LDC = GPIO_NUM_19;
+constexpr gpio_num_t ShutDown = ShutDown_All;
+
+constexpr gpio_num_t BatteryLevel = GPIO_NUM_39;
+}
+} // namespace BlackBox::Pins
 } // namespace BlackBox
