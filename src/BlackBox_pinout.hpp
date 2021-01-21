@@ -13,7 +13,7 @@ namespace BlackBox {
 namespace Pins {
 
 namespace Leds {
-constexpr gpio_num_t Data = GPIO_NUM_18;
+constexpr gpio_num_t Data = GPIO_NUM_19;
 }
 
 namespace I2C {
@@ -50,15 +50,15 @@ constexpr gpio_num_t Motor = GPIO_NUM_12;
 }
 
 namespace IR {
-constexpr gpio_num_t Receiver = GPIO_NUM_2;
-constexpr gpio_num_t Transmitter = GPIO_NUM_15;
+constexpr gpio_num_t Receiver = GPIO_NUM_15;
+constexpr gpio_num_t Transmitter = GPIO_NUM_2;
 }
 
 namespace Power {
 constexpr gpio_num_t ShutDown_All = GPIO_NUM_5;
 constexpr gpio_num_t ShutDown_Leds = GPIO_NUM_13;
 constexpr gpio_num_t ShutDown_5V = GPIO_NUM_14;
-constexpr gpio_num_t ShutDown_LDC = GPIO_NUM_19;
+constexpr gpio_num_t ShutDown_LDC = GPIO_NUM_18;
 constexpr gpio_num_t ShutDown = ShutDown_All;
 
 constexpr gpio_num_t BatteryLevel = GPIO_NUM_39;
