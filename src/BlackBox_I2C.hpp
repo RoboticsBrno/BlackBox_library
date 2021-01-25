@@ -227,7 +227,7 @@ constexpr i2c_config_t defaultConfig = {
  * @param slaveTxBuffer 
  * @param intrAllockationFlag 
  */
-void init(i2c_port_t, i2c_config_t = defaultConfig, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
+void init(i2c_port_t, const i2c_config_t& = defaultConfig, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
 
 /**
  * @brief Configure given I2C port.
@@ -237,7 +237,7 @@ void init(i2c_port_t, i2c_config_t = defaultConfig, size_t slaveRxBuffer = 0, si
  * @param port 
  * @param config 
  */
-void config(i2c_port_t, i2c_config_t config = defaultConfig);
+void config(i2c_port_t, const i2c_config_t& config = defaultConfig);
 
 /**
  * @brief Deinitialize given I2C port.

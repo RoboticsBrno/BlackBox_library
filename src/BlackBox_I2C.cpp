@@ -152,7 +152,7 @@ void Device::write(std::uint8_t i_registerAddress, std::uint8_t* i_data, size_t 
     transmission.send(m_port);
 }
 
-void Ports::init(i2c_port_t i_port, i2c_config_t i_config, size_t i_slaveRxBuffer, size_t i_slaveTxBuffer, int i_intrAllockationFlag) {
+void Ports::init(i2c_port_t i_port, const i2c_config_t& i_config, size_t i_slaveRxBuffer, size_t i_slaveTxBuffer, int i_intrAllockationFlag) {
     bool expected = false;
     if (!initializedPorts[i_port].compare_exchange_strong(expected, true))
         return;
@@ -160,7 +160,7 @@ void Ports::init(i2c_port_t i_port, i2c_config_t i_config, size_t i_slaveRxBuffe
     ESP_ERROR_CHECK(i2c_driver_install(i_port, i_config.mode, i_slaveRxBuffer, i_slaveTxBuffer, i_intrAllockationFlag));
 }
 
-void Ports::config(i2c_port_t i_port, i2c_config_t i_config) {
+void Ports::config(i2c_port_t i_port, const i2c_config_t& i_config) {
     if (isInitialized(i_port)) {
         ESP_ERROR_CHECK(i2c_param_config(i_port, &i_config));
     } else {
