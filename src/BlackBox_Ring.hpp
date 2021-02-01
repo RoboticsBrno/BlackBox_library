@@ -7,8 +7,8 @@
 
 namespace BlackBox {
 
-constexpr unsigned ledCount = 60;
-constexpr unsigned channel = 0;
+constexpr int ledCount = 60;
+constexpr int channel = 0;
 
 enum class ArcType {
     ShorterDistance = 0,
@@ -34,6 +34,13 @@ public:
     Index& operator++();
     Index& operator--();
 
+    bool operator<(const Index&) const;
+    bool operator>(const Index&) const;
+    bool operator<=(const Index&) const;
+    bool operator>=(const Index&) const;
+    bool operator==(const Index&) const;
+    bool operator!=(const Index&) const;
+
     operator int() const;
 };
 
@@ -51,22 +58,24 @@ private:
 
     mutable std::recursive_mutex m_mutex;
 
+    // uint32 blend(unsigned color1, unsigned color2, unsigned alpha);
+
 protected:
 
 public:
     Ring(int count = ledCount);
     void show();
-    void wait() {
-        m_leds.wait();
-    }
+    void wait();
     // void show(Page&); // FIXME: What implementation would be best (page)?
 
-    // void drawArc(Rgb, Index beginnig, Index ending, ArcType arkType = ArcType::ShorterDistance);
-    // void drawCircle(Rgb);
-    // void draw(std::unique_ptr< Rgb[] > buffer);
+    void drawArc(Rgb, Index beginnig, Index ending, ArcType arcType = ArcType::ShorterDistance);
+    void drawCircle(Rgb);
+    void draw(std::unique_ptr< Rgb[] > buffer);
 
-    const Rgb& operator[](Index) const;
-    Rgb& operator[](Index);
+    void clear();
+
+    const Rgb& operator[](const Index&) const;
+    Rgb& operator[](const Index&);
 
     void enableDarkMode();
     void disableDarkMode();
