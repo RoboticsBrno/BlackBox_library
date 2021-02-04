@@ -6,7 +6,6 @@
 #pragma once
 
 #include "BlackBox_pinout.hpp"
-
 #include "driver/i2c.h"
 #include <atomic>
 #include <cstdint>
@@ -168,6 +167,15 @@ protected:
 
     i2c_port_t m_port;
 
+    virtual std::uint8_t readByte(std::uint8_t registerAddress);
+
+    virtual void writeByte(std::uint8_t registerAddress, std::uint8_t data);
+
+    virtual void read(std::uint8_t registerAddress, std::uint8_t* data, size_t dataLength);
+
+    virtual void write(std::uint8_t registerAddress, std::uint8_t* data, size_t dataLength);
+
+    Device() = delete;
 public:
     virtual ~Device() = default;
 
@@ -188,14 +196,6 @@ public:
     i2c_port_t port() const;
 
     // virtual void init(); // FIXME: Write init for i2c device
-
-    virtual std::uint8_t readByte(std::uint8_t registerAddress);
-
-    virtual void writeByte(std::uint8_t registerAddress, std::uint8_t data);
-
-    virtual void read(std::uint8_t registerAddress, std::uint8_t* data, size_t dataLength);
-
-    virtual void write(std::uint8_t registerAddress, std::uint8_t* data, size_t dataLength);
 };
 
 namespace Ports {
