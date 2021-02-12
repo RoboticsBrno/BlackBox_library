@@ -161,23 +161,65 @@ public:
 /**
  * @brief Base class for I2C devices
  */
-class Device {
+class Device { // FIXME: This has to change to be implemented as "universal", write and read functions need to be public, but what with derived classes should we not derive them but nest them?
 protected:
     std::uint16_t m_address;
 
     i2c_port_t m_port;
 
-    virtual std::uint8_t readByte(std::uint8_t registerAddress);
-
-    virtual void writeByte(std::uint8_t registerAddress, std::uint8_t data);
-
-    virtual void read(std::uint8_t registerAddress, std::uint8_t* data, size_t dataLength);
-
-    virtual void write(std::uint8_t registerAddress, std::uint8_t* data, size_t dataLength);
-
     Device() = delete;
 public:
     virtual ~Device() = default;
+
+    /**
+     * @brief Read a single byte from device
+     * 
+     * @param registerAddress 
+     * @return read data
+     */
+    std::uint8_t readByte(std::uint8_t registerAddress);
+
+    /**
+     * @brief Read multiple bytes from device
+     * 
+     * @param registerAddress
+     * @param data Pointer to variable where to store read data
+     * @param dataLength Length of data to be read
+     */
+    void readBytes(std::uint8_t registerAddress, std::uint8_t* data, size_t dataLength);
+
+    /**
+     * @brief Read a single word (2 bytes) from device
+     * 
+     * @param registerAddress 
+     * @return read data 
+     */
+    std::uint16_t readWord(std::uint8_t registerAddress);
+
+    /**
+     * @brief Write a single byte to device
+     * 
+     * @param registerAddress 
+     * @param data 
+     */
+    void writeByte(std::uint8_t registerAddress, std::uint8_t data);
+
+    /**
+     * @brief Write multiple bytes to device
+     * 
+     * @param registerAddress 
+     * @param data Pointer to the data variable
+     * @param dataLength Length of data to be written
+     */
+    void writeBytes(std::uint8_t registerAddress, std::uint8_t* data, size_t dataLength);
+
+    /**
+     * @brief Write a single word (2 bytes) to device
+     * 
+     * @param registerAddress 
+     * @param data 
+     */
+    void writeWord(std::uint8_t registerAddress, std::uint16_t data);
 
     /**
      * @brief Construct a new Device object
@@ -188,14 +230,14 @@ public:
     Device(std::uint16_t address, i2c_port_t);
 
     /**
-     * @brief Returns address of I2C device specified on inicialization
+     * @brief Returns address of I2C device specified on initialization
      * @return address 
      */
     std::uint16_t address() const;
 
     i2c_port_t port() const;
 
-    // virtual void init(); // FIXME: Write init for i2c device
+    virtual void init(); // FIXME: Write init for i2c device
 };
 
 namespace Ports {

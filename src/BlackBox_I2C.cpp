@@ -1,7 +1,6 @@
 #include "BlackBox_I2C.hpp"
 
 #include "esp_log.h"
-
 #include <cstdint>
 #include <mutex>
 
@@ -100,16 +99,8 @@ Device::Device(std::uint16_t i_address, i2c_port_t i_port)
     , m_port(i_port) {
 }
 
-std::uint16_t Device::address() const {
-    return m_address;
-}
-
-i2c_port_t Device::port() const {
-    return m_port;
-}
-
 uint8_t Device::readByte(std::uint8_t i_registerAddress) {
-    uint8_t data;
+    std::uint8_t data;
     I2C::Transmission transmission;
     transmission.startBit();
     transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
@@ -122,6 +113,32 @@ uint8_t Device::readByte(std::uint8_t i_registerAddress) {
     return data;
 }
 
+void Device::readBytes(std::uint8_t i_registerAddress, std::uint8_t* o_data, size_t i_dataLength) {
+    I2C::Transmission transmission;
+    transmission.startBit();
+    transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte(i_registerAddress, EnableACKCheck);
+    transmission.startBit();
+    transmission.writeByte((m_address << 1) | I2C_MASTER_READ, EnableACKCheck);
+    transmission.read(o_data, i_dataLength, LastNACK);
+    transmission.stopBit();
+    transmission.send(m_port);
+}
+
+std::uint16_t Device::readWord(std::uint8_t i_registerAddress) {
+    I2C::Transmission transmission;
+    std::uint8_t data[] = { 0, 0 };
+    transmission.startBit();
+    transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte(i_registerAddress, EnableACKCheck);
+    transmission.startBit();
+    transmission.writeByte((m_address << 1) | I2C_MASTER_READ, EnableACKCheck);
+    transmission.read(data, 2, LastNACK);
+    transmission.stopBit();
+    transmission.send(m_port);
+    return ((data[0] << 8) | data[1]);
+}
+
 void Device::writeByte(std::uint8_t i_registerAddress, std::uint8_t i_data) {
     I2C::Transmission transmission;
     transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
@@ -131,25 +148,35 @@ void Device::writeByte(std::uint8_t i_registerAddress, std::uint8_t i_data) {
     transmission.send(m_port);
 }
 
-void Device::read(std::uint8_t i_registerAddress, std::uint8_t* o_data, size_t i_dataLength) {
-    I2C::Transmission transmission;
-    transmission.startBit();
-    transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
-    transmission.writeByte(i_registerAddress, EnableACKCheck);
-    transmission.startBit();
-    transmission.writeByte((m_address << 1) | I2C_MASTER_READ, EnableACKCheck);
-    transmission.read(o_data, LastNACK);
-    transmission.stopBit();
-    transmission.send(m_port);
-}
-
-void Device::write(std::uint8_t i_registerAddress, std::uint8_t* i_data, size_t i_dataLength) {
+void Device::writeBytes(std::uint8_t i_registerAddress, std::uint8_t* i_data, size_t i_dataLength) {
     I2C::Transmission transmission;
     transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
     transmission.writeByte(i_registerAddress, EnableACKCheck);
     transmission.write(i_data, i_dataLength, EnableACKCheck);
     transmission.stopBit();
     transmission.send(m_port);
+}
+
+void Device::writeWord(std::uint8_t i_registerAddress, std::uint16_t i_data) {
+    I2C::Transmission transmission;
+    std::uint8_t* data = reinterpret_cast<std::uint8_t*>(&i_data);
+    std::swap(data[0], data[1]);
+    transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
+    transmission.writeByte(i_registerAddress, EnableACKCheck);
+    transmission.write(data, 2, EnableACKCheck);
+    transmission.stopBit();
+    transmission.send(m_port);
+}
+
+std::uint16_t Device::address() const {
+    return m_address;
+}
+
+i2c_port_t Device::port() const {
+    return m_port;
+}
+
+void Device::init() {
 }
 
 void Ports::init(i2c_port_t i_port, const i2c_config_t& i_config, size_t i_slaveRxBuffer, size_t i_slaveTxBuffer, int i_intrAllockationFlag) {
