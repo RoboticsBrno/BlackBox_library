@@ -9,10 +9,10 @@ static void communicate() {
 
     I2C::Device dev(0x2A, 0);
 
-    dev.read(0x7E, manufacturerArr, 2);
+    dev.readBytes(0x7E, manufacturerArr, 2);
     std::uint16_t manufacturer = (manufacturerArr[0] << 8) | manufacturerArr[1];
 
-    dev.read(0x7F, deviceIDArr, 2);
+    dev.readBytes(0x7F, deviceIDArr, 2);
     std::uint16_t deviceID = (deviceIDArr[0] << 8) | deviceIDArr[1];
 
     printf("Device ID: %x\n", deviceID);

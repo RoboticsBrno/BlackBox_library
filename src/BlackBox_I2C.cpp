@@ -177,6 +177,7 @@ i2c_port_t Device::port() const {
 }
 
 void Device::init() {
+    I2C::Ports::init(m_port);
 }
 
 void Ports::init(i2c_port_t i_port, const i2c_config_t& i_config, size_t i_slaveRxBuffer, size_t i_slaveTxBuffer, int i_intrAllockationFlag) {
