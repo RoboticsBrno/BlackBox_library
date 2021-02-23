@@ -17,16 +17,16 @@ private:
 
     void clearCache(); // Reset cache to default state
 
+    void readRegister(LDCRegs::registerAddresses address); // Read register from LDC 
 
     void writeRegister(LDCRegs::registerAddresses address); // Write register to LDC
     void writeRegister(LDCRegs::registerAddresses address, std::uint16_t value); // Write register to LDC
 
+    void readChannel(int channel); // Read channel from LDC
 
     LDC() = delete;
 public:
 
-    void readRegister(LDCRegs::registerAddresses address); // Read register from LDC 
-    void readChannel(int channel); // Read channel from LDC
     /**
      * @brief Construct a new LDC object
      * 
@@ -65,6 +65,11 @@ public:
      * @brief Synchronize (Read Only) all cached registers with their physical counterparts
      */
     void syncCache();
+
+    /**
+     * @brief Sync channel values in cache with their physical counterparts
+     */
+    void syncChannels();
 
     /**
      * @brief Reset LDC using SW reset

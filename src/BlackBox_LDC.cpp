@@ -101,6 +101,13 @@ void LDC::syncCache() {
         readRegister(static_cast<LDCRegs::registerAddresses>(i));
 }
 
+void LDC::syncChannels() {
+    readChannel(0);
+    readChannel(1);
+    readChannel(2);
+    readChannel(3);
+}
+
 void LDC::reset() {
     std::scoped_lock l(m_mutex);
     m_regs.resetDevice.resetDevice = 1;
