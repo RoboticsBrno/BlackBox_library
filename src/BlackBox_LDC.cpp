@@ -36,10 +36,10 @@ void LDC::writeRegister(LDCRegs::registerAddresses i_address, std::uint16_t i_va
 void LDC::readChannel(int i_channel) {
     std::scoped_lock l(m_mutex);
     
-    m_regs.data[i_channel].regs[0] = readWord(i_channel * 2);
-    m_regs.data[i_channel].regs[1] = readWord((i_channel * 2) + 1);
+    m_regs.data[i_channel].regs[1] = readWord(i_channel * 2);
+    m_regs.data[i_channel].regs[0] = readWord((i_channel * 2) + 1);
     
-    if (m_regs.data[i_channel].regs[0] & ((0b1111) << 12)) {
+    if (m_regs.data[i_channel].regs[1] & ((0b1111) << 12)) {
         ESP_LOGE(m_tag, "Detected error in data from LDC.");
 
         if (m_regs.data[i_channel].amplitudeError)
@@ -62,6 +62,7 @@ LDC::LDC(std::uint16_t i_address, i2c_port_t i_port)
 
 void LDC::init() { // FIXME: implement this, GPIO
     I2C::Ports::init(m_port);
+    reset();
     configure();
 }
 
