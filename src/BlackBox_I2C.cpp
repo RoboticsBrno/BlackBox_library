@@ -150,6 +150,7 @@ void Device::writeByte(std::uint8_t i_registerAddress, std::uint8_t i_data) {
 
 void Device::writeBytes(std::uint8_t i_registerAddress, std::uint8_t* i_data, size_t i_dataLength) {
     I2C::Transmission transmission;
+    transmission.startBit();
     transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
     transmission.writeByte(i_registerAddress, EnableACKCheck);
     transmission.write(i_data, i_dataLength, EnableACKCheck);
@@ -161,6 +162,7 @@ void Device::writeWord(std::uint8_t i_registerAddress, std::uint16_t i_data) {
     I2C::Transmission transmission;
     std::uint8_t* data = reinterpret_cast<std::uint8_t*>(&i_data);
     std::swap(data[0], data[1]);
+    transmission.startBit();
     transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
     transmission.writeByte(i_registerAddress, EnableACKCheck);
     transmission.write(data, 2, EnableACKCheck);
