@@ -246,7 +246,7 @@ constexpr char const* tag = "I2C_Port_Guard";
 static std::atomic<bool> initializedPorts[I2C_NUM_MAX];
 
 /**
- * @brief Default configuration to be used with all buil-in I2C devices on BlackBox
+ * @brief Default configuration to be used with all built-in I2C devices on BlackBox
  */
 constexpr i2c_config_t defaultConfig = {
     // FIXME: Make this overritable easily
@@ -260,16 +260,17 @@ constexpr i2c_config_t defaultConfig = {
     },
 };
 
+// FIXME: Should I implement counting on inits and call deinit after all I2C::Devices are destroyed?
 /**
- * @brief Initilaize given I2C port.
+ * @brief Initialize given I2C port.
  * 
  * @param port 
  * @param config 
  * @param slaveRxBuffer 
  * @param slaveTxBuffer 
- * @param intrAllockationFlag 
+ * @param intrAllocationFlag 
  */
-void init(i2c_port_t, const i2c_config_t& = defaultConfig, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllockationFlag = 0);
+void init(i2c_port_t, const i2c_config_t& = defaultConfig, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllocationFlag = 0);
 
 /**
  * @brief Configure given I2C port.
