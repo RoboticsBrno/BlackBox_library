@@ -5,13 +5,18 @@
 #include "driver/ledc.h"
 
 namespace BlackBox {
-void Lock::drive(LockState i_state, int i_duty) {
-    if (i_state != m_state) {
+void Lock::drive(bool i_locked, int i_duty) {
+    if (i_locked != m_isLocked) {
         // FIXME: Implement locking mechanism
         ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, 0b10);
         ledc_update_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0);
-        m_state = i_state;
+        m_isLocked = i_locked;
     }
+}
+
+void Lock::readState() {
+    // FIXME: Update this to newer version with new hall sensor
+    m_isLocked = gpio_get_level(m_encoderA);
 }
 
 Lock::Lock(gpio_num_t i_motor,
@@ -19,7 +24,7 @@ Lock::Lock(gpio_num_t i_motor,
     gpio_num_t i_encoderB,
     ledc_timer_t i_timer,
     ledc_channel_t i_channel)
-    : m_state(Unlocked)
+    : m_isLocked(false)
     , m_motor(i_motor)
     , m_encoderA(i_encoderA)
     , m_encoderB(i_encoderB)
@@ -40,7 +45,7 @@ Lock::Lock(gpio_num_t i_motor,
         .hpoint = 0,
     }
     , m_encoderConfig {
-        .pin_bit_mask = ((1ULL << i_encoderA) | (1ULL << i_encoderB)),
+        .pin_bit_mask = ((1ULL << i_encoderA) | (1ULL << i_encoderB)), // FIXME: Update this to newer version with new hall sensor
         .mode = GPIO_MODE_INPUT,
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
@@ -52,19 +57,21 @@ void Lock::init() {
     ledc_timer_config(&m_timerConfig);
     ledc_channel_config(&m_channelConfig);
 
-    gpio_config(&m_encoderConfig);
+    gpio_config(&m_encoderConfig); // FIXME: Update this to newer version with new hall sensor
+
+    readState();
 }
 
 void Lock::lock() {
-    drive(Locked);
+    drive(true);
 }
 
 void Lock::unlock() {
-    drive(Unlocked);
+    drive(false);
 }
 
 bool Lock::locked() {
-    return m_state == Locked;
+    return m_isLocked;
 }
 
 } // namespace BlackBox

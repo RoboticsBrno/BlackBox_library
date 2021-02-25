@@ -9,10 +9,7 @@ class Lock {
 private:
     const char* m_tag = "Lock";
 
-    enum LockState {
-        Unlocked = 0,
-        Locked = 1,
-    } m_state;
+    bool m_isLocked;
 
     gpio_num_t m_motor;
     gpio_num_t m_encoderA;
@@ -23,7 +20,9 @@ private:
 
     gpio_config_t m_encoderConfig;
 
-    void drive(LockState, int duty = 0b10); // FIXME: test maximum reliable speed and use it
+    void drive(bool locked, int duty = 0b10); // FIXME: test maximum reliable speed and use it
+
+    void readState();
 
 public:
     ~Lock() = default;
