@@ -27,7 +27,7 @@ constexpr gpio_num_t RX = GPIO_NUM_3;
 }
 
 namespace Interrupts {
-constexpr gpio_num_t LDC = GPIO_NUM_21;
+constexpr gpio_num_t LDC = GPIO_NUM_0;
 
 constexpr gpio_num_t Magnetometer = GPIO_NUM_25;
 
@@ -43,8 +43,8 @@ constexpr gpio_num_t Accelerometer2 = GPIO_NUM_35;
 }
 
 namespace Lock {
-constexpr gpio_num_t A = GPIO_NUM_0;
-constexpr gpio_num_t B = GPIO_NUM_4;
+constexpr gpio_num_t A = GPIO_NUM_4;
+constexpr gpio_num_t B = GPIO_NUM_13;
 
 constexpr gpio_num_t Motor = GPIO_NUM_12;
 }
@@ -56,7 +56,7 @@ constexpr gpio_num_t Transmitter = GPIO_NUM_2;
 
 namespace Power {
 constexpr gpio_num_t ShutDown_All = GPIO_NUM_5;
-constexpr gpio_num_t ShutDown_Leds = GPIO_NUM_13;
+constexpr gpio_num_t ShutDown_Leds = GPIO_NUM_21;
 constexpr gpio_num_t ShutDown_5V = GPIO_NUM_14;
 constexpr gpio_num_t ShutDown_LDC = GPIO_NUM_18;
 constexpr gpio_num_t ShutDown = ShutDown_All;
