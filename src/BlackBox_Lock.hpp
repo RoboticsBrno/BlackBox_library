@@ -3,6 +3,7 @@
 #include "BlackBox_pinout.hpp"
 #include "driver/gpio.h"
 #include "driver/ledc.h"
+#include <mutex>
 
 namespace BlackBox {
 class Lock {
@@ -10,6 +11,8 @@ private:
     const char* m_tag = "Lock";
 
     bool m_isLocked;
+
+    std::recursive_mutex m_mutex;
 
     gpio_num_t m_motor;
     gpio_num_t m_encoderA;

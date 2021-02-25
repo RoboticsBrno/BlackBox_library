@@ -6,6 +6,7 @@
 
 namespace BlackBox {
 void Lock::drive(bool i_locked, int i_duty) {
+    std::scoped_lock l(m_mutex);
     if (i_locked != m_isLocked) {
         // FIXME: Implement locking mechanism
         ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, 0b10);
@@ -15,6 +16,7 @@ void Lock::drive(bool i_locked, int i_duty) {
 }
 
 void Lock::readState() {
+    std::scoped_lock l(m_mutex);
     // FIXME: Update this to newer version with new hall sensor
     m_isLocked = gpio_get_level(m_encoderA);
 }
@@ -54,6 +56,8 @@ Lock::Lock(gpio_num_t i_motor,
 }
 
 void Lock::init() {
+    std::scoped_lock l(m_mutex);
+
     ledc_timer_config(&m_timerConfig);
     ledc_channel_config(&m_channelConfig);
 
@@ -71,6 +75,7 @@ void Lock::unlock() {
 }
 
 bool Lock::locked() {
+    std::scoped_lock l(m_mutex);
     return m_isLocked;
 }
 
