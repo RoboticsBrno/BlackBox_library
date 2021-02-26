@@ -1,49 +1,57 @@
 #pragma once
 
-#include "BlackBox_LEDring.hpp"
-#include "BlackBox_pinout.hpp"
-#include <cstdint>
+#include "BlackBox_I2C.hpp"
+#include "M41T62_regs.hpp"
+#include "driver/i2c.h"
 #include <ctime>
-#include <ds3231.h>
-#include <stdio.h>
-#include <string.h>
+#include <mutex>
 
 namespace BlackBox {
-
-static void convertToTm(tm* o_tm, time_t* i_time) {
-    *o_tm = *localtime(i_time);
-}
-static void convertToTime(time_t* o_time, tm* i_tm) {
-    *o_time = mktime(i_tm);
-}
-
-// static void convertToBBTime(Time_t* o_Time, time_t* i_time) {
-//     tm _tm;
-//     convertToTm(&_tm, i_time);
-//     *o_Time = _tm.tm_hour * 3600 + _tm.tm_min * 60 + _tm.tm_sec;
-// }
-
-class BlackBox_RTC {
-    friend class BlackBox_interface;
-    friend class BlackBox_manager;
-
+class RTC : public I2C::Device {
 private:
-    BlackBox_RTC(bool i_initialize = 0) {
-        if (i_initialize)
-            init();
-    }
+    M41T62Regs::M41T62_dev_t m_regs;
 
-    i2c_dev_t dev;
+    mutable std::recursive_mutex m_mutex;
 
+    const char* m_tag = "RTC";
+
+    void clearCache(); // Reset cache to default state
+
+    void readRegister(M41T62Regs::registerAddresses address); // Read register from RTC
+
+    void writeRegister(M41T62Regs::registerAddresses address); // Write register to RTC
+    void writeRegister(M41T62Regs::registerAddresses address, std::uint8_t value); // Write register to RTC
 public:
-    ~BlackBox_RTC() { ESP_ERROR_CHECK(ds3231_free_desc(&dev)); }
+    RTC(std::uint16_t address = 0x68, i2c_port_t = 0);
+    ~RTC() = default;
 
-    void init();
+    virtual void init() final;
 
-    void time(tm* o_time);
-    float temperature();
+    void adjustRTC(std::tm newTime);
 
-    esp_err_t setTime(tm* i_tm);
+    void adjustESP();
+
+    void reset();
+
+    std::tm now();
+
+    /**
+     * @brief Retrieve read-only copy of cached registers
+     * 
+     * @return copy of cached registers
+     */
+    M41T62Regs::M41T62_dev_t registers() const;
+
+    /**
+     * @brief Retrieve const reference to cached registers
+     * 
+     * @return copy of cached registers
+     */
+    const M41T62Regs::M41T62_dev_t& regs() const;
+
+    /**
+     * @brief Write registers
+     */
+    void writeRegisters(const M41T62Regs::M41T62_dev_t&);
 };
-
 } // namespace BlackBox
