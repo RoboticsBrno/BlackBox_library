@@ -23,8 +23,6 @@ private:
     void writeRegister(LDCRegs::registerAddresses address, std::uint16_t value); // Write register to LDC
 
     void readChannel(int channel); // Read channel from LDC
-
-    LDC() = delete;
 public:
 
     /**
@@ -33,7 +31,7 @@ public:
      * @param address Address of LDC (0x2A or 0x2B)
      * @param port ESP32s i2c port on which LDC is connected
      */
-    LDC(std::uint16_t address, i2c_port_t);
+    LDC(std::uint16_t address = 0x2A, i2c_port_t = 0);
     ~LDC() = default;
 
     /**

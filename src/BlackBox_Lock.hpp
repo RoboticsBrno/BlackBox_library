@@ -12,7 +12,7 @@ private:
 
     bool m_isLocked;
 
-    std::recursive_mutex m_mutex;
+    mutable std::recursive_mutex m_mutex;
 
     gpio_num_t m_motor;
     gpio_num_t m_encoderA;

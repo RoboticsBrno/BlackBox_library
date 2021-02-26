@@ -113,6 +113,7 @@ void LDC::reset() {
     m_regs.resetDevice.resetDevice = 1;
     writeRegister(LDCRegs::RESET_DEV);
     m_regs.resetDevice.resetDevice = 0;
+    clearCache();
 }
 
 LDCRegs::LDC16XX_dev_t LDC::registers() const {

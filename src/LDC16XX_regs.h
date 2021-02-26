@@ -4,10 +4,6 @@
 
 namespace LDCRegs {
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 union LDC16XX_dev_t {
     struct {
         union {
@@ -131,6 +127,7 @@ union LDC16XX_dev_t {
     uint16_t regs[36];
 };
 
+// FIXME: Would this be good as iterators?
 enum registerAddresses {
     DATA0_MSB,
     DATA0_LSB,
@@ -228,7 +225,7 @@ const uint16_t resetValues[MAX_ADDRESS] = {
     0,
     0,
 
-    //clock_diviser
+    //clock_divider
     0,
     0,
     0,
@@ -319,9 +316,4 @@ const uint16_t writeMask[MAX_ADDRESS] = {
     //device_id
     0
 };
-
-#ifdef __cplusplus
-}
-#endif
-
 }
