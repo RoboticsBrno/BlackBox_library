@@ -9,8 +9,8 @@ class BlackBox_manager {
 private:
     BlackBox_manager();
 
-    BlackBox_interface m_interface;
-    BlackBox_RTC m_rtc;
+    // BlackBox_interface m_interface;
+    // BlackBox_RTC m_rtc;
 
 public:
     BlackBox_manager(BlackBox_manager const&) = delete;
@@ -21,8 +21,8 @@ public:
         static BlackBox_manager instance;
         return instance;
     }
-    BlackBox_interface& interface() { return m_interface; }
-    BlackBox_RTC& rtc() { return m_rtc; }
+    // BlackBox_interface& interface() { return m_interface; }
+    // BlackBox_RTC& rtc() { return m_rtc; }
 };
 
 } // namespace BlackBox
