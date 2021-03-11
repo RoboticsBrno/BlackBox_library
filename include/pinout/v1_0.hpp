@@ -61,28 +61,21 @@ constexpr gpio_num_t Transmitter = GPIO_NUM_2;
 }
 
 namespace Power {
-constexpr PowerPin ShutDown_All = {
+constexpr PowerPin PowerAll = {
     .pinNumber = GPIO_NUM_5,
+    .onLevel = 1,
+    .defaultLevel = 1,
+};
+constexpr PowerPin Power5V = {
+    .pinNumber = GPIO_NUM_14,
     .onLevel = 0,
     .defaultLevel = 1,
 };
-
-constexpr PowerPin ShutDown_Leds = {
-    .pinNumber = GPIO_NUM_21,
-    .onLevel =,
-    .defaultLevel =,
-};
-constexpr PowerPin ShutDown_5V = {
-    .pinNumber = GPIO_NUM_14,
-    .onLevel =,
-    .defaultLevel =,
-};
-constexpr PowerPin ShutDown_LDC = {
+constexpr PowerPin PowerLDC = {
     .pinNumber = GPIO_NUM_18,
-    .onLevel =,
-    .defaultLevel =,
+    .onLevel = 0,
+    .defaultLevel = 0,
 };
-constexpr PowerPin ShutDown = ShutDown_All;
 
 constexpr gpio_num_t BatteryLevel = GPIO_NUM_39;
 }
