@@ -12,6 +12,8 @@ private:
 
     bool m_isLocked;
 
+    static constexpr int s_locked = 0;
+
     mutable std::recursive_mutex m_mutex;
 
     gpio_num_t m_motor;
@@ -23,7 +25,7 @@ private:
 
     gpio_config_t m_encoderConfig;
 
-    void drive(bool locked, int duty = 0b10); // FIXME: test maximum reliable speed and use it
+    void drive(bool locked, int duty = 0b110); // FIXME: test maximum reliable speed and use it
 
     void readState();
 

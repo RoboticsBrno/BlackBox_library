@@ -3,22 +3,34 @@
 #include "BlackBox_pinout.hpp"
 #include "driver/gpio.h"
 #include "driver/ledc.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 namespace BlackBox {
 void Lock::drive(bool i_locked, int i_duty) {
     std::scoped_lock l(m_mutex);
     if (i_locked != m_isLocked) {
-        // FIXME: Implement locking mechanism
-        ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, 0b10);
-        ledc_update_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0);
+        ledc_set_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel, i_duty);
+        ledc_update_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel);
+        if (i_locked) {
+            while (gpio_get_level(m_encoderA) == s_locked) {
+                vTaskDelay(10 / portTICK_PERIOD_MS);
+            }
+        } else {
+            while (gpio_get_level(m_encoderA) != s_locked) {
+                vTaskDelay(10 / portTICK_PERIOD_MS);
+            }
+        }
+        ledc_set_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel, 0);
+        ledc_update_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel);
         m_isLocked = i_locked;
+        printf("%i:%i\n", i_locked,gpio_get_level(m_encoderA));
     }
 }
 
 void Lock::readState() {
     std::scoped_lock l(m_mutex);
-    // FIXME: Update this to newer version with new hall sensor
-    m_isLocked = gpio_get_level(m_encoderA);
+    m_isLocked = (gpio_get_level(m_encoderA) == s_locked);
 }
 
 Lock::Lock(gpio_num_t i_motor,
