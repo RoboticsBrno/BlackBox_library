@@ -82,11 +82,6 @@ public:
     void setDarkModeValue(int value);
 
     void rotate(Index beginning);
-
-    void turnOn();
-    void turnOff();
-    void setState(bool state);
-    bool state();
 };
 
 } // namespace BlackBox

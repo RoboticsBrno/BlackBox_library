@@ -1,16 +1,21 @@
 #pragma once
 
-#include "BlackBox_pinout.hpp"
+#include "BlackBox_LDC.hpp"
+#include "BlackBox_Lock.hpp"
+#include "BlackBox_Power.hpp"
+#include "BlackBox_Ring.hpp"
 #include "BlackBox_RTC.hpp"
-#include <cstdint>
 
 namespace BlackBox {
 class BlackBox_manager {
 private:
     BlackBox_manager();
 
-    // BlackBox_interface m_interface;
-    // BlackBox_RTC m_rtc;
+    LDC m_ldc;
+    Lock m_lock;
+    Power m_power;
+    Ring m_ring;
+    RTC m_rtc;
 
 public:
     BlackBox_manager(BlackBox_manager const&) = delete;
@@ -21,8 +26,15 @@ public:
         static BlackBox_manager instance;
         return instance;
     }
-    // BlackBox_interface& interface() { return m_interface; }
-    // BlackBox_RTC& rtc() { return m_rtc; }
+
+    void init();
+
+    LDC& ldc();
+    Lock& lock();
+    Power& power();
+    Ring& ring();
+    RTC& rtc();
+
 };
 
 } // namespace BlackBox
