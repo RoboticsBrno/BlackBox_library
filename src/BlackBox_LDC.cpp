@@ -71,6 +71,7 @@ void LDC::configure() {
     sleep();
     m_regs.muxConfig.autoScan = 1;
     m_regs.muxConfig.autoScanSequenceConfiguration = 0b10;
+    m_regs.config.automaticAmplitudeDisable = true;
     writeRegister(LDCRegs::MUX_CONFIG);
     wake();
 }

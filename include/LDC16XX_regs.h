@@ -106,7 +106,9 @@ union LDC16XX_dev_t {
 
         union {
             struct {
-                uint16_t reserved : 15;
+                uint16_t reserved0 : 9;
+                uint16_t outputGain : 2;
+                uint16_t reserved1 : 4;
                 uint16_t resetDevice : 1;
             };
             uint16_t reg;
@@ -119,6 +121,8 @@ union LDC16XX_dev_t {
                 uint16_t initIDrive : 5;
                 uint16_t IDrive : 5;
             };
+            uint16_t reg;
+            uint8_t bytes[2];
         } driveCurrent[4];
 
         uint16_t manufacturerID = 0x5449;
