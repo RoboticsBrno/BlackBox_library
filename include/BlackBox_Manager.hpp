@@ -7,9 +7,9 @@
 #include "BlackBox_RTC.hpp"
 
 namespace BlackBox {
-class BlackBox_manager {
+class Manager {
 private:
-    BlackBox_manager();
+    Manager();
 
     LDC m_ldc;
     Lock m_lock;
@@ -18,12 +18,12 @@ private:
     RTC m_rtc;
 
 public:
-    BlackBox_manager(BlackBox_manager const&) = delete;
-    void operator=(BlackBox_manager const&) = delete;
+    Manager(Manager const&) = delete;
+    void operator=(Manager const&) = delete;
 
-    static BlackBox_manager& singleton()
+    static Manager& singleton()
     {
-        static BlackBox_manager instance;
+        static Manager instance;
         return instance;
     }
 
