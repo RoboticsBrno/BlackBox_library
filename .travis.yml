@@ -56,7 +56,7 @@ cache:
         - $HOME/.cache/pip
 
 env:
-    - PLATFORMIO_CI_SRC=test/task_test/main.cpp
+    - PLATFORMIO_CI_SRC=./test/task_test/main.cpp
     # - PLATFORMIO_CI_SRC=examples/file.ino
     # - PLATFORMIO_CI_SRC=path/to/test/directory
 
