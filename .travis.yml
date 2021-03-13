@@ -47,12 +47,13 @@
 
 language: python
 python:
-    - "2.7"
+    - "3.7"
 
 sudo: false
 cache:
     directories:
         - "~/.platformio"
+        - $HOME/.cache/pip
 
 env:
     - PLATFORMIO_CI_SRC=test/task_test/main.cpp
