@@ -65,4 +65,4 @@ install:
     - platformio update
 
 script:
-    - platformio ci -c
+    - platformio ci -c ./platformio.ini
