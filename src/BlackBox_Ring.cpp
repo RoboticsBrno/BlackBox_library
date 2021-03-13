@@ -2,6 +2,7 @@
 
 #include "BlackBox_pinout.hpp"
 #include <SmartLeds.h>
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <mutex>
@@ -18,6 +19,10 @@ Index& Index::trimThis() {
 
 Index::Index(int i_index)
     : m_value(trim(i_index)) {
+}
+
+Index::Index(Coords other)
+    : m_value(trim(atan2(other.x, other.y) * 3.14 * 3)) {
 }
 
 int Index::value() const {
@@ -94,7 +99,7 @@ void Ring::show() {
     std::scoped_lock l(m_mutex);
     Index j = m_beginning;
     for (int i = 0; i < m_count; i++) {
-        m_leds[j] = (*this)[60 - i]; // FIXME: Add some kind of a flag to change this
+        m_leds[j] = (*this)[m_count - i]; // FIXME: Add some kind of a flag to change this
         if (m_isDarkModeEnabled)
             m_leds[j].stretchChannelsEvenly(m_darkModeValue);
         ++j;
@@ -138,12 +143,13 @@ void Ring::drawArc(Rgb i_rgb, Index i_beginnig, Index i_ending, ArcType i_arcTyp
 void Ring::drawCircle(Rgb i_rgb) {
     std::scoped_lock l(m_mutex);
     for (int i = 0; i < m_count; i++)
-        m_leds[i] = i_rgb;
+        m_buffer[i] = i_rgb;
 }
 
 void Ring::draw(std::unique_ptr<Rgb[]> i_buffer) {
+    std::scoped_lock l(m_mutex);
     for (int i = 0; i < m_count; i++) {
-        m_buffer[i] = Rgb(0, 0, 0);
+        m_buffer[i] = i_buffer[i];
     }
 }
 

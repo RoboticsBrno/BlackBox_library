@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BlackBox_pinout.hpp"
+#include "BlackBox_Touchpad.hpp"
 #include <SmartLeds.h>
 #include <memory>
 #include <mutex>
@@ -25,6 +26,7 @@ private:
 
 public:
     Index(int index = 0);
+    Index(Coords other);
 
     int value() const;
 
