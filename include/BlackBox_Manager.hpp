@@ -5,6 +5,7 @@
 #include "BlackBox_Power.hpp"
 #include "BlackBox_Ring.hpp"
 #include "BlackBox_RTC.hpp"
+#include "BlackBox_Touchpad.hpp"
 
 namespace BlackBox {
 class Manager {
@@ -16,6 +17,7 @@ private:
     Power m_power;
     Ring m_ring;
     RTC m_rtc;
+    Touchpad m_touchpad;
 
 public:
     Manager(Manager const&) = delete;
@@ -34,6 +36,7 @@ public:
     Power& power();
     Ring& ring();
     RTC& rtc();
+    Touchpad& touchpad();
 
 };
 

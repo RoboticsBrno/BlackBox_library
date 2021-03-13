@@ -42,13 +42,30 @@ int Touchpad::prepareData(int value, int channel) {
         return value >> m_dataBitsToRemove;
 }
 
-Touchpad::Touchpad(int dataBitsToPreserve, std::uint8_t protectOverflow, float calculationCoefficient[4])
-    : m_dataBitsToRemove(dataBitsToPreserve)
+Touchpad::Touchpad(int dataBitsToRemove, std::uint8_t protectOverflow, float calculationCoefficient[4])
+    : m_dataBitsToRemove(dataBitsToRemove)
     , m_protectOverflow(protectOverflow)
-    , m_calculationCoefficient { calculationCoefficient[0],
+    , m_calculationCoefficient {
+        calculationCoefficient[0],
         calculationCoefficient[1],
         calculationCoefficient[2],
-        calculationCoefficient[3] } {
+        calculationCoefficient[3]
+    } {
+}
+
+Touchpad::Touchpad(int dataBitsToRemove, std::uint8_t protectOverflow, float calcCoefs0, float calcCoefs1, float calcCoefs2, float calcCoefs3)
+    : m_dataBitsToRemove(dataBitsToRemove)
+    , m_protectOverflow(protectOverflow)
+    , m_calculationCoefficient {
+        calcCoefs0,
+        calcCoefs1,
+        calcCoefs2,
+        calcCoefs3
+    } {
+}
+
+void Touchpad::init(LDC* i_ldc) {
+    m_ldc = i_ldc;
 }
 
 Coords Touchpad::calculate(int channel0, int channel1, int channel2, int channel3) {
@@ -90,6 +107,16 @@ Coords Touchpad::calculate(LDC& ldc, bool update) {
     if (update)
         ldc.syncChannels();
     return calculate(ldc);
+}
+
+Coords Touchpad::calculate() {
+    if (!m_ldc)
+        abort();
+    m_ldc->syncChannels();
+    int array[4];
+    for (int i = 0; i < 4; i++)
+        array[i] = (*m_ldc)[i];
+    return calculate(array);
 }
 
 } // namespace BlackBox

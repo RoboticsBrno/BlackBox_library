@@ -28,13 +28,18 @@ private:
     int removeOverflow(int value);
     int prepareData(int value, int channel);
 
+    LDC* m_ldc = nullptr;
 public:
     Touchpad(int dataBitsToRemove, std::uint8_t protectOverflow, float m_calculationCoefficient[4]);
+    Touchpad(int dataBitsToRemove, std::uint8_t protectOverflow, float m_calcCoefs0, float m_calcCoefs1, float m_calcCoefs2, float m_calcCoefs3);
     ~Touchpad() = default;
+
+    void init(LDC*);
 
     Coords calculate(int channel0, int channel1, int channel2, int channel3);
     Coords calculate(int channels[4]);
     Coords calculate(const LDC& ldc);
     Coords calculate(LDC& ldc, bool update);
+    Coords calculate();
 };
 } // namespace BlackBox

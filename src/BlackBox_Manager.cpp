@@ -1,7 +1,8 @@
 #include "BlackBox_Manager.hpp"
 
 namespace BlackBox {
-Manager::Manager(/* args */) {
+Manager::Manager()
+    : m_touchpad{16, 0b1110, 1, 1, 1, 1} { // FIXME: Remove this piece of ductape
 }
 
 void Manager::init() {
@@ -9,6 +10,7 @@ void Manager::init() {
     m_lock.init();
     m_power.init();
     m_rtc.init();
+    m_touchpad.init(&m_ldc);
 }
 
 LDC& Manager::ldc() {
@@ -29,6 +31,10 @@ Ring& Manager::ring() {
 
 RTC& Manager::rtc() {
     return m_rtc;
+}
+
+Touchpad& Manager::touchpad() {
+    return m_touchpad;
 }
 
 } // namespace BlackBox
