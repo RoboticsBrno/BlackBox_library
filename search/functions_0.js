@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dietimers_30',['dieTimers',['../namespaceBlackBox.html#a113bf319891243a13429a40146853400',1,'BlackBox']]]
+  ['address_77',['address',['../classI2C_1_1Device.html#a14ca5f9674beed36af7f61b17c58f90e',1,'I2C::Device']]]
 ];
