@@ -1,7 +1,7 @@
 {
     "name": "BlackBox_library",
     "keywords": "LED, esp32, BlackBox, puzzle",
-    "description": "",
+    "description": "Library for BlackBox board with the ESP32 by RoboticsBrno.",
     "repository": {
         "type": "git",
         "url": "https://github.com/RoboticsBrno/BlackBox_library.git"
@@ -27,5 +27,9 @@
             "name": "SmartLeds",
             "version": "1.2.1"
         }
-    ]
+    ],
+    "build": {
+        "flags": "-std=c++17 -std=gnu++17 -DBB_HW_VER=0x0100",
+        "unflags": "-std=gnu++11"
+    }
 }
