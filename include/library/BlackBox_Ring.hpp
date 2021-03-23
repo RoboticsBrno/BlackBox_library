@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "BlackBox_pinout.hpp"
-#include "BlackBox_Touchpad.hpp"
+#include "library/BlackBox_pinout.hpp"
+#include "library/BlackBox_Touchpad.hpp"
 #include <SmartLeds.h>
 #include <memory>
 #include <mutex>

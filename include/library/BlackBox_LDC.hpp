@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "BlackBox_I2C.hpp"
-#include "LDC16XX_regs.h"
+#include "library/BlackBox_I2C.hpp"
+#include "library/LDC16XX_regs.h"
 #include "driver/i2c.h"
 #include <cstdint>
 #include <mutex>

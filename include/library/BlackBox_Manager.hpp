@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include "BlackBox_LDC.hpp"
-#include "BlackBox_Lock.hpp"
-#include "BlackBox_Power.hpp"
-#include "BlackBox_Ring.hpp"
-#include "BlackBox_RTC.hpp"
-#include "BlackBox_Touchpad.hpp"
+#include "library/BlackBox_LDC.hpp"
+#include "library/BlackBox_Lock.hpp"
+#include "library/BlackBox_Power.hpp"
+#include "library/BlackBox_Ring.hpp"
+#include "library/BlackBox_RTC.hpp"
+#include "library/BlackBox_Touchpad.hpp"
 
 namespace BlackBox {
 /**

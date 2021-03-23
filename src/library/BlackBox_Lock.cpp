@@ -1,6 +1,6 @@
-#include "BlackBox_Lock.hpp"
+#include "library/BlackBox_Lock.hpp"
 
-#include "BlackBox_pinout.hpp"
+#include "library/BlackBox_pinout.hpp"
 #include "driver/gpio.h"
 #include "driver/ledc.h"
 #include "freertos/FreeRTOS.h"
@@ -9,6 +9,9 @@
 namespace BlackBox {
 void Lock::drive(bool i_locked, int i_duty) {
     std::scoped_lock l(m_mutex);
+    printf("%i::%i\n", i_locked, m_isLocked);
+    printf("%i:%i\n", i_locked, gpio_get_level(m_encoderA)== s_locked);
+
     if (i_locked != m_isLocked) {
         ledc_set_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel, i_duty);
         ledc_update_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel);
@@ -24,8 +27,8 @@ void Lock::drive(bool i_locked, int i_duty) {
         ledc_set_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel, 0);
         ledc_update_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel);
         m_isLocked = i_locked;
-        printf("%i:%i\n", i_locked,gpio_get_level(m_encoderA));
     }
+    printf("%i:%i\n", i_locked, gpio_get_level(m_encoderA));
 }
 
 void Lock::readState() {

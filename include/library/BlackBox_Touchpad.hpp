@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "BlackBox_LDC.hpp"
+#include "library/BlackBox_LDC.hpp"
 #include <cstdint>
 
 // FIXME: Implement adaptive filter measuring average difference and update threshold based on that

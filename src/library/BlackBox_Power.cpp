@@ -1,6 +1,6 @@
-#include "BlackBox_Power.hpp"
+#include "library/BlackBox_Power.hpp"
 
-#include "BlackBox_pinout.hpp"
+#include "library/BlackBox_pinout.hpp"
 
 #include "driver/gpio.h"
 #include <mutex>

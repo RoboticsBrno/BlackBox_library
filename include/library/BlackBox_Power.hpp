@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "BlackBox_pinout.hpp"
+#include "library/BlackBox_pinout.hpp"
 
 #include "driver/gpio.h"
 #include <mutex>

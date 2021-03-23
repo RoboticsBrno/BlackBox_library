@@ -1,7 +1,7 @@
 #include <thread>
 #include <unity.h>
 
-#include <BlackBox_I2C.hpp>
+#include <library/BlackBox_I2C.hpp>
 
 static void communicate() {
     std::uint8_t manufacturerArr[2];

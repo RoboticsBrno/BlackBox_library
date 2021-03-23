@@ -1,7 +1,7 @@
-#include "BlackBox_LDC.hpp"
+#include "library/BlackBox_LDC.hpp"
 
-#include "BlackBox_I2C.hpp"
-#include "LDC16XX_regs.h"
+#include "library/BlackBox_I2C.hpp"
+#include "library/LDC16XX_regs.h"
 #include "esp_log.h"
 #include <cstdint>
 #include <mutex>

@@ -1,6 +1,6 @@
-#include "BlackBox_Ring.hpp"
+#include "library/BlackBox_Ring.hpp"
 
-#include "BlackBox_pinout.hpp"
+#include "library/BlackBox_pinout.hpp"
 #include <SmartLeds.h>
 #include <cmath>
 #include <cstdio>

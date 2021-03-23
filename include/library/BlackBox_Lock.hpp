@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "BlackBox_pinout.hpp"
+#include "library/BlackBox_pinout.hpp"
 #include "driver/gpio.h"
 #include "driver/ledc.h"
 #include <mutex>
@@ -21,7 +21,7 @@ private:
 
     bool m_isLocked;
 
-    static constexpr int s_locked = 0;
+    static constexpr int s_locked = 1;
 
     mutable std::recursive_mutex m_mutex;
 

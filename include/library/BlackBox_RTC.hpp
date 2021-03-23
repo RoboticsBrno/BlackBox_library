@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "BlackBox_I2C.hpp"
-#include "M41T62_regs.hpp"
+#include "library/BlackBox_I2C.hpp"
+#include "library/M41T62_regs.hpp"
 #include "driver/i2c.h"
 #include <ctime>
 #include <mutex>

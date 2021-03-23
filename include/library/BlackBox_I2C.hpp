@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include "BlackBox_pinout.hpp"
+#include "library/BlackBox_pinout.hpp"
 #include "driver/i2c.h"
 #include <atomic>
 #include <cstdint>

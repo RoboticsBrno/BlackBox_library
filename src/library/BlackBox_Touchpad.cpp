@@ -1,4 +1,4 @@
-#include "BlackBox_Touchpad.hpp"
+#include "library/BlackBox_Touchpad.hpp"
 
 #include <cstdio>
 #include <cstdlib>
