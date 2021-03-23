@@ -1,3 +1,9 @@
+/**
+ * @file BlackBox_Ring.hpp
+ * @author Tomáš Rohlínek (haberturdeur)
+ * @brief Library for controling the LED Ring
+ */
+
 #pragma once
 
 #include "BlackBox_pinout.hpp"
@@ -18,6 +24,9 @@ enum class ArcType {
     CounterClockwise,
 };
 
+/**
+ * @brief Data type for handling polar coords based on LED Ring model
+ */
 class Index {
 private:
     int m_value;
@@ -46,6 +55,9 @@ public:
     operator int() const;
 };
 
+/**
+ * @brief Class for controling the LED Ring
+ */
 class Ring {
 private:
     SmartLed m_leds;
@@ -65,24 +77,82 @@ private:
 protected:
 
 public:
+    /**
+     * @brief Construct a new Ring object
+     * 
+     * @param count Count of Smart LEDs
+     */
     Ring(int count = ledCount);
+
+    /**
+     * @brief Draw buffered frame
+     */
     void show();
+
+    /**
+     * @brief Wait for drawing to finish
+     * 
+     * @note Is called from show() anyway
+     */
     void wait();
     // void show(Page&); // FIXME: What implementation would be best (page)?
 
-    void drawArc(Rgb, Index beginnig, Index ending, ArcType arcType = ArcType::ShorterDistance);
-    void drawCircle(Rgb);
+    /**
+     * @brief Draw arc onto frame
+     * 
+     * @param colour
+     * @param beginnig
+     * @param ending
+     * @param arcType
+     */
+    void drawArc(Rgb colour, Index beginnig, Index ending, ArcType arcType = ArcType::ShorterDistance);
+
+    /**
+     * @brief Draw full circle onto frame
+     * 
+     * @param colour
+     */
+    void drawCircle(Rgb colour);
+
+    /**
+     * @brief Draw whole frame
+     * 
+     * @param buffer 
+     */
     void draw(std::unique_ptr< Rgb[] > buffer);
 
+    /**
+     * @brief Clear active frame
+     * 
+     * @note Just draws black circle
+     */
     void clear();
 
     const Rgb& operator[](const Index&) const;
     Rgb& operator[](const Index&);
 
+    /**
+     * @brief Enable dark mode
+     */
     void enableDarkMode();
+
+    /**
+     * @brief Disable dark mode
+     */
     void disableDarkMode();
+
+    /**
+     * @brief Set dark mode value
+     * 
+     * @param value
+     */
     void setDarkModeValue(int value);
 
+    /**
+     * @brief Set new origin for drawing
+     * 
+     * @param beginning
+     */
     void rotate(Index beginning);
 };
 

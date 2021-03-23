@@ -1,3 +1,9 @@
+/**
+ * @file BlackBox_Manger.hpp
+ * @author Tomáš Rohlínek (haberturdeur)
+ * @brief Library controling all of the other hardware libraries
+ */
+
 #pragma once
 
 #include "BlackBox_LDC.hpp"
@@ -8,6 +14,9 @@
 #include "BlackBox_Touchpad.hpp"
 
 namespace BlackBox {
+/**
+ * @brief Class controling all of the other hardware abstraction classes
+ */
 class Manager {
 private:
     Manager();

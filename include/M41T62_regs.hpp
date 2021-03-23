@@ -1,3 +1,9 @@
+/**
+ * @file M41T62_regs.hpp
+ * @author Tomáš Rohlínek (haberturdeur)
+ * @brief List of RTC registers
+ */
+
 #pragma once
 
 #include <cstdint>

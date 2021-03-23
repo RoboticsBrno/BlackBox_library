@@ -1,3 +1,9 @@
+/**
+ * @file BlackBox_Power.hpp
+ * @author Tomáš Rohlínek (haberturdeur)
+ * @brief Library for controling power pins
+ */
+
 #pragma once
 
 #include "BlackBox_pinout.hpp"
@@ -6,6 +12,9 @@
 #include <mutex>
 
 namespace BlackBox {
+/**
+ * @brief Class for controling power pins
+ */
 class Power {
 private:
     const char* m_tag = "Power";

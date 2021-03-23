@@ -1,3 +1,9 @@
+/**
+ * @file BlackBox_Lock.hpp
+ * @author Tomáš Rohlínek (haberturdeur)
+ * @brief Library for interfacing with lock
+ */
+
 #pragma once
 
 #include "BlackBox_pinout.hpp"
@@ -6,6 +12,9 @@
 #include <mutex>
 
 namespace BlackBox {
+/**
+ * @brief Class for controling lock
+ */
 class Lock {
 private:
     const char* m_tag = "Lock";

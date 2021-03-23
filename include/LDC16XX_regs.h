@@ -1,3 +1,9 @@
+/**
+ * @file LDC16XX_regs.hpp
+ * @author Tomáš Rohlínek (haberturdeur)
+ * @brief List of LDC registers
+ */
+
 #pragma once
 
 #include <stdint.h>

@@ -1,3 +1,9 @@
+/**
+ * @file BlackBox_RTC.hpp
+ * @author Tomáš Rohlínek (haberturdeur)
+ * @brief Library for interfacing with RTC and updating time
+ */
+
 #pragma once
 
 #include "BlackBox_I2C.hpp"
@@ -7,6 +13,9 @@
 #include <mutex>
 
 namespace BlackBox {
+/**
+ * @brief Class for interfacing with RTC
+ */
 class RTC : public I2C::Device {
 private:
     M41T62Regs::M41T62_dev_t m_regs;

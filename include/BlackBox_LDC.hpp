@@ -1,3 +1,9 @@
+/**
+ * @file BlackBox_LDC.hpp
+ * @author Tomáš Rohlínek (haberturdeur)
+ * @brief Library for interfacing LDCXX14
+ */
+
 #pragma once
 
 #include "BlackBox_I2C.hpp"
@@ -7,6 +13,9 @@
 #include <mutex>
 
 namespace BlackBox {
+/**
+ * @brief Class for interfacing with LDC
+ */
 class LDC : public I2C::Device {
 private:
     LDCRegs::LDC16XX_dev_t m_regs;
