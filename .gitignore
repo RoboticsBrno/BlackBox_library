@@ -41,3 +41,9 @@ sdkconfig
 
 .vscode
 .pio
+
+docs/_build
+docs/_static
+docs/_build
+docs/api
+docs/doxyoutput
