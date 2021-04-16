@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__0_8hpp_1a5e8bec3e41f5eeb99e90054ef405c3d8:
+
+Variable BlackBox::Pins::UART::TX
+=================================
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::UART::TX

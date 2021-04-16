@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File BlackBox_I2C.hpp &mdash; BlackBox  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> BlackBox
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">BlackBox API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BlackBox</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File BlackBox_I2C.hpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_include_library_BlackBox_I2C.hpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-blackbox-i2c-hpp">
+<span id="program-listing-file-include-library-blackbox-i2c-hpp"></span><h1>Program Listing for File BlackBox_I2C.hpp<a class="headerlink" href="#program-listing-for-file-blackbox-i2c-hpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_library_BlackBox_I2C.hpp.html#file-include-library-blackbox-i2c-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/library/BlackBox_I2C.hpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;library/BlackBox_pinout.hpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;driver/i2c.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;atomic&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;mutex&gt;</span><span class="cp"></span>
+
+<span class="k">namespace</span> <span class="n">I2C</span> <span class="p">{</span>
+
+<span class="k">enum</span> <span class="nc">ACKCheck</span> <span class="p">{</span>
+    <span class="n">DisableACKCheck</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span>
+    <span class="n">EnableACKCheck</span> <span class="o">=</span> <span class="nb">true</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">enum</span> <span class="nc">ACKValue</span> <span class="p">{</span>
+    <span class="n">ACK</span> <span class="o">=</span> <span class="n">I2C_MASTER_ACK</span><span class="p">,</span>
+    <span class="n">NACK</span> <span class="o">=</span> <span class="n">I2C_MASTER_NACK</span><span class="p">,</span>
+    <span class="n">LastNACK</span> <span class="o">=</span> <span class="n">I2C_MASTER_LAST_NACK</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Transmission</span> <span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">Transmission</span><span class="p">(</span><span class="k">const</span> <span class="n">Transmission</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="n">Transmission</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Transmission</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+
+    <span class="k">mutable</span> <span class="n">std</span><span class="o">::</span><span class="n">recursive_mutex</span> <span class="n">m_mutex</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">m_tag</span> <span class="o">=</span> <span class="s">&quot;I2C_Transmission&quot;</span><span class="p">;</span>
+
+    <span class="n">i2c_cmd_handle_t</span> <span class="n">m_handle</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">m_sent</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Transmission</span><span class="p">();</span>
+
+    <span class="k">explicit</span> <span class="nf">Transmission</span><span class="p">(</span><span class="n">i2c_cmd_handle_t</span><span class="p">);</span>
+
+    <span class="n">Transmission</span><span class="p">(</span><span class="n">Transmission</span><span class="o">&amp;&amp;</span><span class="p">);</span>
+    <span class="n">Transmission</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Transmission</span><span class="o">&amp;&amp;</span><span class="p">);</span>
+
+    <span class="o">~</span><span class="n">Transmission</span><span class="p">();</span>
+
+    <span class="n">esp_err_t</span> <span class="nf">startBit</span><span class="p">();</span>
+
+    <span class="n">esp_err_t</span> <span class="nf">stopBit</span><span class="p">();</span>
+
+    <span class="n">esp_err_t</span> <span class="nf">writeByte</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">data</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">ACKCheck</span> <span class="o">=</span> <span class="n">EnableACKCheck</span><span class="p">);</span>
+
+    <span class="n">esp_err_t</span> <span class="nf">readByte</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="n">ACKValue</span> <span class="o">=</span> <span class="n">ACK</span><span class="p">);</span>
+
+    <span class="n">esp_err_t</span> <span class="nf">write</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">dataLength</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">ackCheck</span> <span class="o">=</span> <span class="n">EnableACKCheck</span><span class="p">);</span>
+
+    <span class="n">esp_err_t</span> <span class="nf">read</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">dataLength</span><span class="p">,</span> <span class="n">ACKValue</span> <span class="o">=</span> <span class="n">ACK</span><span class="p">);</span>
+
+    <span class="n">esp_err_t</span> <span class="nf">send</span><span class="p">(</span><span class="n">i2c_port_t</span> <span class="n">i2cNum</span><span class="p">,</span> <span class="n">TickType_t</span> <span class="n">ticksToWait</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">/</span> <span class="n">portTICK_RATE_MS</span><span class="p">);</span>
+
+    <span class="kt">void</span> <span class="nf">reset</span><span class="p">();</span>
+
+    <span class="n">i2c_cmd_handle_t</span> <span class="nf">raw</span><span class="p">();</span>
+
+    <span class="kt">void</span> <span class="nf">detach</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Device</span> <span class="p">{</span> <span class="c1">// FIXME: This has to change to be implemented as &quot;universal&quot;, write and read functions need to be public, but what with derived classes should we not derive them but nest them?</span>
+<span class="k">protected</span><span class="o">:</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">m_address</span><span class="p">;</span>
+
+    <span class="n">i2c_port_t</span> <span class="n">m_port</span><span class="p">;</span>
+
+    <span class="n">Device</span><span class="p">()</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">Device</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">readByte</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">registerAddress</span><span class="p">);</span>
+
+    <span class="kt">void</span> <span class="nf">readBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">registerAddress</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">dataLength</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">readWord</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">registerAddress</span><span class="p">);</span>
+
+    <span class="kt">void</span> <span class="nf">writeByte</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">registerAddress</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">data</span><span class="p">);</span>
+
+    <span class="kt">void</span> <span class="nf">writeBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">registerAddress</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">dataLength</span><span class="p">);</span>
+
+    <span class="kt">void</span> <span class="nf">writeWord</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">registerAddress</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">data</span><span class="p">);</span>
+
+    <span class="n">Device</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">address</span><span class="p">,</span> <span class="n">i2c_port_t</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">address</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="n">i2c_port_t</span> <span class="nf">port</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">init</span><span class="p">();</span> <span class="c1">// FIXME: Write init for i2c device</span>
+<span class="p">};</span>
+
+<span class="k">namespace</span> <span class="n">Ports</span> <span class="p">{</span>
+<span class="k">constexpr</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">tag</span> <span class="o">=</span> <span class="s">&quot;I2C_Port_Guard&quot;</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">initializedPorts</span><span class="p">[</span><span class="n">I2C_NUM_MAX</span><span class="p">];</span>
+
+<span class="k">constexpr</span> <span class="n">i2c_config_t</span> <span class="n">defaultConfig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// FIXME: Make this overritable easily</span>
+    <span class="p">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">I2C_MODE_MASTER</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">sda_io_num</span> <span class="o">=</span> <span class="o">::</span><span class="n">BlackBox</span><span class="o">::</span><span class="n">Pins</span><span class="o">::</span><span class="n">I2C</span><span class="o">::</span><span class="n">SDA</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">scl_io_num</span> <span class="o">=</span> <span class="o">::</span><span class="n">BlackBox</span><span class="o">::</span><span class="n">Pins</span><span class="o">::</span><span class="n">I2C</span><span class="o">::</span><span class="n">SCL</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">sda_pullup_en</span> <span class="o">=</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">scl_pullup_en</span> <span class="o">=</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">master</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">.</span><span class="n">clk_speed</span> <span class="o">=</span> <span class="mi">400000</span><span class="p">,</span> <span class="c1">// FIXME: Do all devices support this speed?</span>
+    <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="c1">// FIXME: Should I implement counting on inits and call deinit after all I2C::Devices are destroyed?</span>
+<span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="n">i2c_port_t</span><span class="p">,</span> <span class="k">const</span> <span class="n">i2c_config_t</span><span class="o">&amp;</span> <span class="o">=</span> <span class="n">defaultConfig</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">slaveRxBuffer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">slaveTxBuffer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">int</span> <span class="n">intrAllocationFlag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">config</span><span class="p">(</span><span class="n">i2c_port_t</span><span class="p">,</span> <span class="k">const</span> <span class="n">i2c_config_t</span><span class="o">&amp;</span> <span class="n">config</span> <span class="o">=</span> <span class="n">defaultConfig</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">deinit</span><span class="p">(</span><span class="n">i2c_port_t</span><span class="p">);</span>
+
+<span class="kt">bool</span> <span class="nf">isInitialized</span><span class="p">(</span><span class="n">i2c_port_t</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tomáš Rohlínek.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

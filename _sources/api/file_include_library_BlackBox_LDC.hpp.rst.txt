@@ -1,0 +1,77 @@
+
+.. _file_include_library_BlackBox_LDC.hpp:
+
+File BlackBox_LDC.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_library>` (``include/library``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Library for interfacing LDCXX14. 
+ 
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/library/BlackBox_LDC.hpp``)
+-------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_library_BlackBox_LDC.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Tomáš Rohlínek (haberturdeur) 
+
+
+
+
+Includes
+--------
+
+
+- ``cstdint``
+
+- ``driver/i2c.h``
+
+- ``library/BlackBox_I2C.hpp`` (:ref:`file_include_library_BlackBox_I2C.hpp`)
+
+- ``library/LDC16XX_regs.h`` (:ref:`file_include_library_LDC16XX_regs.h`)
+
+- ``mutex``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_library_BlackBox_Manager.hpp`
+
+- :ref:`file_include_library_BlackBox_Touchpad.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_BlackBox`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classBlackBox_1_1LDC`
+

@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__0_8hpp_1a128f523453967db1c7e540631c60c447:
+
+Variable BlackBox::Pins::Interrupts::Gyroscope1
+===============================================
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::Interrupts::Gyroscope1

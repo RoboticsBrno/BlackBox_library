@@ -1,0 +1,13 @@
+.. _exhale_function_BlackBox__I2C_8hpp_1a4a5b6823e504a666ae20b2799622d846:
+
+Function I2C::Ports::isInitialized
+==================================
+
+- Defined in :ref:`file_include_library_BlackBox_I2C.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: I2C::Ports::isInitialized(i2c_port_t)

@@ -1,0 +1,73 @@
+
+.. _file_include_library_BlackBox_Lock.hpp:
+
+File BlackBox_Lock.hpp
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_library>` (``include/library``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Library for interfacing with lock. 
+ 
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/library/BlackBox_Lock.hpp``)
+--------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_library_BlackBox_Lock.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Tomáš Rohlínek (haberturdeur) 
+
+
+
+
+Includes
+--------
+
+
+- ``driver/gpio.h``
+
+- ``driver/ledc.h``
+
+- ``library/BlackBox_pinout.hpp`` (:ref:`file_include_library_BlackBox_pinout.hpp`)
+
+- ``mutex``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_library_BlackBox_Manager.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_BlackBox`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classBlackBox_1_1Lock`
+

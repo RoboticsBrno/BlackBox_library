@@ -1,0 +1,56 @@
+
+.. _program_listing_file_include_library_BlackBox_Manager.hpp:
+
+Program Listing for File BlackBox_Manager.hpp
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_library_BlackBox_Manager.hpp>` (``include/library/BlackBox_Manager.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #pragma once
+   
+   #include "library/BlackBox_LDC.hpp"
+   #include "library/BlackBox_Lock.hpp"
+   #include "library/BlackBox_Power.hpp"
+   #include "library/BlackBox_Ring.hpp"
+   #include "library/BlackBox_RTC.hpp"
+   #include "library/BlackBox_Touchpad.hpp"
+   
+   namespace BlackBox {
+   class Manager {
+   private:
+       Manager();
+   
+       LDC m_ldc;
+       Lock m_lock;
+       Power m_power;
+       Ring m_ring;
+       RTC m_rtc;
+       Touchpad m_touchpad;
+   
+   public:
+       Manager(Manager const&) = delete;
+       void operator=(Manager const&) = delete;
+   
+       static Manager& singleton()
+       {
+           static Manager instance;
+           return instance;
+       }
+   
+       void init();
+   
+       LDC& ldc();
+       Lock& lock();
+       Power& power();
+       Ring& ring();
+       RTC& rtc();
+       Touchpad& touchpad();
+   
+   };
+   
+   } // namespace BlackBox

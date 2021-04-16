@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__0_8hpp_1a2b4206a9b5d82bd6b025edf8e63b8a31:
+
+Variable BlackBox::Pins::Power::BatteryLevel
+============================================
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::Power::BatteryLevel

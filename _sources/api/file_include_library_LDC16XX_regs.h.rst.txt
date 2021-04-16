@@ -1,0 +1,82 @@
+
+.. _file_include_library_LDC16XX_regs.h:
+
+File LDC16XX_regs.h
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_library>` (``include/library``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/library/LDC16XX_regs.h``)
+-----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_library_LDC16XX_regs.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``stdint.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_library_BlackBox_LDC.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_LDCRegs`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_LDC16XX__regs_8h_1a7f2f50b6147a553bdb7f3509900273d2`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_LDC16XX__regs_8h_1a1517cbe05423cd9708718f5cc885d6e0`
+
+
+Unions
+------
+
+
+- :ref:`exhale_union_unionLDCRegs_1_1LDC16XX__dev__t`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_LDC16XX__regs_8h_1a34e3ccc16820dd85bbc07ab5791c23d1`
+
+- :ref:`exhale_variable_LDC16XX__regs_8h_1af1f713d680b02cb69ce908b5b11e6be3`
+
+- :ref:`exhale_variable_LDC16XX__regs_8h_1a59bbd8b9f9f2510bd289d91a21d6781c`
+

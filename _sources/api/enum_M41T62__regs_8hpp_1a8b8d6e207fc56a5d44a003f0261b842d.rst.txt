@@ -1,0 +1,13 @@
+.. _exhale_enum_M41T62__regs_8hpp_1a8b8d6e207fc56a5d44a003f0261b842d:
+
+Enum registerAddresses
+======================
+
+- Defined in :ref:`file_include_library_M41T62_regs.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: M41T62Regs::registerAddresses

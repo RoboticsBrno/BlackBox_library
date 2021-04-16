@@ -1,0 +1,22 @@
+
+.. _namespace_BlackBox__Pins__UART:
+
+Namespace BlackBox::Pins::UART
+==============================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_v1__0_8hpp_1aaed3ba8ace129c95fb41dde20f642f99`
+
+- :ref:`exhale_variable_v1__0_8hpp_1a5e8bec3e41f5eeb99e90054ef405c3d8`

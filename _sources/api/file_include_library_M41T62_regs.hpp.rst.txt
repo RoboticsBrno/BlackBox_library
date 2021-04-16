@@ -1,0 +1,94 @@
+
+.. _file_include_library_M41T62_regs.hpp:
+
+File M41T62_regs.hpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_library>` (``include/library``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+List of RTC registers. 
+ 
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/library/M41T62_regs.hpp``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_library_M41T62_regs.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Tomáš Rohlínek (haberturdeur) 
+
+
+
+
+Includes
+--------
+
+
+- ``cstdint``
+
+- ``ctime``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_library_BlackBox_RTC.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_M41T62Regs`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_M41T62__regs_8hpp_1a8a4152e98fd23891cd299739be57df3a`
+
+- :ref:`exhale_enum_M41T62__regs_8hpp_1a8b8d6e207fc56a5d44a003f0261b842d`
+
+- :ref:`exhale_enum_M41T62__regs_8hpp_1aeac36ec2c2107e738381724ecd3a791e`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_M41T62__regs_8hpp_1aac5e8f6544556ee3165dffef1cbc96d6`
+
+
+Unions
+------
+
+
+- :ref:`exhale_union_unionM41T62Regs_1_1M41T62__dev__t`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_M41T62__regs_8hpp_1a5a6f6c40a7f54fb464d8337d69538f74`
+

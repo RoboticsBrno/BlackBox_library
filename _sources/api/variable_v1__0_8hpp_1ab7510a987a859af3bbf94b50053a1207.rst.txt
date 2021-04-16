@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__0_8hpp_1ab7510a987a859af3bbf94b50053a1207:
+
+Variable BlackBox::Pins::Power::PowerAll
+========================================
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::Power::PowerAll

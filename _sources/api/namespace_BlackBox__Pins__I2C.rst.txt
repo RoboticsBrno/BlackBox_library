@@ -1,0 +1,22 @@
+
+.. _namespace_BlackBox__Pins__I2C:
+
+Namespace BlackBox::Pins::I2C
+=============================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_v1__0_8hpp_1a9d1761c474d57d61d0779b48ca975f7f`
+
+- :ref:`exhale_variable_v1__0_8hpp_1a113152fd9995a0de0b77c36d130626c6`

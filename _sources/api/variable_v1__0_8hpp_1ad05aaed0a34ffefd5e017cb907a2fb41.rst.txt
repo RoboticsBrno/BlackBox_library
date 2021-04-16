@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__0_8hpp_1ad05aaed0a34ffefd5e017cb907a2fb41:
+
+Variable BlackBox::Pins::Interrupts::LDC
+========================================
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::Interrupts::LDC
