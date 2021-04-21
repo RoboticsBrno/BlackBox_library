@@ -1,0 +1,21 @@
+name: Deploy documentation
+on:
+  push:
+    branches: [ master ]
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: haberturdeur/sphinx-action@master
+        with:
+          pre-build-command: "apt-get update -y && apt-get install -y doxygen && pip install sphinx-rtd-theme breathe exhale"
+          docs-folder: "docs/"
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/_build/html
+          destination_dir: cs
