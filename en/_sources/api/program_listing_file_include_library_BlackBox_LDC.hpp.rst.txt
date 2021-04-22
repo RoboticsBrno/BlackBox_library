@@ -1,0 +1,68 @@
+
+.. _program_listing_file_include_library_BlackBox_LDC.hpp:
+
+Program Listing for File BlackBox_LDC.hpp
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_library_BlackBox_LDC.hpp>` (``include/library/BlackBox_LDC.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #pragma once
+   
+   #include "library/BlackBox_I2C.hpp"
+   #include "library/LDC16XX_regs.h"
+   #include "driver/i2c.h"
+   #include <cstdint>
+   #include <mutex>
+   
+   namespace BlackBox {
+   class LDC : public I2C::Device {
+   private:
+       LDCRegs::LDC16XX_dev_t m_regs;
+   
+       mutable std::recursive_mutex m_mutex;
+   
+       const char* m_tag = "LDC";
+   
+       void clearCache(); // Reset cache to default state
+   
+       void readRegister(LDCRegs::registerAddresses address); // Read register from LDC 
+   
+       void writeRegister(LDCRegs::registerAddresses address); // Write register to LDC
+       void writeRegister(LDCRegs::registerAddresses address, std::uint16_t value); // Write register to LDC
+   
+       void readChannel(int channel); // Read channel from LDC
+   public:
+   
+       LDC(std::uint16_t address = 0x2A, i2c_port_t = 0);
+       ~LDC() = default;
+   
+       virtual void init() final;
+   
+       void configure(); // FIXME: this should have parameters for configuration
+   
+       void readErrors();
+   
+       void wake();
+   
+       void sleep();
+   
+       void syncCache();
+   
+       void syncChannels();
+   
+       void reset();
+   
+       LDCRegs::LDC16XX_dev_t registers() const;
+   
+       const LDCRegs::LDC16XX_dev_t& regs() const;
+   
+       void writeRegisters(const LDCRegs::LDC16XX_dev_t&); // FIXME: probably should use pass by value for thread safety?
+   
+       std::uint32_t operator[](int channel) const;
+   };
+   } // namespace BlackBox

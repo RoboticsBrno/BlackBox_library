@@ -1,0 +1,13 @@
+.. _exhale_enum_M41T62__regs_8hpp_1a8a4152e98fd23891cd299739be57df3a:
+
+Enum AlarmRepeatMode
+====================
+
+- Defined in :ref:`file_include_library_M41T62_regs.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: M41T62Regs::AlarmRepeatMode

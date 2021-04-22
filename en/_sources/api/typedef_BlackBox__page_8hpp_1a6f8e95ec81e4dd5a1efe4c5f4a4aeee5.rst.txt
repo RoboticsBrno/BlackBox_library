@@ -1,0 +1,13 @@
+.. _exhale_typedef_BlackBox__page_8hpp_1a6f8e95ec81e4dd5a1efe4c5f4a4aeee5:
+
+Typedef BlackBox::interface_btn_t
+=================================
+
+- Defined in :ref:`file_include_library_BlackBox_page.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: BlackBox::interface_btn_t

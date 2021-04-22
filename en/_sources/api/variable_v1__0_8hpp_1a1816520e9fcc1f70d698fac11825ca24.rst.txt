@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__0_8hpp_1a1816520e9fcc1f70d698fac11825ca24:
+
+Variable BlackBox::Pins::IR::Transmitter
+========================================
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::IR::Transmitter

@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__0_8hpp_1a7b73bcff601c4c98f8711ba6484fc510:
+
+Variable BlackBox::Pins::Lock::B
+================================
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::Lock::B

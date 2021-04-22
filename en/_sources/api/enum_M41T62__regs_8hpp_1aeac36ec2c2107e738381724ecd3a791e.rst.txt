@@ -1,0 +1,13 @@
+.. _exhale_enum_M41T62__regs_8hpp_1aeac36ec2c2107e738381724ecd3a791e:
+
+Enum WatchdogResolution
+=======================
+
+- Defined in :ref:`file_include_library_M41T62_regs.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: M41T62Regs::WatchdogResolution

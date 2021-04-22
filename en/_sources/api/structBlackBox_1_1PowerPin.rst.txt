@@ -1,0 +1,16 @@
+.. _exhale_struct_structBlackBox_1_1PowerPin:
+
+Struct PowerPin
+===============
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: BlackBox::PowerPin
+   :members:
+   :protected-members:
+   :undoc-members:

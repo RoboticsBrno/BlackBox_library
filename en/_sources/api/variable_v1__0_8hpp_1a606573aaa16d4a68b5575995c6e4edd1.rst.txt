@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__0_8hpp_1a606573aaa16d4a68b5575995c6e4edd1:
+
+Variable BlackBox::Pins::Interrupts::Accelerometer2
+===================================================
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::Interrupts::Accelerometer2

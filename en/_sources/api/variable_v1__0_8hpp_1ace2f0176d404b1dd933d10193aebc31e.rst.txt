@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__0_8hpp_1ace2f0176d404b1dd933d10193aebc31e:
+
+Variable BlackBox::Pins::Power::PowerLDC
+========================================
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::Power::PowerLDC

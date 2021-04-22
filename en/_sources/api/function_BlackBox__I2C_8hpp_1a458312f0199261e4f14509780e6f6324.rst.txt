@@ -1,0 +1,13 @@
+.. _exhale_function_BlackBox__I2C_8hpp_1a458312f0199261e4f14509780e6f6324:
+
+Function I2C::Ports::deinit
+===========================
+
+- Defined in :ref:`file_include_library_BlackBox_I2C.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: I2C::Ports::deinit(i2c_port_t)

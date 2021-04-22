@@ -1,0 +1,34 @@
+
+.. _namespace_BlackBox__Pins__Interrupts:
+
+Namespace BlackBox::Pins::Interrupts
+====================================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_v1__0_8hpp_1a87d0400c2cd9229c58306a1e5bc34d42`
+
+- :ref:`exhale_variable_v1__0_8hpp_1a606573aaa16d4a68b5575995c6e4edd1`
+
+- :ref:`exhale_variable_v1__0_8hpp_1a27bd3dcd97e05de08f50b99d6f669bf7`
+
+- :ref:`exhale_variable_v1__0_8hpp_1a128f523453967db1c7e540631c60c447`
+
+- :ref:`exhale_variable_v1__0_8hpp_1aec0fe45a0e21f6cba543fc03001156b0`
+
+- :ref:`exhale_variable_v1__0_8hpp_1ad05aaed0a34ffefd5e017cb907a2fb41`
+
+- :ref:`exhale_variable_v1__0_8hpp_1aca4c00bb7345bd21ba0d897123e897f8`
+
+- :ref:`exhale_variable_v1__0_8hpp_1af4ed22695c7e7216e74d24cf6bcf23e3`

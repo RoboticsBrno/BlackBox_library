@@ -1,0 +1,37 @@
+
+.. _namespace_I2C__Ports:
+
+Namespace I2C::Ports
+====================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_BlackBox__I2C_8hpp_1a4478ee8e521a4c8566d587f7d1fb20d9`
+
+- :ref:`exhale_function_BlackBox__I2C_8hpp_1a458312f0199261e4f14509780e6f6324`
+
+- :ref:`exhale_function_BlackBox__I2C_8hpp_1aa13dc5559774c628caf78dc1bd5f302a`
+
+- :ref:`exhale_function_BlackBox__I2C_8hpp_1a4a5b6823e504a666ae20b2799622d846`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_BlackBox__I2C_8hpp_1a51b9ac15178a9a1aff73fbc0f6da4f85`
+
+- :ref:`exhale_variable_BlackBox__I2C_8hpp_1a7e9db0ddf9d6f15437b9b20e54b32c2e`
+
+- :ref:`exhale_variable_BlackBox__I2C_8hpp_1a9ef84f70d290e32a62d1d054b14c0b6a`

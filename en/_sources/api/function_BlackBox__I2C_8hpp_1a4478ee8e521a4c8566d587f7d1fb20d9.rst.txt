@@ -1,0 +1,13 @@
+.. _exhale_function_BlackBox__I2C_8hpp_1a4478ee8e521a4c8566d587f7d1fb20d9:
+
+Function I2C::Ports::config
+===========================
+
+- Defined in :ref:`file_include_library_BlackBox_I2C.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: I2C::Ports::config(i2c_port_t, const i2c_config_t&)

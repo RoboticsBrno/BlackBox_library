@@ -1,0 +1,22 @@
+
+.. _namespace_BlackBox__Pins__IR:
+
+Namespace BlackBox::Pins::IR
+============================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_v1__0_8hpp_1ad03784ed03691e2c35f87b756d301516`
+
+- :ref:`exhale_variable_v1__0_8hpp_1a1816520e9fcc1f70d698fac11825ca24`

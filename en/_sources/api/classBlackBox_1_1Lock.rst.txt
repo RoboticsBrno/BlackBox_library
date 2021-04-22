@@ -1,0 +1,16 @@
+.. _exhale_class_classBlackBox_1_1Lock:
+
+Class Lock
+==========
+
+- Defined in :ref:`file_include_library_BlackBox_Lock.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: BlackBox::Lock
+   :members:
+   :protected-members:
+   :undoc-members:
