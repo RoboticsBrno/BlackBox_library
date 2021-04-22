@@ -1,7 +1,8 @@
 /**
  * @file BlackBox_RTC.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief Library for interfacing with RTC and updating time
+ * \~czech @brief Knihovna pro práci s RTC a aktualizací času
+ * \~english @brief Library for interfacing with RTC and updating time
  */
 
 #pragma once
@@ -14,7 +15,8 @@
 
 namespace BlackBox {
 /**
- * @brief Class for interfacing with RTC
+ * \~czech @brief Třída pro práci s RTC
+ * \~english @brief Class for interfacing with RTC
  */
 class RTC : public I2C::Device {
 private:
@@ -30,6 +32,7 @@ private:
 
     void writeRegister(M41T62Regs::registerAddresses address); // Write register to RTC
     void writeRegister(M41T62Regs::registerAddresses address, std::uint8_t value); // Write register to RTC
+    
 public:
     RTC(std::uint16_t address = 0x68, i2c_port_t = 0);
     ~RTC() = default;
@@ -45,21 +48,24 @@ public:
     std::tm now();
 
     /**
-     * @brief Retrieve read-only copy of cached registers
+     * \~czech @brief Vrátí kopii registrů v paměti
+     * \~english @brief Retrieve copy of cached registers
      * 
      * @return copy of cached registers
      */
     M41T62Regs::M41T62_dev_t registers() const;
 
     /**
-     * @brief Retrieve const reference to cached registers
+     * \~czech @brief Vrátí konstantní referenci na registry v paměti
+     * \~english @brief Retrieve const reference to cached registers
      * 
      * @return copy of cached registers
      */
     const M41T62Regs::M41T62_dev_t& regs() const;
 
     /**
-     * @brief Write registers
+     * \~czech @brief Zapíše registry
+     * \~english @brief Write registers
      */
     void writeRegisters(const M41T62Regs::M41T62_dev_t&);
 };

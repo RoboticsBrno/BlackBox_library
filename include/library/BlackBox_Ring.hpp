@@ -1,7 +1,8 @@
 /**
  * @file BlackBox_Ring.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief Library for controling the LED Ring
+ * \~czech @brief Knihovna pro ovládání LED kruhu
+ * \~english @brief Library for controling the LED Ring
  */
 
 #pragma once
@@ -25,7 +26,8 @@ enum class ArcType {
 };
 
 /**
- * @brief Data type for handling polar coords based on LED Ring model
+ * \~czech @brief Datový typ pro práci s pozicí na LED kruhu
+ * \~english @brief Data type for handling polar coords based on LED Ring model
  */
 class Index {
 private:
@@ -56,7 +58,8 @@ public:
 };
 
 /**
- * @brief Class for controling the LED Ring
+ * \~czech @brief Třída pro ovládání LED kruhu
+ * \~english @brief Class for controling the LED Ring
  */
 class Ring {
 private:
@@ -78,19 +81,22 @@ protected:
 
 public:
     /**
-     * @brief Construct a new Ring object
+     * \~czech @brief Vytvoří nový Ring objekt
+     * \~english @brief Construct a new Ring object
      * 
      * @param count Count of Smart LEDs
      */
     Ring(int count = ledCount);
 
     /**
-     * @brief Draw buffered frame
+     * \~czech @brief Vykreslí nachystaný snímek
+     * \~english @brief Draw buffered frame
      */
     void show();
 
     /**
-     * @brief Wait for drawing to finish
+     * \~czech @brief Počká na dokončení vykreslování
+     * \~english @brief Wait for drawing to finish
      * 
      * @note Is called from show() anyway
      */
@@ -98,7 +104,8 @@ public:
     // void show(Page&); // FIXME: What implementation would be best (page)?
 
     /**
-     * @brief Draw arc onto frame
+     * \~czech @brief Nakreslí oblouk na chystaný snímek
+     * \~english @brief Draw arc onto frame
      * 
      * @param colour
      * @param beginnig
@@ -108,21 +115,24 @@ public:
     void drawArc(Rgb colour, Index beginnig, Index ending, ArcType arcType = ArcType::ShorterDistance);
 
     /**
-     * @brief Draw full circle onto frame
+     * \~czech @brief Nakreslí kruh na chystaný snímek
+     * \~english @brief Draw full circle onto frame
      * 
      * @param colour
      */
     void drawCircle(Rgb colour);
 
     /**
-     * @brief Draw whole frame
+     * \~czech @brief Nakreslí snímek z uložené předlohy
+     * \~english @brief Draw whole frame
      * 
      * @param buffer 
      */
     void draw(std::unique_ptr< Rgb[] > buffer);
 
     /**
-     * @brief Clear active frame
+     * \~czech @brief Vyčistí aktivní snímek
+     * \~english @brief Clear active frame
      * 
      * @note Just draws black circle
      */
@@ -132,24 +142,28 @@ public:
     Rgb& operator[](const Index&);
 
     /**
-     * @brief Enable dark mode
+     * \~czech @brief Povolí tmavý režim
+     * \~english @brief Enable dark mode
      */
     void enableDarkMode();
 
     /**
-     * @brief Disable dark mode
+     * \~czech @brief Zakáže tmavý režim
+     * \~english @brief Disable dark mode
      */
     void disableDarkMode();
 
     /**
-     * @brief Set dark mode value
+     * \~czech @brief Nastaví maximální hodnotu pro LED v tmavém režimu
+     * \~english @brief Set dark mode value
      * 
      * @param value
      */
     void setDarkModeValue(int value);
 
     /**
-     * @brief Set new origin for drawing
+     * \~czech @brief Nastaví nový počátek (pozici 0) => otočí displej
+     * \~english @brief Set new origin for drawing
      * 
      * @param beginning
      */

@@ -1,7 +1,8 @@
 /**
  * @file M41T62_regs.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief List of RTC registers
+ * \~czech @brief Seznam RTC registrů
+ * \~english @brief List of RTC registers
  */
 
 #pragma once
@@ -213,7 +214,8 @@ enum class WatchdogResolution {
 };
 
 /**
- * @brief Generate bits for setting sqw generator to correct frequency
+ * \~czech @brief Generate bits for setting sqw generator to correct frequency
+ * \~english @brief Generate bits for setting sqw generator to correct frequency
  * 
  * @param frequency (must be a power of 2 upto 32768 (2 to the power of 15))
  * @return constexpr std::uint8_t bits for configuration

@@ -1,7 +1,8 @@
 /**
  * @file BlackBox_pinout.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief File managing different versions of pinout
+ * \~czech @brief Soubor řídící více verzí pinoutu desky BlackBox 
+ * \~english @brief File managing different versions of pinout
  */
 
 #pragma once

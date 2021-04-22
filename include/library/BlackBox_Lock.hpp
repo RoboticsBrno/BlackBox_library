@@ -1,7 +1,8 @@
 /**
  * @file BlackBox_Lock.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief Library for interfacing with lock
+ * \~czech @brief Knihovna pro práci se zámkem lock
+ * \~english @brief Library for interfacing with lock
  */
 
 #pragma once
@@ -13,7 +14,8 @@
 
 namespace BlackBox {
 /**
- * @brief Class for controling lock
+ * \~czech @brief Třída pro ovládání zámku
+ * \~english @brief Class for controling lock
  */
 class Lock {
 private:
@@ -42,7 +44,8 @@ public:
     ~Lock() = default;
 
     /**
-     * @brief Construct a new Lock object
+     * \~czech @brief Vytvoří nový Lock objekt
+     * \~english @brief Construct a new Lock object
      * 
      * @param motor pin on which motor is connected
      * @param encoderA pin on which encoder is connected
@@ -57,22 +60,26 @@ public:
         ledc_channel_t channel = LEDC_CHANNEL_0);
 
     /**
-     * @brief Initialize lock
+     * \~czech @brief Inicializuje zámek
+     * \~english @brief Initialize lock
      */
     void init();
 
     /**
-     * @brief Lock lock
+     * \~czech @brief Zamkne zámek
+     * \~english @brief Lock lock
      */
     void lock();
 
     /**
-     * @brief Unlock lock
+     * \~czech @brief Odemkne zámek
+     * \~english @brief Unlock lock
      */
     void unlock();
 
     /**
-     * @brief Whether or not the lock is locked
+     * \~czech @brief Vrátí zda je zámek zamčený, nebo ne
+     * \~english @brief Whether or not the lock is locked
      * 
      * @retval true - locked
      * @retval false - unlocked

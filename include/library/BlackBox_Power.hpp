@@ -1,7 +1,8 @@
 /**
  * @file BlackBox_Power.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief Library for controling power pins
+ * \~czech @brief Knihovna pro ovládání napájení desky
+ * \~english @brief Library for controling power pins
  */
 
 #pragma once
@@ -13,7 +14,8 @@
 
 namespace BlackBox {
 /**
- * @brief Class for controling power pins
+ * \~czech @brief Třída pro ovládání napájení desky
+ * \~english @brief Class for controling power pins
  */
 class Power {
 private:

@@ -1,7 +1,8 @@
 /**
  * @file BlackBox_pinout.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief pinout of BlackBox board
+ * \~czech @brief pinout desky BlackBox
+ * \~english @brief pinout of BlackBox board
  */
 
 #pragma once

@@ -1,7 +1,8 @@
 /**
  * @file BlackBox_Manger.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief Library controling all of the other hardware libraries
+ * \~czech @brief Knihovna řídící všechny ostatní knihovny
+ * \~english @brief Library controling all of the other hardware libraries
  */
 
 #pragma once
@@ -15,7 +16,8 @@
 
 namespace BlackBox {
 /**
- * @brief Class controling all of the other hardware abstraction classes
+ * \~czech @brief Třída řídící všechny ostatní knihovny hardwarové abstrakce
+ * \~english @brief Class controling all of the other hardware abstraction classes
  */
 class Manager {
 private:

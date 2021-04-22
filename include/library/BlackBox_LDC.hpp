@@ -1,7 +1,8 @@
 /**
  * @file BlackBox_LDC.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief Library for interfacing LDCXX14
+ * \~czech @brief Knihovna pro práci s LDCXX14
+ * \~english @brief Library for interfacing LDCXX14
  */
 
 #pragma once
@@ -14,7 +15,8 @@
 
 namespace BlackBox {
 /**
- * @brief Class for interfacing with LDC
+ * \~czech @brief Třída pro práci s LDCXX14
+ * \~english @brief Class for interfacing with LDC
  */
 class LDC : public I2C::Device {
 private:
@@ -35,7 +37,8 @@ private:
 public:
 
     /**
-     * @brief Construct a new LDC object
+     * \~czech @brief Vytvoří nový LDC objekt
+     * \~english @brief Construct a new LDC object
      * 
      * @param address Address of LDC (0x2A or 0x2B)
      * @param port ESP32s i2c port on which LDC is connected
@@ -44,66 +47,78 @@ public:
     ~LDC() = default;
 
     /**
-     * @brief Initialize LDC
+     * \~czech @brief Inicializuje LDC
+     * \~english @brief Initialize LDC
      */
     virtual void init() final;
 
     /**
-     * @brief Configure LDC to its default operation state
+     * \~czech @brief Nastaví LDC do výchozího funkčního stavu
+     * \~english @brief Configure LDC to its default operation state
      */
     void configure(); // FIXME: this should have parameters for configuration
 
     /**
-     * @brief Read any pending errors from LDC
+     * \~czech @brief Přečte jakékoliv nepřečtené chyby z LDC
+     * \~english @brief Read any pending errors from LDC
      */
     void readErrors();
 
     /**
-     * @brief Wake up LDC from sleep mode
+     * \~czech @brief Probudí LDC ze spánku
+     * \~english @brief Wake up LDC from sleep mode
      */
     void wake();
 
     /**
-     * @brief Put LDC into sleep mode
+     * \~czech @brief Uloží LDC ke spánku
+     * \~english @brief Put LDC into sleep mode
      */
     void sleep();
 
     /**
-     * @brief Synchronize (Read Only) all cached registers with their physical counterparts
+     * \~czech @brief Synchronizuje (Read Only) všechny registry v paměti s jejich fyzickými protějšky v LDC
+     * \~english @brief Synchronize (Read Only) all cached registers with their physical counterparts
      */
     void syncCache();
 
     /**
-     * @brief Sync channel values in cache with their physical counterparts
+     * \~czech @brief Synchronizuje hodnoty kanálů v paměti s jejich fyzickými protějšky v LDC
+     * \~english @brief Sync channel values in cache with their physical counterparts
      */
     void syncChannels();
 
     /**
-     * @brief Reset LDC using SW reset
+     * \~czech @brief Resetuje LDC pomocí softwarového resetu
+     * \~english @brief Reset LDC using SW reset
      */
     void reset();
 
     /**
-     * @brief Retrieve read-only copy of cached registers
+     * \~czech @brief Vrátí kopii registrů v paměti
+     * \~english @brief Retrieve copy of cached registers
      * 
      * @return copy of cached registers
      */
     LDCRegs::LDC16XX_dev_t registers() const;
 
     /**
-     * @brief Retrieve const reference to cached registers
+     * \~czech @brief Vrátí konstantní referenci na registry v paměti
+     * \~english @brief Retrieve const reference to cached registers
      * 
      * @return copy of cached registers
      */
     const LDCRegs::LDC16XX_dev_t& regs() const;
 
     /**
-     * @brief Write registers
+     * \~czech @brief Zapíše registry
+     * \~english @brief Write registers
      */
     void writeRegisters(const LDCRegs::LDC16XX_dev_t&); // FIXME: probably should use pass by value for thread safety?
 
     /**
-     * @brief Returns value on channel.
+     * \~czech @brief Vrátí hodnotu na kanálu.
+     * \~english @brief Returns value on channel.
      * 
      * @param channel(0-3) - channel of LDC whose value is to be returned
      * @return value 

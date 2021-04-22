@@ -1,7 +1,8 @@
 /**
  * @file LDC16XX_regs.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief List of LDC registers
+ * \~czech @brief Seznam LDC registrů
+ * \~english @brief List of LDC registers
  */
 
 #pragma once

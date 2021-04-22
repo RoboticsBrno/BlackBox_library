@@ -1,7 +1,8 @@
 /**
  * @file BlackBox_Touchpad.hpp
  * @author Tomáš Rohlínek (haberturdeur)
- * @brief Library for converting LDC data to coords
+ * \~czech @brief Knihovna pro převod dat z LDC na souřadnice
+ * \~english @brief Library for converting LDC data to coords
  */
 
 #pragma once
@@ -14,7 +15,8 @@
 namespace BlackBox
 {
 /**
- * @brief Data type for handling touchpad coordinates
+ * \~czech @brief Datový typ pro uchovávání touchpad souřadnic
+ * \~english @brief Data type for handling touchpad coordinates
  */
 struct Coords {
     int x;
@@ -28,7 +30,8 @@ struct Coords {
 };
 
 /**
- * @brief Class for converting LDC data to coords
+ * \~czech @brief Třída pro převod dat z LDC na souřadnice
+ * \~english @brief Class for converting LDC data to coords
  */
 class Touchpad
 {
