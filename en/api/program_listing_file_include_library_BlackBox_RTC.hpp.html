@@ -180,6 +180,7 @@
 
     <span class="kt">void</span> <span class="nf">writeRegister</span><span class="p">(</span><span class="n">M41T62Regs</span><span class="o">::</span><span class="n">registerAddresses</span> <span class="n">address</span><span class="p">);</span> <span class="c1">// Write register to RTC</span>
     <span class="kt">void</span> <span class="nf">writeRegister</span><span class="p">(</span><span class="n">M41T62Regs</span><span class="o">::</span><span class="n">registerAddresses</span> <span class="n">address</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">value</span><span class="p">);</span> <span class="c1">// Write register to RTC</span>
+
 <span class="k">public</span><span class="o">:</span>
     <span class="n">RTC</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">address</span> <span class="o">=</span> <span class="mh">0x68</span><span class="p">,</span> <span class="n">i2c_port_t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
     <span class="o">~</span><span class="n">RTC</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
