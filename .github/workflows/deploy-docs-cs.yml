@@ -13,6 +13,7 @@ jobs:
         with:
           pre-build-command: "apt-get update -y && apt-get install -y doxygen && pip install sphinx-rtd-theme breathe exhale"
           docs-folder: "docs/"
+          build-command: "SPHINX_LANG=cs OUTPUT_LANGUAGE=Czech make html"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

@@ -78,7 +78,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = os.environ.get("SPHINX_LANG", None)
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -221,7 +221,10 @@ exhale_args = {
     # TIP: if using the sphinx-bootstrap-theme, you need
     # "treeViewIsBootstrap": True,
     "exhaleExecutesDoxygen": True,
-    "exhaleDoxygenStdin":    "INPUT = ../include"
+    "exhaleDoxygenStdin":    """
+INPUT = ../include
+OUTPUT_LANGUAGE = {lang}
+""".format(lang=os.environ.get("OUTPUT_LANGUAGE", "English")),
 }
 
 # Tell sphinx what the primary language being documented is.
@@ -229,3 +232,4 @@ primary_domain = 'cpp'
 
 # Tell sphinx what the pygments highlight language should be.
 highlight_language = 'cpp'
+
