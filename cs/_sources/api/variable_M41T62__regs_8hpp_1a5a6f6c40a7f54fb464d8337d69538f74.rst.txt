@@ -1,0 +1,13 @@
+.. _exhale_variable_M41T62__regs_8hpp_1a5a6f6c40a7f54fb464d8337d69538f74:
+
+Variable M41T62Regs::defaultValues
+==================================
+
+- Defined in :ref:`file_include_library_M41T62_regs.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: M41T62Regs::defaultValues

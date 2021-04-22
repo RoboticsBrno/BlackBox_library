@@ -1,0 +1,25 @@
+.. _exhale_class_classBlackBox_1_1LDC:
+
+Class LDC
+=========
+
+- Defined in :ref:`file_include_library_BlackBox_LDC.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public I2C::Device`` (:ref:`exhale_class_classI2C_1_1Device`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: BlackBox::LDC
+   :members:
+   :protected-members:
+   :undoc-members:

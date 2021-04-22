@@ -1,0 +1,22 @@
+.. _exhale_struct_structBlackBox_1_1Timers_1_1timer__t:
+
+Struct Timers::timer_t
+======================
+
+- Defined in :ref:`file_include_library_BlackBox_timers.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classBlackBox_1_1Timers`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: BlackBox::Timers::timer_t
+   :members:
+   :protected-members:
+   :undoc-members:

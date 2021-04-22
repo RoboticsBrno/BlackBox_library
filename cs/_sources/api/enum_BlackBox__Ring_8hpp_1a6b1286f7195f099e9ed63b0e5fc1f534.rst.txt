@@ -1,0 +1,13 @@
+.. _exhale_enum_BlackBox__Ring_8hpp_1a6b1286f7195f099e9ed63b0e5fc1f534:
+
+Enum ArcType
+============
+
+- Defined in :ref:`file_include_library_BlackBox_Ring.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: BlackBox::ArcType

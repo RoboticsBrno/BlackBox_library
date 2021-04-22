@@ -1,0 +1,13 @@
+.. _exhale_variable_BlackBox__I2C_8hpp_1a51b9ac15178a9a1aff73fbc0f6da4f85:
+
+Variable I2C::Ports::defaultConfig
+==================================
+
+- Defined in :ref:`file_include_library_BlackBox_I2C.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: I2C::Ports::defaultConfig

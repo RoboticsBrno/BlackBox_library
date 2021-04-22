@@ -1,0 +1,13 @@
+.. _exhale_function_LDC16XX__regs_8h_1a1517cbe05423cd9708718f5cc885d6e0:
+
+Function LDCRegs::ldcGetHWAddress
+=================================
+
+- Defined in :ref:`file_include_library_LDC16XX_regs.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: LDCRegs::ldcGetHWAddress(unsigned)

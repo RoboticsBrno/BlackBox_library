@@ -1,0 +1,13 @@
+.. _exhale_union_unionLDCRegs_1_1LDC16XX__dev__t:
+
+Union LDC16XX_dev_t
+===================
+
+- Defined in :ref:`file_include_library_LDC16XX_regs.h`
+
+
+Union Documentation
+-------------------
+
+
+.. doxygenunion:: LDCRegs::LDC16XX_dev_t

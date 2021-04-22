@@ -1,0 +1,411 @@
+
+Full API
+--------
+
+Namespaces
+**********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_BlackBox.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_BlackBox__Pins.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_BlackBox__Pins__I2C.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_BlackBox__Pins__Interrupts.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_BlackBox__Pins__IR.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_BlackBox__Pins__Leds.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_BlackBox__Pins__Lock.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_BlackBox__Pins__Power.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_BlackBox__Pins__UART.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_I2C.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_I2C__Ports.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_LDCRegs.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_M41T62Regs.rst
+
+Classes and Structs
+*******************
+
+
+.. toctree::
+   :maxdepth: 5
+
+   structBlackBox_1_1Coords.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   structBlackBox_1_1PowerPin.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   structBlackBox_1_1Timers_1_1timer__t.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1BlackBox__page.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1Index.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1LDC.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1Lock.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1Manager.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1Power.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1Ring.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1RTC.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1Task.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1Timers.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1Touchpad.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classI2C_1_1Device.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classI2C_1_1Transmission.rst
+
+Enums
+*****
+
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_BlackBox__Ring_8hpp_1a6b1286f7195f099e9ed63b0e5fc1f534.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_BlackBox__I2C_8hpp_1a5b6e6a5b7059b4a5570174d32521a7ef.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_BlackBox__I2C_8hpp_1a752c57f9e255a633d4871bc98832d7fb.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_LDC16XX__regs_8h_1a7f2f50b6147a553bdb7f3509900273d2.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_M41T62__regs_8hpp_1a8a4152e98fd23891cd299739be57df3a.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_M41T62__regs_8hpp_1a8b8d6e207fc56a5d44a003f0261b842d.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_M41T62__regs_8hpp_1aeac36ec2c2107e738381724ecd3a791e.rst
+
+Unions
+******
+
+
+.. toctree::
+   :maxdepth: 5
+
+   unionLDCRegs_1_1LDC16XX__dev__t.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   unionM41T62Regs_1_1M41T62__dev__t.rst
+
+Functions
+*********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   function_BlackBox__I2C_8hpp_1a4478ee8e521a4c8566d587f7d1fb20d9.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_BlackBox__I2C_8hpp_1a458312f0199261e4f14509780e6f6324.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_BlackBox__I2C_8hpp_1aa13dc5559774c628caf78dc1bd5f302a.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_BlackBox__I2C_8hpp_1a4a5b6823e504a666ae20b2799622d846.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_LDC16XX__regs_8h_1a1517cbe05423cd9708718f5cc885d6e0.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_M41T62__regs_8hpp_1aac5e8f6544556ee3165dffef1cbc96d6.rst
+
+Variables
+*********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_BlackBox__Ring_8hpp_1a89aeb0df6eb7a8bcdf1c2d45628c953c.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_BlackBox__Ring_8hpp_1a2e540a8de00250e9c12c555916cb71a8.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a9d1761c474d57d61d0779b48ca975f7f.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a113152fd9995a0de0b77c36d130626c6.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a87d0400c2cd9229c58306a1e5bc34d42.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a606573aaa16d4a68b5575995c6e4edd1.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a27bd3dcd97e05de08f50b99d6f669bf7.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a128f523453967db1c7e540631c60c447.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1aec0fe45a0e21f6cba543fc03001156b0.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1ad05aaed0a34ffefd5e017cb907a2fb41.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1aca4c00bb7345bd21ba0d897123e897f8.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1af4ed22695c7e7216e74d24cf6bcf23e3.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1ad03784ed03691e2c35f87b756d301516.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a1816520e9fcc1f70d698fac11825ca24.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a8588f76f8015cbe467d3d84c2f693f3e.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a0e9c1cc35ff704d2b56f41b0e2285866.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a7b73bcff601c4c98f8711ba6484fc510.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a888166943486da40004016731348624d.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a2b4206a9b5d82bd6b025edf8e63b8a31.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a82692eeac64f4c53b4197dbd8da17ef3.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1ab7510a987a859af3bbf94b50053a1207.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1ace2f0176d404b1dd933d10193aebc31e.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1aaed3ba8ace129c95fb41dde20f642f99.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_v1__0_8hpp_1a5e8bec3e41f5eeb99e90054ef405c3d8.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_BlackBox__I2C_8hpp_1a51b9ac15178a9a1aff73fbc0f6da4f85.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_BlackBox__I2C_8hpp_1a7e9db0ddf9d6f15437b9b20e54b32c2e.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_BlackBox__I2C_8hpp_1a9ef84f70d290e32a62d1d054b14c0b6a.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_LDC16XX__regs_8h_1a34e3ccc16820dd85bbc07ab5791c23d1.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_LDC16XX__regs_8h_1af1f713d680b02cb69ce908b5b11e6be3.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_LDC16XX__regs_8h_1a59bbd8b9f9f2510bd289d91a21d6781c.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_M41T62__regs_8hpp_1a5a6f6c40a7f54fb464d8337d69538f74.rst
+
+Typedefs
+********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_BlackBox__page_8hpp_1a6f8e95ec81e4dd5a1efe4c5f4a4aeee5.rst

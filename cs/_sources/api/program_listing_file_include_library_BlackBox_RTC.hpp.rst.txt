@@ -1,0 +1,58 @@
+
+.. _program_listing_file_include_library_BlackBox_RTC.hpp:
+
+Program Listing for File BlackBox_RTC.hpp
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_library_BlackBox_RTC.hpp>` (``include/library/BlackBox_RTC.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #pragma once
+   
+   #include "library/BlackBox_I2C.hpp"
+   #include "library/M41T62_regs.hpp"
+   #include "driver/i2c.h"
+   #include <ctime>
+   #include <mutex>
+   
+   namespace BlackBox {
+   class RTC : public I2C::Device {
+   private:
+       M41T62Regs::M41T62_dev_t m_regs;
+   
+       mutable std::recursive_mutex m_mutex;
+   
+       const char* m_tag = "RTC";
+   
+       void clearCache(); // Reset cache to default state
+   
+       void readRegister(M41T62Regs::registerAddresses address); // Read register from RTC
+   
+       void writeRegister(M41T62Regs::registerAddresses address); // Write register to RTC
+       void writeRegister(M41T62Regs::registerAddresses address, std::uint8_t value); // Write register to RTC
+       
+   public:
+       RTC(std::uint16_t address = 0x68, i2c_port_t = 0);
+       ~RTC() = default;
+   
+       virtual void init() final;
+   
+       void adjustRTC(std::tm newTime);
+   
+       void adjustESP();
+   
+       void reset();
+   
+       std::tm now();
+   
+       M41T62Regs::M41T62_dev_t registers() const;
+   
+       const M41T62Regs::M41T62_dev_t& regs() const;
+   
+       void writeRegisters(const M41T62Regs::M41T62_dev_t&);
+   };
+   } // namespace BlackBox

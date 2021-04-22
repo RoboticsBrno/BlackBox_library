@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__0_8hpp_1a27bd3dcd97e05de08f50b99d6f669bf7:
+
+Variable BlackBox::Pins::Interrupts::Barometer
+==============================================
+
+- Defined in :ref:`file_include_library_pinout_v1_0.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::Interrupts::Barometer

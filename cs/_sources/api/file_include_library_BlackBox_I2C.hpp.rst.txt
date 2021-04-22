@@ -1,0 +1,114 @@
+
+.. _file_include_library_BlackBox_I2C.hpp:
+
+File BlackBox_I2C.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_library>` (``include/library``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+knihovna pro práci s I2C 
+ 
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/library/BlackBox_I2C.hpp``)
+-------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_library_BlackBox_I2C.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Tomáš Rohlínek (haberturdeur) 
+
+
+
+
+Includes
+--------
+
+
+- ``atomic``
+
+- ``cstdint``
+
+- ``driver/i2c.h``
+
+- ``library/BlackBox_pinout.hpp`` (:ref:`file_include_library_BlackBox_pinout.hpp`)
+
+- ``mutex``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_library_BlackBox_LDC.hpp`
+
+- :ref:`file_include_library_BlackBox_RTC.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_I2C`
+
+- :ref:`namespace_I2C__Ports`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classI2C_1_1Device`
+
+- :ref:`exhale_class_classI2C_1_1Transmission`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_BlackBox__I2C_8hpp_1a5b6e6a5b7059b4a5570174d32521a7ef`
+
+- :ref:`exhale_enum_BlackBox__I2C_8hpp_1a752c57f9e255a633d4871bc98832d7fb`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_BlackBox__I2C_8hpp_1a4478ee8e521a4c8566d587f7d1fb20d9`
+
+- :ref:`exhale_function_BlackBox__I2C_8hpp_1a458312f0199261e4f14509780e6f6324`
+
+- :ref:`exhale_function_BlackBox__I2C_8hpp_1aa13dc5559774c628caf78dc1bd5f302a`
+
+- :ref:`exhale_function_BlackBox__I2C_8hpp_1a4a5b6823e504a666ae20b2799622d846`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_BlackBox__I2C_8hpp_1a51b9ac15178a9a1aff73fbc0f6da4f85`
+
+- :ref:`exhale_variable_BlackBox__I2C_8hpp_1a7e9db0ddf9d6f15437b9b20e54b32c2e`
+
+- :ref:`exhale_variable_BlackBox__I2C_8hpp_1a9ef84f70d290e32a62d1d054b14c0b6a`
+
