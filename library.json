@@ -29,7 +29,7 @@
         }
     ],
     "build": {
-        "flags": "-std=c++17 -std=gnu++17 -DBB_HW_VER=0x0100",
+        "flags": "-std=c++17 -std=gnu++17",
         "unflags": "-std=gnu++11"
     }
 }
