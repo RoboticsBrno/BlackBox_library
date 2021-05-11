@@ -152,11 +152,10 @@ void Ring::drawCircle(Rgb i_rgb) {
         m_buffer[i] = i_rgb;
 }
 
-void Ring::draw(std::unique_ptr<Rgb[]> i_buffer) {
+void Ring::draw(const Rgb* const i_buffer) {
     std::scoped_lock l(m_mutex);
-    for (int i = 0; i < m_count; i++) {
+    for (int i = 0; i < m_count; i++)
         m_buffer[i] = i_buffer[i];
-    }
 }
 
 void Ring::clear() {

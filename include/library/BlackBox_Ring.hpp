@@ -128,7 +128,7 @@ public:
      * 
      * @param buffer 
      */
-    void draw(std::unique_ptr< Rgb[] > buffer);
+    void draw(const Rgb* const buffer);
 
     /**
      * \~czech @brief Vyčistí aktivní snímek
