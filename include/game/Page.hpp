@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Color.h"
-#include "eventpp/callbacklist.h"
-#include "eventpp/eventdispatcher.h"
+#include "callbacklist.h"
+#include "eventdispatcher.h"
 #include "library/BlackBox_Manager.hpp"
 #include "library/BlackBox_Ring.hpp"
 #include <array>
@@ -22,7 +22,6 @@ using Dispatcher = eventpp::EventDispatcher<int, void(Event)>;
 
 class Base {
     friend class Manager;
-
 protected:
     std::array<Rgb, BlackBox::ledCount> m_colors;
 
@@ -31,16 +30,17 @@ protected:
 
     Base(Manager* parent);
     Base() = delete;
-    ~Base() = default;
 
     virtual void deactivate();
 
 public:
+    virtual ~Base() = default;
     virtual void activate() = 0;
     virtual void render() = 0;
 };
 
 class Page : public Base {
+    friend class Manager;
 protected:
     std::array<Rgb, BlackBox::ledCount> m_selectColors;
 
@@ -48,11 +48,12 @@ protected:
     std::array<Base*, BlackBox::ledCount> m_links;
 
     Page(Manager* parent); // only constructible from Manager
-    ~Page() = default; // Manager controls lifetime
+    static std::shared_ptr<Page> create(Manager* parent); // only constructible from Manager
 
     // static void s_executeLink(); // Do I need this?
 
 public:
+    ~Page() = default; // Manager controls lifetime
     Page() = delete;
 
     void setColor(BlackBox::Index index, const Rgb& color);
@@ -68,13 +69,15 @@ public:
 };
 
 class App : public Base {
+    friend class Manager;
 protected:
     std::function<bool(Event)> m_mainFunction;
 
-    App(Manager* i_parent, std::function<bool(Event)> mainFunction);
-    ~App() = default;
+    App(Manager* parent, std::function<bool(Event)> mainFunction);
+    static std::shared_ptr<App> create(Manager* parent, std::function<bool(Event)> mainFunction);
 
 public:
+    ~App() = default;
     App() = delete;
 
     void activate() override;
@@ -120,7 +123,7 @@ public:
      * @param tag Name of the App, must be unique (shared between Apps and Pages), if non is given, one will be assigned, can be used to retrieve the reference later.
      * @return App& Reference to the created App
      */
-    App& newApp(std::string tag); // FIXME: type of App, Inheritance of Page?
+    App& newApp(std::string tag, std::function<bool(Event)>&& mainFunction); // FIXME: type of App, Inheritance of Page?
 
     /**
      * @brief Start execution at the entry point page 

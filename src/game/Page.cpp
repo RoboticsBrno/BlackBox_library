@@ -1,8 +1,8 @@
 #include "game/Page.hpp"
 
 #include "Color.h"
-#include "eventpp/callbacklist.h"
-#include "eventpp/eventdispatcher.h"
+#include "callbacklist.h"
+#include "eventdispatcher.h"
 #include "library/BlackBox_Manager.hpp"
 #include "library/BlackBox_Ring.hpp"
 #include <array>
@@ -16,8 +16,8 @@
 namespace Page {
 
 Base::Base(Manager* i_parent)
-    : m_parent(i_parent)
-    , m_colors() {
+    : m_colors()
+    , m_parent(i_parent) {
 }
 
 void Base::deactivate() {
@@ -51,6 +51,10 @@ Page::Page(Manager* i_parent)
     , m_links() {
 }
 
+std::shared_ptr<Page> Page::create(Manager* i_parent) {
+    return std::shared_ptr<Page>(new Page(i_parent));
+}
+
 void Page::activate() {
     m_parent->m_activePageMutex.lock();
     m_parent->m_activeDispatcher = &m_dispatcher;
@@ -62,6 +66,10 @@ void Page::render() {
 
 App::App(Manager* i_parent, std::function<bool(Event)> i_mainFunction)
     : Base(i_parent) {
+}
+
+std::shared_ptr<App> App::create(Manager* i_parent, std::function<bool(Event)> i_mainFunction) {
+    return std::shared_ptr<App>(new App(i_parent, std::move(i_mainFunction)));
 }
 
 void App::activate() {
@@ -78,14 +86,14 @@ Manager::Manager()
 }
 
 Page& Manager::newPage(std::string i_tag) {
-    auto result = m_pages.emplace(i_tag, std::make_shared<Page>);
+    auto result = m_pages.emplace(i_tag, Page::create(this));
     if (!std::get<bool>(result))
         std::abort(); // FIXME: Replace this with returning Handle instead of reference
     return *std::static_pointer_cast<Page>(m_pages[i_tag]); // FIXME: Handle!
 }
 
-App& Manager::newApp(std::string i_tag) {
-    auto result = m_pages.emplace(i_tag, std::make_shared<Page>);
+App& Manager::newApp(std::string i_tag, std::function<bool(Event)>&& i_mainFunction) {
+    auto result = m_pages.emplace(i_tag, App::create(this, std::move(i_mainFunction)));
     if (!std::get<bool>(result))
         std::abort(); // FIXME: Replace this with returning Handle instead of reference
     return *std::static_pointer_cast<App>(m_pages[i_tag]); // FIXME: Handle!
