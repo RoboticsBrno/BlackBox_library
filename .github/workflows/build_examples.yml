@@ -9,6 +9,7 @@ jobs:
       matrix:
         example:
           - examples/touchpad
+          - examples/ring
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python
