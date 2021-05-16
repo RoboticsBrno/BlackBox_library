@@ -7,8 +7,10 @@
 
 #pragma once
 
-#if (BB_HW_VER == 0x0100) || (BB_HW_VER == 0x0101) // nothing changed between v1.0 and v1.1
+#if (BB_HW_VER == 0x0100)
 #include "library/pinout/v1_0.hpp"
+#elif (BB_HW_VER == 0x0101)
+#include "library/pinout/v1_1.hpp"
 #else
 #error "Invalid BB_HW_VER"
 #endif

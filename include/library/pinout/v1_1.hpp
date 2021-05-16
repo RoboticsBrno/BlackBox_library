@@ -18,7 +18,6 @@ struct PowerPin {
 };
 
 namespace Pins {
-
 namespace Leds {
 constexpr gpio_num_t Data = GPIO_NUM_19;
 } // namespace BlackBox::Pins::Leds
@@ -36,17 +35,17 @@ constexpr gpio_num_t RX = GPIO_NUM_3;
 namespace Interrupts {
 constexpr gpio_num_t LDC = GPIO_NUM_0;
 
-constexpr gpio_num_t Magnetometer = GPIO_NUM_25;
+constexpr gpio_num_t Magnetometer = GPIO_NUM_25; /*!< both BMX055 and QMC5883 */
 
 constexpr gpio_num_t RTC = GPIO_NUM_26;
 
 constexpr gpio_num_t Barometer = GPIO_NUM_27;
 
-constexpr gpio_num_t Gyroscope1 = GPIO_NUM_32;
-constexpr gpio_num_t Gyroscope2 = GPIO_NUM_33;
+constexpr gpio_num_t Gyroscope1 = GPIO_NUM_32; /*!< BMX055 only */
+constexpr gpio_num_t Gyroscope2 = GPIO_NUM_33; /*!< BMX055 only */
 
-constexpr gpio_num_t Accelerometer1 = GPIO_NUM_34;
-constexpr gpio_num_t Accelerometer2 = GPIO_NUM_35;
+constexpr gpio_num_t Accelerometer1 = GPIO_NUM_34; /*!< Both BMX055 (1/2 of accelerometer) and MPU6050 (Accelerometer and Gyroscope) */
+constexpr gpio_num_t Accelerometer2 = GPIO_NUM_35; /*!< BMX055 only */
 } // namespace BlackBox::Pins::Interrupts
 
 namespace Lock {
@@ -54,6 +53,8 @@ constexpr gpio_num_t A = GPIO_NUM_4;
 constexpr gpio_num_t B = GPIO_NUM_13;
 
 constexpr gpio_num_t Motor = GPIO_NUM_12;
+
+constexpr gpio_num_t IsUSBConnected = GPIO_NUM_36;
 } // namespace BlackBox::Pins::Lock
 
 namespace IR {
