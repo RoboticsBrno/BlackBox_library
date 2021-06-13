@@ -30,6 +30,10 @@
         {
             "name": "eventpp",
             "version": "https://github.com/haberturdeur/eventpp.git"
+        },
+        {
+            "name": "cnl",
+            "version": "https://github.com/maxgerhardt/cnl.git#v1.1.7-pio"
         }
     ],
     "build": {
