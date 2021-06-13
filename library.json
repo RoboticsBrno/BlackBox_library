@@ -26,6 +26,10 @@
             "owner": "Jan Mrázek",
             "name": "SmartLeds",
             "version": "1.2.1"
+        },
+        {
+            "name": "eventpp",
+            "version": "https://github.com/haberturdeur/eventpp.git"
         }
     ],
     "build": {
