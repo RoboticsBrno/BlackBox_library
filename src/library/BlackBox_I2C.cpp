@@ -141,6 +141,7 @@ std::uint16_t Device::readWord(std::uint8_t i_registerAddress) {
 
 void Device::writeByte(std::uint8_t i_registerAddress, std::uint8_t i_data) {
     I2C::Transmission transmission;
+    transmission.startBit();
     transmission.writeByte((m_address << 1) | I2C_MASTER_WRITE, EnableACKCheck);
     transmission.writeByte(i_registerAddress, EnableACKCheck);
     transmission.writeByte(i_data, EnableACKCheck);
