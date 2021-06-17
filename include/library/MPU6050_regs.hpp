@@ -1,5 +1,6 @@
 #pragma once
 
+#include "library/BlackBox_BigEndian.hpp"
 #include <array>
 #include <cstdint>
 
@@ -270,6 +271,8 @@ enum ClockSelection : std::uint16_t {
     Stop,
 };
 
+#pragma pack(push, 1)
+
 union MPU6050_dev_t {
     struct {
         union {
@@ -280,7 +283,7 @@ union MPU6050_dev_t {
                         std::uint8_t value : 6;
                         std::uint8_t auxilaryI2CVDD : 1; /*!< configures the high logic level of the auxiliary I2C bus to be either VLOGIC or VDD. When set to 1, the auxiliary I2C bus high logic level is VDD. When cleared to 0, the auxiliary I2C bus high logic level is VLOGIC. */
                     };
-                    std::uint8_t reg;
+                    std::uint8_t reg; // 0x00
                 } x;
 
                 union {
@@ -289,7 +292,7 @@ union MPU6050_dev_t {
                         std::uint8_t value : 6;
                         std::uint8_t reserved1 : 1;
                     };
-                    std::uint8_t reg;
+                    std::uint8_t reg; // 0x01
                 } y;
 
                 union {
@@ -298,7 +301,7 @@ union MPU6050_dev_t {
                         std::uint8_t value : 6;
                         std::uint8_t reserved1 : 1;
                     };
-                    std::uint8_t reg;
+                    std::uint8_t reg; // 0x02
                 } z;
             };
             std::uint8_t regs[3];
@@ -306,25 +309,24 @@ union MPU6050_dev_t {
 
         union {
             struct {
-                std::uint16_t x;
-                std::uint16_t y;
-                std::uint16_t z;    
+                std::uint8_t x; // 0x03
+                std::uint8_t y; // 0x04
+                std::uint8_t z; // 0x05
             };
-            std::uint16_t values[3];
-            std::uint8_t regs[6];
+            std::uint8_t regs[3];
         } fineGain;
 
         union {
             struct {
-                std::uint16_t x;
-                std::uint16_t y;
-                std::uint16_t z;    
+                BE::Int16 x; // 0x06
+                BE::Int16 y; // 0x08
+                BE::Int16 z; // 0x0A
             };
-            std::uint16_t values[3];
+            BE::Int16 values[3];
             std::uint8_t regs[6];
         } accelerometerOffset;
 
-        std::uint8_t ProductID;
+        std::uint8_t ProductID; // 0x0C
 
         union {
             struct {
@@ -332,7 +334,7 @@ union MPU6050_dev_t {
                 std::uint8_t accelerometerTest : 3;
             };
             std::uint8_t reg;
-        } selfTestX;
+        } selfTestX; // 0x0D
 
         union {
             struct {
@@ -340,7 +342,7 @@ union MPU6050_dev_t {
                 std::uint8_t accelerometerTest : 3;
             };
             std::uint8_t reg;
-        } selfTestY;
+        } selfTestY; // 0x0E
 
         union {
             struct {
@@ -348,7 +350,7 @@ union MPU6050_dev_t {
                 std::uint8_t accelerometerTest : 3;
             };
             std::uint8_t reg;
-        } selfTestZ;
+        } selfTestZ; // 0x0F
 
         union {
             struct {
@@ -358,22 +360,22 @@ union MPU6050_dev_t {
                 std::uint8_t reserved : 2;
             };
             std::uint8_t reg;
-        } selfTestA;
+        } selfTestA; // 0x10
 
-        std::uint8_t unknown0;
-        std::uint8_t unknown1;
+        std::uint8_t unknown0; // 0x11
+        std::uint8_t unknown1; // 0x12
 
         union {
             struct {
-                std::uint16_t x;
-                std::uint16_t y;
-                std::uint16_t z;    
+                BE::Int16 x; // 0x13
+                BE::Int16 y; // 0x15
+                BE::Int16 z; // 0x17
             };
-            std::uint16_t values[3];
+            BE::Int16 values[3];
             std::uint8_t regs[6];
-        } gyroscopeOffset;
+        } gyroscopeOffset; 
 
-        std::uint8_t sampleRateDivider;
+        std::uint8_t sampleRateDivider; // 0x19
 
         union {
             struct {
@@ -381,7 +383,7 @@ union MPU6050_dev_t {
                 ExternalSyncSettings externalSyncSet : 3;
                 std::uint8_t reserved : 2;
             };
-            std::uint8_t reg;
+            std::uint8_t reg; // 0x1A
         } config;
 
         union {
@@ -393,7 +395,7 @@ union MPU6050_dev_t {
                 std::uint8_t doSelfTestX : 1;
             };
             std::uint8_t reg;
-        } gyroscopeConfig;
+        } gyroscopeConfig; // 0x1B
 
         union {
             struct {
@@ -404,16 +406,16 @@ union MPU6050_dev_t {
                 std::uint8_t doSelfTestX : 1;
             };
             std::uint8_t reg;
-        } accelerometerConfig;
+        } accelerometerConfig; // 0x1C
 
-        std::uint8_t freeFallThreshold;
-        std::uint8_t freeFallDuration;
+        std::uint8_t freeFallThreshold; // 0x1D
+        std::uint8_t freeFallDuration; // 0x1E
 
-        std::uint8_t motionThreshold;
-        std::uint8_t motionDuration;
+        std::uint8_t motionThreshold; // 0x1F
+        std::uint8_t motionDuration; // 0x20
 
-        std::uint8_t zeroMotionThreshold;
-        std::uint8_t zeroMotionDuration;
+        std::uint8_t zeroMotionThreshold; // 0x21
+        std::uint8_t zeroMotionDuration; // 0x22
 
         union {
             struct {
@@ -427,7 +429,7 @@ union MPU6050_dev_t {
                 std::uint8_t temperature : 1;
             };
             std::uint8_t reg;
-        } fifoEnable;
+        } fifoEnable; // 0x23
 
         union {
             struct {
@@ -438,7 +440,7 @@ union MPU6050_dev_t {
                 std::uint8_t multiMasterEnable : 1;
             };
             std::uint8_t reg;
-        } i2cMasterControl;
+        } i2cMasterControl; // 0x24
 
         union {
             struct {
@@ -463,16 +465,16 @@ union MPU6050_dev_t {
                 struct {
                     std::uint8_t address : 7;
                     std::uint8_t readWrite : 1;
-                };
-                std::uint8_t registerAddress;
-                std::uint8_t dataToBeWritten;
+                }; // 0x31
+                std::uint8_t registerAddress; // 0x32
+                std::uint8_t dataToBeWritten; // 0x33
                 struct {
                     std::uint8_t length : 5;
                     std::uint8_t writeRegisterAddress : 1;
                     std::uint8_t enableInterrupt : 1;
                     std::uint8_t enable : 1;
-                };
-                std::uint8_t dataRead;
+                }; // 0x34
+                std::uint8_t dataRead; // 0x35
             };
             std::uint8_t regs[5];
         } slaveControl4;
@@ -489,7 +491,7 @@ union MPU6050_dev_t {
                 std::uint8_t passThrough : 1;
             };
             std::uint8_t reg;
-        } masterStatus;
+        } masterStatus; // 0x36
 
         union {
             struct {
@@ -503,7 +505,7 @@ union MPU6050_dev_t {
                 std::uint8_t activeLevel : 1;
             };
             std::uint8_t reg;
-        } interruptPinConfig;
+        } interruptPinConfig; // 0x37
 
         union {
             struct {
@@ -514,18 +516,18 @@ union MPU6050_dev_t {
                 std::uint8_t reserved1 : 3;
             };
             std::uint8_t reg;
-        } interruptEnable;
+        } interruptEnable; // 0x38
 
         union {
             struct {
-                
-            };
-            std::uint8_t reg;
-        } interruptStatusDMP;
-
-        union {
-            struct {
-                std::uint16_t dataReady : 1;
+                std::uint16_t dmp0 : 1; // 0x39
+                std::uint16_t dmp1 : 1;
+                std::uint16_t dmp2 : 1;
+                std::uint16_t dmp3 : 1;
+                std::uint16_t dmp4 : 1;
+                std::uint16_t dmp5 : 1;
+                std::uint16_t reserved : 2;
+                std::uint16_t dataReady : 1; // 0x3A
                 std::uint16_t dmpInitialized : 1;
                 std::uint16_t pllReady : 1;
                 std::uint16_t masterI2CInterrupt : 1;
@@ -533,13 +535,6 @@ union MPU6050_dev_t {
                 std::uint16_t zeroMotion : 1;
                 std::uint16_t motion : 1;
                 std::uint16_t freeFall : 1;
-                std::uint16_t dmp0 : 1;
-                std::uint16_t dmp1 : 1;
-                std::uint16_t dmp2 : 1;
-                std::uint16_t dmp3 : 1;
-                std::uint16_t dmp4 : 1;
-                std::uint16_t dmp5 : 1;
-                std::uint16_t reserved : 2;
             };
             std::uint8_t regs[2];
         } interruptStatus;
@@ -548,51 +543,31 @@ union MPU6050_dev_t {
             struct {
                 union {
                     struct {
-                        union {
-                            uint16_t value;
-                            uint8_t regs[2];
-                        } x;
-
-                        union {
-                            uint16_t value;
-                            uint8_t regs[2];
-                        } y;
-
-                        union {
-                            uint16_t value;
-                            uint8_t regs[2];
-                        } z;
+                        BE::Int16 x; // 0x3B
+                        BE::Int16 y; // 0x3D
+                        BE::Int16 z; // 0x3F
                     };
+                    BE::Int16 values[3];
+                    std::uint8_t regs[6];
                 } accelerometer;
 
-                union {
-                    uint16_t value;
-                    uint8_t regs[2];
-                } temperature;
+                BE::Uint16 temperature; // 0x41
 
                 union {
                     struct {
-                        union {
-                            uint16_t value;
-                            uint8_t regs[2];
-                        } x;
-
-                        union {
-                            uint16_t value;
-                            uint8_t regs[2];
-                        } y;
-
-                        union {
-                            uint16_t value;
-                            uint8_t regs[2];
-                        } z;
+                        BE::Int16 x; // 0x43
+                        BE::Int16 y; // 0x45
+                        BE::Int16 z; // 0x47
                     };
+                    BE::Int16 values[3];
+                    std::uint8_t regs[6];
                 } gyroscope;
             };
+            BE::Int16 values[7];
             std::uint8_t regs[14];
         } measurements;
 
-        std::uint8_t externalSensorData[24];
+        std::uint8_t externalSensorData[24]; // 0x49
 
         union {
             struct {
@@ -606,11 +581,11 @@ union MPU6050_dev_t {
                 std::uint8_t xNegative : 1;
             };
             std::uint8_t reg;
-        } motionDetectionStatus;
+        } motionDetectionStatus; // 0x61
 
-        std::uint8_t unknown2;
+        std::uint8_t unknown2; // 0x62
 
-        std::uint8_t slaveDataOut[4];
+        std::uint8_t slaveDataOut[4]; // 0x63
 
         union {
             struct {
@@ -623,7 +598,7 @@ union MPU6050_dev_t {
                 std::uint8_t externalSensorShadowEnable : 1;
             };
             std::uint8_t reg;
-        } i2cMasterDelayControl;
+        } i2cMasterDelayControl; // 0x67
 
         union {
             struct {
@@ -633,7 +608,7 @@ union MPU6050_dev_t {
                 std::uint8_t reset : 5;
             };
             std::uint8_t reg;
-        } signalPathReset;
+        } signalPathReset; // 0x68
 
         union {
             struct {
@@ -643,7 +618,7 @@ union MPU6050_dev_t {
                 std::uint8_t reserved : 2;
             };
             std::uint8_t reg;
-        } motionDetectionControl;
+        } motionDetectionControl; // 0x69
 
         union {
             struct {
@@ -657,24 +632,24 @@ union MPU6050_dev_t {
                 std::uint8_t reserved1 : 1;
             };
             std::uint8_t reg;
-        } userControl;
+        } userControl; // 0x6A
 
         union {
             std::uint8_t regs[2];
             struct {
-                std::uint16_t standbyZGyroscope : 1;
+                ClockSelection clockSelection : 3; // 0x6B
+                std::uint16_t temperatureDisable : 1;
+                std::uint16_t reserved : 1;
+                std::uint16_t cycle : 1;
+                std::uint16_t sleep : 1;
+                std::uint16_t deviceReset : 1;
+                std::uint16_t standbyZGyroscope : 1; // 0x6C
                 std::uint16_t standbyYGyroscope : 1;
                 std::uint16_t standbyXGyroscope : 1;
                 std::uint16_t standbyZAccelerometer : 1;
                 std::uint16_t standbyYAccelerometer : 1;
                 std::uint16_t standbyXAccelerometer : 1;
                 WakeUpFrequency LowPowerWakeControl : 1;
-                ClockSelection clockSelection : 3;
-                std::uint16_t temperatureDisable : 1;
-                std::uint16_t reserved : 1;
-                std::uint16_t cycle : 1;
-                std::uint16_t sleep : 1;
-                std::uint16_t deviceReset : 1;
             };
         } powerManagement;
 
@@ -686,22 +661,16 @@ union MPU6050_dev_t {
                 std::uint8_t reserved : 1;
             };
             std::uint8_t reg;
-        } bankSelection;
+        } bankSelection; // 0x6D
 
-        std::uint8_t memoryStartAddress;
-        std::uint8_t memoryReadWrite;
+        std::uint8_t memoryStartAddress; // 0x6E
+        std::uint8_t memoryReadWrite; // 0x6F
 
-        union {
-            std::uin16_t value;
-            std::uint8_t regs[2];
-        } programStartAddress;
+        BE::Uint16 programStartAddress; // 0x70
 
-        union {
-            std::uin16_t value;
-            std::uint8_t regs[2];
-        } fifoCount;
+        BE::Uint16 fifoCount; // 0x72
 
-        std::uint8_t fifoReadWrite;
+        std::uint8_t fifoReadWrite; // 0x74
 
         union {
             std::uint8_t reg;
@@ -710,12 +679,14 @@ union MPU6050_dev_t {
                 std::uint8_t data : 6;
                 std::uint8_t reserved1 : 1;
             };
-        } whoAmI;
+        } whoAmI; // 0x75
     };
     std::uint8_t regs[MaxAddress];
 
     constexpr MPU6050_dev_t() : powerManagement{0x40, 0}, whoAmI{0x68} {}
 };
+
+#pragma pack(pop)
 
 static constexpr unsigned dmpProgramSize = 3062;
 
@@ -927,720 +898,720 @@ static constexpr std::array<std::uint8_t, dmpProgramSize> dmpProgram = {
     0xa6, 0xd9, 0x00, 0xd8, 0xf1, 0xff
 };
 
-enum dmpMap {
-    Ptat = 0,
-    XGyroscope = 2,
-    YGyroscope = 4,
-    ZGyroscope = 6,
-    XAccelerometer = 8,
-    YAccelerometer = 10,
-    ZAccelerometer = 12,
-    Adc1 = 14,
-    Adc2 = 16,
-    Adc3 = 18,
-    Biasunc = 20,
-    Fifort = 22,
-    Invgsfh = 24,
-    Invgsfl = 26,
-    _1h = 28,
-    _1l = 30,
-    Blpfstch = 32,
-    Blpfstcl = 34,
-    Blpfsxh = 36,
-    Blpfsxl = 38,
-    Blpfsyh = 40,
-    Blpfsyl = 42,
-    Blpfszh = 44,
-    Blpfszl = 46,
-    Blpfmtc = 48,
-    Smc = 50,
-    Blpfmxh = 52,
-    Blpfmxl = 54,
-    Blpfmyh = 56,
-    Blpfmyl = 58,
-    Blpfmzh = 60,
-    Blpfmzl = 62,
-    Blpfc = 64,
-    Smcth = 66,
-    _0h2 = 68,
-    _0l2 = 70,
-    Berr2h = 72,
-    Berr2l = 74,
-    Berr2nh = 76,
-    Smcinc = 78,
-    Angvbxh = 80,
-    Angvbxl = 82,
-    Angvbyh = 84,
-    Angvbyl = 86,
-    Angvbzh = 88,
-    Angvbzl = 90,
-    Berr1h = 92,
-    Berr1l = 94,
-    Atch = 96,
-    Biasuncsf = 98,
-    Act2h = 100,
-    Act2l = 102,
-    Gsfh = 104,
-    Gsfl = 106,
-    Gh = 108,
-    Gl = 110,
-    _5h = 112,
-    _5l = 114,
-    _0h = 116,
-    _0l = 118,
-    _0h = 120,
-    _0l = 122,
-    _5h = 124,
-    _5l = 126,
-    Tmp1ah = 128,
-    Tmp1al = 130,
-    Tmp2ah = 132,
-    Tmp2al = 134,
-    Tmp3ah = 136,
-    Tmp3al = 138,
-    Tmp4ah = 140,
-    Tmp4al = 142,
-    XAccelerometerW = 144,
-    Tmp5 = 146,
-    XAccelerometerB = 148,
-    Tmp8 = 150,
-    YAccelerometerB = 152,
-    Tmp9 = 154,
-    ZAccelerometerB = 156,
-    Tmp10 = 158,
-    Dzh = 160,
-    Dzl = 162,
-    Xgch = 164,
-    Xgcl = 166,
-    Ygch = 168,
-    Ygcl = 170,
-    Zgch = 172,
-    Zgcl = 174,
-    YAccelerometerW = 176,
-    Tmp7 = 178,
-    Afb1h = 180,
-    Afb1l = 182,
-    Afb2h = 184,
-    Afb2l = 186,
-    Magfbh = 188,
-    Magfbl = 190,
-    Qt1h = 192,
-    Qt1l = 194,
-    Qt2h = 196,
-    Qt2l = 198,
-    Qt3h = 200,
-    Qt3l = 202,
-    Qt4h = 204,
-    Qt4l = 206,
-    Ctrl1h = 208,
-    Ctrl1l = 210,
-    Ctrl2h = 212,
-    Ctrl2l = 214,
-    Ctrl3h = 216,
-    Ctrl3l = 218,
-    Ctrl4h = 220,
-    Ctrl4l = 222,
-    Ctrls1 = 224,
-    Ctrlsf1 = 226,
-    Ctrls2 = 228,
-    Ctrlsf2 = 230,
-    Ctrls3 = 232,
-    Ctrlsfnll = 234,
-    Ctrls4 = 236,
-    Ctrlsfnl2 = 238,
-    Ctrlsfnl = 240,
-    Tmp30 = 242,
-    Ctrlsfjt = 244,
-    Tmp31 = 246,
-    Tmp11 = 248,
-    _2 = 250,
-    Tmp12 = 252,
-    _2 = 254,
-    Prevptat = 256,
-    Acczb = 258,
-    Accxb = 264,
-    Accyb = 266,
-    _1hb = 272,
-    _1lb = 274,
-    _0h = 276,
-    _0l = 278,
-    Asr22h = 280,
-    Asr22l = 282,
-    Asr6h = 284,
-    Asr6l = 286,
-    Tmp13 = 288,
-    Tmp14 = 290,
-    Fintxh = 292,
-    Fintxl = 294,
-    Fintyh = 296,
-    Fintyl = 298,
-    Fintzh = 300,
-    Fintzl = 302,
-    Tmp1bh = 304,
-    Tmp1bl = 306,
-    Tmp2bh = 308,
-    Tmp2bl = 310,
-    Tmp3bh = 312,
-    Tmp3bl = 314,
-    Tmp4bh = 316,
-    Tmp4bl = 318,
-    Stxg = 320,
-    Zctxg = 322,
-    Styg = 324,
-    Zctyg = 326,
-    Stzg = 328,
-    Zctzg = 330,
-    Ctrlsfjt2 = 332,
-    Ctrlsfjtcnt = 334,
-    Pvxg = 336,
-    Tmp15 = 338,
-    Pvyg = 340,
-    Tmp16 = 342,
-    Pvzg = 344,
-    Tmp17 = 346,
-    Mnmflagh = 352,
-    Mnmflagl = 354,
-    Mnmtmh = 356,
-    Mnmtml = 358,
-    Mnmtmthrh = 360,
-    Mnmtmthrl = 362,
-    Mnmthrh = 364,
-    Mnmthrl = 366,
-    Accqd4h = 368,
-    Accqd4l = 370,
-    Accqd5h = 372,
-    Accqd5l = 374,
-    Accqd6h = 376,
-    Accqd6l = 378,
-    Accqd7h = 380,
-    Accqd7l = 382,
-    Accqd0h = 384,
-    Accqd0l = 386,
-    Accqd1h = 388,
-    Accqd1l = 390,
-    Accqd2h = 392,
-    Accqd2l = 394,
-    Accqd3h = 396,
-    Accqd3l = 398,
-    Xn2h = 400,
-    Xn2l = 402,
-    Xn1h = 404,
-    Xn1l = 406,
-    Yn2h = 408,
-    Yn2l = 410,
-    Yn1h = 412,
-    Yn1l = 414,
-    Yh = 416,
-    Yl = 418,
-    B0h = 420,
-    B0l = 422,
-    A1h = 424,
-    A1l = 426,
-    A2h = 428,
-    A2l = 430,
-    Sem1 = 432,
-    Fifocnt = 434,
-    X = 436,
-    Packet = 438,
-    Y = 440,
-    Footer = 442,
-    Z = 444,
-    Temp29 = 448,
-    Temp30 = 450,
-    Pre = 452,
-    Prel = 454,
-    Pre = 456,
-    Prel = 458,
-    Pre = 460,
-    Prel = 462,
-    Tmp22 = 464,
-    Timer = 466,
-    Thx = 468,
-    Thy = 472,
-    Thz = 476,
-    Min = 478,
-    Tmp25 = 480,
-    Tmp26 = 482,
-    Tmp27 = 484,
-    Tmp28 = 486,
-    Orient = 488,
-    Thrsh = 490,
-    Endianh = 492,
-    Endianl = 494,
-    Blpfnmtch = 496,
-    Blpfnmtcl = 498,
-    Blpfnmxh = 500,
-    Blpfnmxl = 502,
-    Blpfnmyh = 504,
-    Blpfnmyl = 506,
-    Blpfnmzh = 508,
-    Blpfnmzl = 510,
-};
+// enum dmpMap {
+//     Ptat = 0,
+//     XGyroscope = 2,
+//     YGyroscope = 4,
+//     ZGyroscope = 6,
+//     XAccelerometer = 8,
+//     YAccelerometer = 10,
+//     ZAccelerometer = 12,
+//     Adc1 = 14,
+//     Adc2 = 16,
+//     Adc3 = 18,
+//     Biasunc = 20,
+//     Fifort = 22,
+//     Invgsfh = 24,
+//     Invgsfl = 26,
+//     _1h = 28,
+//     _1l = 30,
+//     Blpfstch = 32,
+//     Blpfstcl = 34,
+//     Blpfsxh = 36,
+//     Blpfsxl = 38,
+//     Blpfsyh = 40,
+//     Blpfsyl = 42,
+//     Blpfszh = 44,
+//     Blpfszl = 46,
+//     Blpfmtc = 48,
+//     Smc = 50,
+//     Blpfmxh = 52,
+//     Blpfmxl = 54,
+//     Blpfmyh = 56,
+//     Blpfmyl = 58,
+//     Blpfmzh = 60,
+//     Blpfmzl = 62,
+//     Blpfc = 64,
+//     Smcth = 66,
+//     _0h2 = 68,
+//     _0l2 = 70,
+//     Berr2h = 72,
+//     Berr2l = 74,
+//     Berr2nh = 76,
+//     Smcinc = 78,
+//     Angvbxh = 80,
+//     Angvbxl = 82,
+//     Angvbyh = 84,
+//     Angvbyl = 86,
+//     Angvbzh = 88,
+//     Angvbzl = 90,
+//     Berr1h = 92,
+//     Berr1l = 94,
+//     Atch = 96,
+//     Biasuncsf = 98,
+//     Act2h = 100,
+//     Act2l = 102,
+//     Gsfh = 104,
+//     Gsfl = 106,
+//     Gh = 108,
+//     Gl = 110,
+//     _5h = 112,
+//     _5l = 114,
+//     _0h = 116,
+//     _0l = 118,
+//     _0h = 120,
+//     _0l = 122,
+//     _5h = 124,
+//     _5l = 126,
+//     Tmp1ah = 128,
+//     Tmp1al = 130,
+//     Tmp2ah = 132,
+//     Tmp2al = 134,
+//     Tmp3ah = 136,
+//     Tmp3al = 138,
+//     Tmp4ah = 140,
+//     Tmp4al = 142,
+//     XAccelerometerW = 144,
+//     Tmp5 = 146,
+//     XAccelerometerB = 148,
+//     Tmp8 = 150,
+//     YAccelerometerB = 152,
+//     Tmp9 = 154,
+//     ZAccelerometerB = 156,
+//     Tmp10 = 158,
+//     Dzh = 160,
+//     Dzl = 162,
+//     Xgch = 164,
+//     Xgcl = 166,
+//     Ygch = 168,
+//     Ygcl = 170,
+//     Zgch = 172,
+//     Zgcl = 174,
+//     YAccelerometerW = 176,
+//     Tmp7 = 178,
+//     Afb1h = 180,
+//     Afb1l = 182,
+//     Afb2h = 184,
+//     Afb2l = 186,
+//     Magfbh = 188,
+//     Magfbl = 190,
+//     Qt1h = 192,
+//     Qt1l = 194,
+//     Qt2h = 196,
+//     Qt2l = 198,
+//     Qt3h = 200,
+//     Qt3l = 202,
+//     Qt4h = 204,
+//     Qt4l = 206,
+//     Ctrl1h = 208,
+//     Ctrl1l = 210,
+//     Ctrl2h = 212,
+//     Ctrl2l = 214,
+//     Ctrl3h = 216,
+//     Ctrl3l = 218,
+//     Ctrl4h = 220,
+//     Ctrl4l = 222,
+//     Ctrls1 = 224,
+//     Ctrlsf1 = 226,
+//     Ctrls2 = 228,
+//     Ctrlsf2 = 230,
+//     Ctrls3 = 232,
+//     Ctrlsfnll = 234,
+//     Ctrls4 = 236,
+//     Ctrlsfnl2 = 238,
+//     Ctrlsfnl = 240,
+//     Tmp30 = 242,
+//     Ctrlsfjt = 244,
+//     Tmp31 = 246,
+//     Tmp11 = 248,
+//     _2 = 250,
+//     Tmp12 = 252,
+//     _2 = 254,
+//     Prevptat = 256,
+//     Acczb = 258,
+//     Accxb = 264,
+//     Accyb = 266,
+//     _1hb = 272,
+//     _1lb = 274,
+//     _0h = 276,
+//     _0l = 278,
+//     Asr22h = 280,
+//     Asr22l = 282,
+//     Asr6h = 284,
+//     Asr6l = 286,
+//     Tmp13 = 288,
+//     Tmp14 = 290,
+//     Fintxh = 292,
+//     Fintxl = 294,
+//     Fintyh = 296,
+//     Fintyl = 298,
+//     Fintzh = 300,
+//     Fintzl = 302,
+//     Tmp1bh = 304,
+//     Tmp1bl = 306,
+//     Tmp2bh = 308,
+//     Tmp2bl = 310,
+//     Tmp3bh = 312,
+//     Tmp3bl = 314,
+//     Tmp4bh = 316,
+//     Tmp4bl = 318,
+//     Stxg = 320,
+//     Zctxg = 322,
+//     Styg = 324,
+//     Zctyg = 326,
+//     Stzg = 328,
+//     Zctzg = 330,
+//     Ctrlsfjt2 = 332,
+//     Ctrlsfjtcnt = 334,
+//     Pvxg = 336,
+//     Tmp15 = 338,
+//     Pvyg = 340,
+//     Tmp16 = 342,
+//     Pvzg = 344,
+//     Tmp17 = 346,
+//     Mnmflagh = 352,
+//     Mnmflagl = 354,
+//     Mnmtmh = 356,
+//     Mnmtml = 358,
+//     Mnmtmthrh = 360,
+//     Mnmtmthrl = 362,
+//     Mnmthrh = 364,
+//     Mnmthrl = 366,
+//     Accqd4h = 368,
+//     Accqd4l = 370,
+//     Accqd5h = 372,
+//     Accqd5l = 374,
+//     Accqd6h = 376,
+//     Accqd6l = 378,
+//     Accqd7h = 380,
+//     Accqd7l = 382,
+//     Accqd0h = 384,
+//     Accqd0l = 386,
+//     Accqd1h = 388,
+//     Accqd1l = 390,
+//     Accqd2h = 392,
+//     Accqd2l = 394,
+//     Accqd3h = 396,
+//     Accqd3l = 398,
+//     Xn2h = 400,
+//     Xn2l = 402,
+//     Xn1h = 404,
+//     Xn1l = 406,
+//     Yn2h = 408,
+//     Yn2l = 410,
+//     Yn1h = 412,
+//     Yn1l = 414,
+//     Yh = 416,
+//     Yl = 418,
+//     B0h = 420,
+//     B0l = 422,
+//     A1h = 424,
+//     A1l = 426,
+//     A2h = 428,
+//     A2l = 430,
+//     Sem1 = 432,
+//     Fifocnt = 434,
+//     X = 436,
+//     Packet = 438,
+//     Y = 440,
+//     Footer = 442,
+//     Z = 444,
+//     Temp29 = 448,
+//     Temp30 = 450,
+//     Pre = 452,
+//     Prel = 454,
+//     Pre = 456,
+//     Prel = 458,
+//     Pre = 460,
+//     Prel = 462,
+//     Tmp22 = 464,
+//     Timer = 466,
+//     Thx = 468,
+//     Thy = 472,
+//     Thz = 476,
+//     Min = 478,
+//     Tmp25 = 480,
+//     Tmp26 = 482,
+//     Tmp27 = 484,
+//     Tmp28 = 486,
+//     Orient = 488,
+//     Thrsh = 490,
+//     Endianh = 492,
+//     Endianl = 494,
+//     Blpfnmtch = 496,
+//     Blpfnmtcl = 498,
+//     Blpfnmxh = 500,
+//     Blpfnmxl = 502,
+//     Blpfnmyh = 504,
+//     Blpfnmyl = 506,
+//     Blpfnmzh = 508,
+//     Blpfnmzl = 510,
+// };
 
-enum dmpKeys {
-    Config_25,
-    Config_24,
-    Config_26,
-    Config_27,
-    Config_21,
-    Config_20,
-    ConfigTap_4,
-    ConfigTap_5,
-    ConfigTap_6,
-    ConfigTap_7,
-    ConfigTap_0,
-    ConfigTap_1,
-    ConfigTap_2,
-    ConfigTap_3,
-    ConfigTapQuantize,
-    ConfigTapJerk,
-    ConfigDrInt,
-    ConfigAuth,
-    ConfigTapSaveAccelerometerB,
-    ConfigTapClearSticky,
-    ConfigFifoOnEvent,
-    FConfigAccelerometerInput,
-    FConfigAccelerometerInit,
-    Config_23,
-    FConfig_1,
-    FConfig_3,
-    FConfig_2,
-    Config_3D,
-    Config_3B,
-    Config_3C,
-    FConfig_5,
-    FConfig_4,
-    FConfig_7,
-    FConfigFScale,
-    FConfigAz,
-    FConfig_6,
-    FConfigLSB_4,
-    Config_12,
-    Config_14,
-    Config_15,
-    Config_16,
-    Config_18,
-    Config_6,
-    Config_7,
-    Config_4,
-    Config_5,
-    Config_2,
-    Config_3,
-    Config_1,
-    ConfigExternal,
-    Config_8,
-    Config_9,
-    ConfigOrient_3,
-    ConfigOrient_2,
-    ConfigOrient_1,
-    ConfigGyro_source,
-    ConfigOrient_irq_1,
-    ConfigOrient_irq_2,
-    ConfigOrient_irq_3,
-    FConfigMagValue,
-    FConfigMagMov,
-    ConfigLpQuat,
+// enum dmpKeys {
+//     Config_25,
+//     Config_24,
+//     Config_26,
+//     Config_27,
+//     Config_21,
+//     Config_20,
+//     ConfigTap_4,
+//     ConfigTap_5,
+//     ConfigTap_6,
+//     ConfigTap_7,
+//     ConfigTap_0,
+//     ConfigTap_1,
+//     ConfigTap_2,
+//     ConfigTap_3,
+//     ConfigTapQuantize,
+//     ConfigTapJerk,
+//     ConfigDrInt,
+//     ConfigAuth,
+//     ConfigTapSaveAccelerometerB,
+//     ConfigTapClearSticky,
+//     ConfigFifoOnEvent,
+//     FConfigAccelerometerInput,
+//     FConfigAccelerometerInit,
+//     Config_23,
+//     FConfig_1,
+//     FConfig_3,
+//     FConfig_2,
+//     Config_3D,
+//     Config_3B,
+//     Config_3C,
+//     FConfig_5,
+//     FConfig_4,
+//     FConfig_7,
+//     FConfigFScale,
+//     FConfigAz,
+//     FConfig_6,
+//     FConfigLSB_4,
+//     Config_12,
+//     Config_14,
+//     Config_15,
+//     Config_16,
+//     Config_18,
+//     Config_6,
+//     Config_7,
+//     Config_4,
+//     Config_5,
+//     Config_2,
+//     Config_3,
+//     Config_1,
+//     ConfigExternal,
+//     Config_8,
+//     Config_9,
+//     ConfigOrient_3,
+//     ConfigOrient_2,
+//     ConfigOrient_1,
+//     ConfigGyro_source,
+//     ConfigOrient_irq_1,
+//     ConfigOrient_irq_2,
+//     ConfigOrient_irq_3,
+//     FConfigMagValue,
+//     FConfigMagMov,
+//     ConfigLpQuat,
 
-    /* MPU6050 keys */
-    ConfigAccelFilter,
-    ConfigMotionBias,
-    TemperatureLabel,
+//     /* MPU6050 keys */
+//     ConfigAccelFilter,
+//     ConfigMotionBias,
+//     TemperatureLabel,
 
-    D0_22,
-    D0_24,
-    D0_36,
-    D0_52,
-    D0_96,
-    D0_104,
-    D0_108,
-    D0_163,
-    D0_188,
-    D0_192,
-    D0_224,
-    D0_228,
-    D0_232,
-    D0_236,
+//     D0_22,
+//     D0_24,
+//     D0_36,
+//     D0_52,
+//     D0_96,
+//     D0_104,
+//     D0_108,
+//     D0_163,
+//     D0_188,
+//     D0_192,
+//     D0_224,
+//     D0_228,
+//     D0_232,
+//     D0_236,
 
-    DmpPrevPtat,
-    D1_2,
-    D1_4,
-    D1_8,
-    D1_10,
-    D1_24,
-    D1_28,
-    D1_36,
-    D1_40,
-    D1_44,
-    D1_72,
-    D1_74,
-    D1_79,
-    D1_88,
-    D1_90,
-    D1_92,
-    D1_96,
-    D1_98,
-    D1_100,
-    D1_106,
-    D1_108,
-    D1_112,
-    D1_128,
-    D1_152,
-    D1_160,
-    D1_168,
-    D1_175,
-    D1_176,
-    D1_178,
-    D1_179,
-    D1_218,
-    D1_232,
-    D1_236,
-    D1_240,
-    D1_244,
-    D1_250,
-    D1_252,
-    D2_12,
-    D2_96,
-    D2_108,
-    D2_208,
-    FlickMsg,
-    FlickCounter,
-    FlickLower,
-    Config_Flick_in,
-    FlickUpper,
-    CGNoticeIntr,
-    D2_224,
-    D2_244,
-    D2_248,
-    D2_252,
+//     DmpPrevPtat,
+//     D1_2,
+//     D1_4,
+//     D1_8,
+//     D1_10,
+//     D1_24,
+//     D1_28,
+//     D1_36,
+//     D1_40,
+//     D1_44,
+//     D1_72,
+//     D1_74,
+//     D1_79,
+//     D1_88,
+//     D1_90,
+//     D1_92,
+//     D1_96,
+//     D1_98,
+//     D1_100,
+//     D1_106,
+//     D1_108,
+//     D1_112,
+//     D1_128,
+//     D1_152,
+//     D1_160,
+//     D1_168,
+//     D1_175,
+//     D1_176,
+//     D1_178,
+//     D1_179,
+//     D1_218,
+//     D1_232,
+//     D1_236,
+//     D1_240,
+//     D1_244,
+//     D1_250,
+//     D1_252,
+//     D2_12,
+//     D2_96,
+//     D2_108,
+//     D2_208,
+//     FlickMsg,
+//     FlickCounter,
+//     FlickLower,
+//     Config_Flick_in,
+//     FlickUpper,
+//     CGNoticeIntr,
+//     D2_224,
+//     D2_244,
+//     D2_248,
+//     D2_252,
 
-    DGyroBiasX,
-    DGyroBiasY,
-    DGyroBiasZ,
-    DAccBiasX,
-    DAccBiasY,
-    DAccBiasZ,
-    DGyroEnable,
-    DAccelEnable,
-    DQuatEnable,
-    DOutputEnable,
-    DCrTimeG,
-    DCrTimeA,
-    DCrTimeQ,
-    DCsTax,
-    DCsTay,
-    DCsTaz,
-    DCsTgx,
-    DCsTgy,
-    DCsTgz,
-    DCsTq0,
-    DCsTq1,
-    DCsTq2,
-    DCsTq3,
+//     DGyroBiasX,
+//     DGyroBiasY,
+//     DGyroBiasZ,
+//     DAccBiasX,
+//     DAccBiasY,
+//     DAccBiasZ,
+//     DGyroEnable,
+//     DAccelEnable,
+//     DQuatEnable,
+//     DOutputEnable,
+//     DCrTimeG,
+//     DCrTimeA,
+//     DCrTimeQ,
+//     DCsTax,
+//     DCsTay,
+//     DCsTaz,
+//     DCsTgx,
+//     DCsTgy,
+//     DCsTgz,
+//     DCsTq0,
+//     DCsTq1,
+//     DCsTq2,
+//     DCsTq3,
 
-    /* Compass keys */
-    CpassBiasX,
-    CpassBiasY,
-    CpassBiasZ,
-    CpassMtx_00,
-    CpassMtx_01,
-    CpassMtx_02,
-    CpassMtx_10,
-    CpassMtx_11,
-    CpassMtx_12,
-    CpassMtx_20,
-    CpassMtx_21,
-    CpassMtx_22,
+//     /* Compass keys */
+//     CpassBiasX,
+//     CpassBiasY,
+//     CpassBiasZ,
+//     CpassMtx_00,
+//     CpassMtx_01,
+//     CpassMtx_02,
+//     CpassMtx_10,
+//     CpassMtx_11,
+//     CpassMtx_12,
+//     CpassMtx_20,
+//     CpassMtx_21,
+//     CpassMtx_22,
 
-    /* Gesture Keys */
-    DmpTapWMin,
-    DmpTapThrX,
-    DmpTapThrY,
-    DmpTapThrZ,
-    DmpShThY,
-    DmpShThX,
-    DmpShThZ,
-    DmpOrient,
-    DAct0,
-    DAcsx,
-    DAcsy,
-    DAcsz,
-    XGRTYTemperature,
-    SkipX_grtYTmp,
-    SkipEnd_compare,
-    EndCompareYXTmp2,
-    Config_Android_orient_int,
-    NoOrient_interrupt,
-    EndCompareYXTmp,
-    EndOrient_1,
-    EndCompareYX,
-    EndOrient,
-    XGRTY,
-    NotTime_minus_1,
-    EndCompareYXTmp3,
-    XGRTYTemperature2,
-    /* Authenticate Keys */
-    DAuthOut,
-    DAuthIn,
-    DAuthA,
-    DAuthB,
+//     /* Gesture Keys */
+//     DmpTapWMin,
+//     DmpTapThrX,
+//     DmpTapThrY,
+//     DmpTapThrZ,
+//     DmpShThY,
+//     DmpShThX,
+//     DmpShThZ,
+//     DmpOrient,
+//     DAct0,
+//     DAcsx,
+//     DAcsy,
+//     DAcsz,
+//     XGRTYTemperature,
+//     SkipX_grtYTmp,
+//     SkipEnd_compare,
+//     EndCompareYXTmp2,
+//     Config_Android_orient_int,
+//     NoOrient_interrupt,
+//     EndCompareYXTmp,
+//     EndOrient_1,
+//     EndCompareYX,
+//     EndOrient,
+//     XGRTY,
+//     NotTime_minus_1,
+//     EndCompareYXTmp3,
+//     XGRTYTemperature2,
+//     /* Authenticate Keys */
+//     DAuthOut,
+//     DAuthIn,
+//     DAuthA,
+//     DAuthB,
 
-    /* Pedometer standalone only keys */
-    DPedstd_bp_b,
-    DPedstd_hp_a,
-    DPedstd_hp_b,
-    DPedstd_bp_a4,
-    DPedstd_bp_a3,
-    DPedstd_bp_a2,
-    DPedstd_bp_a1,
-    DPedstd_intThrsh,
-    DPedstd_clip,
-    DPedstd_sb,
-    DPedstd_sbTime,
-    DPedstd_peakthrsh,
-    DPedstdTiml,
-    DPedstdTimh,
-    DPedstd_peak,
-    DPedstdTimectr,
-    DPedstd_stepctr,
-    DPedstd_walktime,
-    DPedstd_deci,
+//     /* Pedometer standalone only keys */
+//     DPedstd_bp_b,
+//     DPedstd_hp_a,
+//     DPedstd_hp_b,
+//     DPedstd_bp_a4,
+//     DPedstd_bp_a3,
+//     DPedstd_bp_a2,
+//     DPedstd_bp_a1,
+//     DPedstd_intThrsh,
+//     DPedstd_clip,
+//     DPedstd_sb,
+//     DPedstd_sbTime,
+//     DPedstd_peakthrsh,
+//     DPedstdTiml,
+//     DPedstdTimh,
+//     DPedstd_peak,
+//     DPedstdTimectr,
+//     DPedstd_stepctr,
+//     DPedstd_walktime,
+//     DPedstd_deci,
 
-    /*Host Based No Motion*/
-    DHost_no_mot,
+//     /*Host Based No Motion*/
+//     DHost_no_mot,
 
-    /* EIS keys */
-    DFifo_footer,
-    DFifoYshift,
-    DData_rate,
-    DFifoXshift,
-    DFifo_sync,
-    DFifoZshift,
-    DFifo_ready,
-    DmpFooter,
-    DmpIntx_hc,
-    DmpIntx_ph,
-    DmpIntx_sh,
-    DmpAinv_sh,
-    DmpA_invXh,
-    DmpAinv_ph,
-    DmpCthx_h,
-    DmpCthy_h,
-    DmpCthz_h,
-    DmpNcthx_h,
-    DmpNcthy_h,
-    DmpNcthz_h,
-    DmpCtsqXh,
-    DmpCtsqYh,
-    DmpCtsqZh,
-    DmpIntx_h,
-    DmpInty_h,
-    DmpIntz_h,
-    //    DmpHpx_h,
-    //    DmpHpy_h,
-    //    DmpHpz_h,
+//     /* EIS keys */
+//     DFifo_footer,
+//     DFifoYshift,
+//     DData_rate,
+//     DFifoXshift,
+//     DFifo_sync,
+//     DFifoZshift,
+//     DFifo_ready,
+//     DmpFooter,
+//     DmpIntx_hc,
+//     DmpIntx_ph,
+//     DmpIntx_sh,
+//     DmpAinv_sh,
+//     DmpA_invXh,
+//     DmpAinv_ph,
+//     DmpCthx_h,
+//     DmpCthy_h,
+//     DmpCthz_h,
+//     DmpNcthx_h,
+//     DmpNcthy_h,
+//     DmpNcthz_h,
+//     DmpCtsqXh,
+//     DmpCtsqYh,
+//     DmpCtsqZh,
+//     DmpIntx_h,
+//     DmpInty_h,
+//     DmpIntz_h,
+//     //    DmpHpx_h,
+//     //    DmpHpy_h,
+//     //    DmpHpz_h,
 
-    /* Stream keys */
-    StreamP_gyroZ,
-    StreamP_gyroY,
-    StreamP_gyroX,
-    StreamPTemp,
-    StreamP_auxY,
-    StreamP_auxX,
-    StreamP_auxZ,
-    StreamPAccelerometerY,
-    StreamPAccelerometerX,
-    StreamP_footer,
-    StreamPAccelerometerZ,
+//     /* Stream keys */
+//     StreamP_gyroZ,
+//     StreamP_gyroY,
+//     StreamP_gyroX,
+//     StreamPTemp,
+//     StreamP_auxY,
+//     StreamP_auxX,
+//     StreamP_auxZ,
+//     StreamPAccelerometerY,
+//     StreamPAccelerometerX,
+//     StreamP_footer,
+//     StreamPAccelerometerZ,
 
-    MaxKey,
-};
+//     MaxKey,
+// };
 
-enum Din {
-    A_00 = 0x00,
-    A_01 = 0x01,
-    A_04 = 0x04,
-    A_06 = 0x06,
-    A_08 = 0x08,
-    A_09 = 0x09,
-    A_0C = 0x0c,
-    A_0E = 0x0e,
-    A_10 = 0x10,
-    A_11 = 0x11,
-    A_14 = 0x14,
-    A_16 = 0x16,
-    A_18 = 0x18,
-    A_19 = 0x19,
-    A_1C = 0x1C,
-    A_1E = 0x1e,
-    A_20 = 0x20,
-    A_21 = 0x21,
-    A_22 = 0x22,
-    A_24 = 0x24,
-    A_25 = 0x25,
-    A_26 = 0x26,
-    A_28 = 0x28,
-    A_29 = 0x29,
-    A_2C = 0x2c,
-    A_2D = 0x2d,
-    A_2E = 0x2e,
-    A_30 = 0x30,
-    A_31 = 0x31,
-    A_34 = 0x34,
-    A_35 = 0x35,
-    A_36 = 0x36,
-    A_38 = 0x38,
-    A_39 = 0x39,
-    A_3C = 0x3c,
-    A_3D = 0x3d,
-    A_3E = 0x3e,
-    A_40 = 0x40,
-    A_41 = 0x41,
-    A_42 = 0x42,
-    A_44 = 0x44,
-    A_46 = 0x46,
-    A_48 = 0x48,
-    A_49 = 0x49,
-    A_4C = 0x4c,
-    A_4D = 0x4d,
-    A_4E = 0x4e,
-    A_50 = 0x50,
-    A_51 = 0x51,
-    A_54 = 0x54,
-    A_55 = 0x55,
-    A_56 = 0x56,
-    A_58 = 0x58,
-    A_59 = 0x59,
-    A_5A = 0x5a,
-    A_5C = 0x5c,
-    A_5D = 0x5D,
-    A_5E = 0x5e,
-    A_60 = 0x60,
-    A_61 = 0x61,
-    A_64 = 0x64,
-    A_66 = 0x66,
-    A_68 = 0x68,
-    A_69 = 0x69,
-    A_6C = 0x6c,
-    A_6D = 0x6d,
-    A_6E = 0x6e,
-    A_70 = 0x70,
-    A_71 = 0x71,
-    A_74 = 0x74,
-    A_75 = 0x75,
-    A_76 = 0x76,
-    A_78 = 0x78,
-    A_79 = 0x79,
-    A_7C = 0x7c,
-    A_7D = 0x7d,
-    A_7E = 0x7e,
-    A_80 = 0x80,
-    A_8B = 0x8b,
-    A_90 = 0x90,
-    A_91 = 0x91,
-    A_A0 = 0xa0,
-    A_A3 = 0xa3,
-    A_AA = 0xaa,
-    A_AB = 0xab,
-    A_B1 = 0xb1,
-    A_B4 = 0xb4,
-    A_B6 = 0xb6,
-    A_B9 = 0xb9,
-    A_C0 = 0xb0,
-    A_C1 = 0xb1,
-    A_C2 = 0xb4,
-    A_C3 = 0xb5,
-    A_C4 = 0xb8,
-    A_C5 = 0xb9,
-    A_C8 = 0xc8,
-    A_C9 = 0xc9,
-    A_CA = 0xca,
-    A_CB = 0xcb,
-    A_CC = 0xcc,
-    A_CD = 0xcd,
-    A_CE = 0xce,
-    A_CF = 0xcf,
-    A_D8 = 0xd8,
-    A_DA = 0xda,
-    A_DC = 0xdc,
-    A_DD = 0xdd,
-    A_DF = 0xdf,
-    A_F1 = 0xf1,
-    A_F2 = 0xf2,
-    A_F3 = 0xf3,
-    A_F8 = 0xf0,
-    A_FE = 0xfe,
+// enum Din {
+//     A_00 = 0x00,
+//     A_01 = 0x01,
+//     A_04 = 0x04,
+//     A_06 = 0x06,
+//     A_08 = 0x08,
+//     A_09 = 0x09,
+//     A_0C = 0x0c,
+//     A_0E = 0x0e,
+//     A_10 = 0x10,
+//     A_11 = 0x11,
+//     A_14 = 0x14,
+//     A_16 = 0x16,
+//     A_18 = 0x18,
+//     A_19 = 0x19,
+//     A_1C = 0x1C,
+//     A_1E = 0x1e,
+//     A_20 = 0x20,
+//     A_21 = 0x21,
+//     A_22 = 0x22,
+//     A_24 = 0x24,
+//     A_25 = 0x25,
+//     A_26 = 0x26,
+//     A_28 = 0x28,
+//     A_29 = 0x29,
+//     A_2C = 0x2c,
+//     A_2D = 0x2d,
+//     A_2E = 0x2e,
+//     A_30 = 0x30,
+//     A_31 = 0x31,
+//     A_34 = 0x34,
+//     A_35 = 0x35,
+//     A_36 = 0x36,
+//     A_38 = 0x38,
+//     A_39 = 0x39,
+//     A_3C = 0x3c,
+//     A_3D = 0x3d,
+//     A_3E = 0x3e,
+//     A_40 = 0x40,
+//     A_41 = 0x41,
+//     A_42 = 0x42,
+//     A_44 = 0x44,
+//     A_46 = 0x46,
+//     A_48 = 0x48,
+//     A_49 = 0x49,
+//     A_4C = 0x4c,
+//     A_4D = 0x4d,
+//     A_4E = 0x4e,
+//     A_50 = 0x50,
+//     A_51 = 0x51,
+//     A_54 = 0x54,
+//     A_55 = 0x55,
+//     A_56 = 0x56,
+//     A_58 = 0x58,
+//     A_59 = 0x59,
+//     A_5A = 0x5a,
+//     A_5C = 0x5c,
+//     A_5D = 0x5D,
+//     A_5E = 0x5e,
+//     A_60 = 0x60,
+//     A_61 = 0x61,
+//     A_64 = 0x64,
+//     A_66 = 0x66,
+//     A_68 = 0x68,
+//     A_69 = 0x69,
+//     A_6C = 0x6c,
+//     A_6D = 0x6d,
+//     A_6E = 0x6e,
+//     A_70 = 0x70,
+//     A_71 = 0x71,
+//     A_74 = 0x74,
+//     A_75 = 0x75,
+//     A_76 = 0x76,
+//     A_78 = 0x78,
+//     A_79 = 0x79,
+//     A_7C = 0x7c,
+//     A_7D = 0x7d,
+//     A_7E = 0x7e,
+//     A_80 = 0x80,
+//     A_8B = 0x8b,
+//     A_90 = 0x90,
+//     A_91 = 0x91,
+//     A_A0 = 0xa0,
+//     A_A3 = 0xa3,
+//     A_AA = 0xaa,
+//     A_AB = 0xab,
+//     A_B1 = 0xb1,
+//     A_B4 = 0xb4,
+//     A_B6 = 0xb6,
+//     A_B9 = 0xb9,
+//     A_C0 = 0xb0,
+//     A_C1 = 0xb1,
+//     A_C2 = 0xb4,
+//     A_C3 = 0xb5,
+//     A_C4 = 0xb8,
+//     A_C5 = 0xb9,
+//     A_C8 = 0xc8,
+//     A_C9 = 0xc9,
+//     A_CA = 0xca,
+//     A_CB = 0xcb,
+//     A_CC = 0xcc,
+//     A_CD = 0xcd,
+//     A_CE = 0xce,
+//     A_CF = 0xcf,
+//     A_D8 = 0xd8,
+//     A_DA = 0xda,
+//     A_DC = 0xdc,
+//     A_DD = 0xdd,
+//     A_DF = 0xdf,
+//     A_F1 = 0xf1,
+//     A_F2 = 0xf2,
+//     A_F3 = 0xf3,
+//     A_F8 = 0xf0,
+//     A_FE = 0xfe,
 
-    B_C0 = 0xc0,
-    B_C2 = 0xc2,
-    B_C4 = 0xc4,
-    B_C6 = 0xc6,
-    B_F8 = 0xf8,
+//     B_C0 = 0xc0,
+//     B_C2 = 0xc2,
+//     B_C4 = 0xc4,
+//     B_C6 = 0xc6,
+//     B_F8 = 0xf8,
     
-    C_00 = 0x00,
-    C_01 = 0x01,
-    C_02 = 0x02,
-    C_03 = 0x03,
-    C_08 = 0x08,
-    C_09 = 0x09,
-    C_0A = 0x0a,
-    C_0B = 0x0b,
-    C_10 = 0x10,
-    C_11 = 0x11,
-    C_12 = 0x12,
-    C_13 = 0x13,
-    C_18 = 0x18,
-    C_19 = 0x19,
-    C_1A = 0x1a,
-    C_1B = 0x1b,
-    C_20 = 0x20,
-    C_21 = 0x21,
-    C_22 = 0x22,
-    C_23 = 0x23,
-    C_28 = 0x28,
-    C_29 = 0x29,
-    C_2A = 0x2a,
-    C_2B = 0x2b,
-    C_30 = 0x30,
-    C_31 = 0x31,
-    C_32 = 0x32,
-    C_33 = 0x33,
-    C_38 = 0x38,
-    C_39 = 0x39,
-    C_3A = 0x3a,
-    C_3B = 0x3b,
-    C_40 = 0x40,
-    C_41 = 0x41,
-    C_42 = 0x42,
-    C_43 = 0x43,
-    C_48 = 0x48,
-    C_49 = 0x49,
-    C_4A = 0x4a,
-    C_4B = 0x4b,
-    C_50 = 0x50,
-    C_51 = 0x51,
-    C_52 = 0x52,
-    C_53 = 0x53,
-    C_58 = 0x58,
-    C_59 = 0x59,
-    C_5A = 0x5a,
-    C_5B = 0x5b,
-    C_60 = 0x60,
-    C_61 = 0x61,
-    C_62 = 0x62,
-    C_63 = 0x63,
-    C_68 = 0x68,
-    C_69 = 0x69,
-    C_6A = 0x6a,
-    C_6B = 0x6b,
-    C_70 = 0x70,
-    C_71 = 0x71,
-    C_72 = 0x72,
-    C_73 = 0x73,
-    C_78 = 0x78,
-    C_79 = 0x79,
-    C_7A = 0x7a,
-    C_7B = 0x7b,
+//     C_00 = 0x00,
+//     C_01 = 0x01,
+//     C_02 = 0x02,
+//     C_03 = 0x03,
+//     C_08 = 0x08,
+//     C_09 = 0x09,
+//     C_0A = 0x0a,
+//     C_0B = 0x0b,
+//     C_10 = 0x10,
+//     C_11 = 0x11,
+//     C_12 = 0x12,
+//     C_13 = 0x13,
+//     C_18 = 0x18,
+//     C_19 = 0x19,
+//     C_1A = 0x1a,
+//     C_1B = 0x1b,
+//     C_20 = 0x20,
+//     C_21 = 0x21,
+//     C_22 = 0x22,
+//     C_23 = 0x23,
+//     C_28 = 0x28,
+//     C_29 = 0x29,
+//     C_2A = 0x2a,
+//     C_2B = 0x2b,
+//     C_30 = 0x30,
+//     C_31 = 0x31,
+//     C_32 = 0x32,
+//     C_33 = 0x33,
+//     C_38 = 0x38,
+//     C_39 = 0x39,
+//     C_3A = 0x3a,
+//     C_3B = 0x3b,
+//     C_40 = 0x40,
+//     C_41 = 0x41,
+//     C_42 = 0x42,
+//     C_43 = 0x43,
+//     C_48 = 0x48,
+//     C_49 = 0x49,
+//     C_4A = 0x4a,
+//     C_4B = 0x4b,
+//     C_50 = 0x50,
+//     C_51 = 0x51,
+//     C_52 = 0x52,
+//     C_53 = 0x53,
+//     C_58 = 0x58,
+//     C_59 = 0x59,
+//     C_5A = 0x5a,
+//     C_5B = 0x5b,
+//     C_60 = 0x60,
+//     C_61 = 0x61,
+//     C_62 = 0x62,
+//     C_63 = 0x63,
+//     C_68 = 0x68,
+//     C_69 = 0x69,
+//     C_6A = 0x6a,
+//     C_6B = 0x6b,
+//     C_70 = 0x70,
+//     C_71 = 0x71,
+//     C_72 = 0x72,
+//     C_73 = 0x73,
+//     C_78 = 0x78,
+//     C_79 = 0x79,
+//     C_7A = 0x7a,
+//     C_7B = 0x7b,
 
-    D_40 = 0x40,
-};
+//     D_40 = 0x40,
+// }; */
 } // namespace MPU6050Regs
