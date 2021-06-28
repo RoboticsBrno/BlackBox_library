@@ -135,13 +135,11 @@ void Ring::drawArc(Rgb i_rgb, Index i_beginnig, Index i_ending, ArcType i_arcTyp
     if (i_arcType == ArcType::Clockwise)
         for (Index i = i_beginnig; true; ++i) {
             m_buffer[i] = i_rgb;
-            std::printf("%i\n", int(i));
             if (i == i_ending)
                 break;
         }
     else
         for (Index i = i_ending; i != i_beginnig; ++i) {
-            std::printf("%i\n", int(i));
             m_buffer[i] = i_rgb;
         }
 }
