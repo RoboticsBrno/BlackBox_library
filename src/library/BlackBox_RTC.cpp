@@ -1,3 +1,6 @@
+#include "Dsp.hpp"
+#ifdef BB_RTC
+
 #include "library/BlackBox_RTC.hpp"
 
 #include "library/BlackBox_I2C.hpp"
@@ -98,3 +101,4 @@ void RTC::writeRegisters(const M41T62Regs::M41T62_dev_t&) {
 }
 
 } // namespace BlackBox
+#endif

@@ -7,6 +7,9 @@
 
 #pragma once
 
+#include "Dsp.hpp"
+#ifdef BB_RTC
+
 #include "library/BlackBox_I2C.hpp"
 #include "library/M41T62_regs.hpp"
 #include "driver/i2c.h"
@@ -70,3 +73,4 @@ public:
     void writeRegisters(const M41T62Regs::M41T62_dev_t&);
 };
 } // namespace BlackBox
+#endif

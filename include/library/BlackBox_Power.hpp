@@ -7,6 +7,9 @@
 
 #pragma once
 
+#include "Dsp.hpp"
+#ifdef BB_POWER
+
 #include "library/BlackBox_pinout.hpp"
 
 #include "driver/gpio.h"
@@ -23,9 +26,9 @@ private:
 
     mutable std::recursive_mutex m_mutex;
 
-    const PowerPin m_powerAll;
-    const PowerPin m_power5V;
-    const PowerPin m_powerLDC;
+    const Pins::PowerPin m_powerAll;
+    const Pins::PowerPin m_power5V;
+    const Pins::PowerPin m_powerLDC;
 
     bool m_isAllOn;
     bool m_is5VOn;
@@ -36,16 +39,16 @@ private:
     void setDefault();
 
 public:
-    Power(PowerPin powerAll = Pins::Power::PowerAll,
-        PowerPin power5V = Pins::Power::Power5V,
-        PowerPin powerLDC = Pins::Power::PowerLDC);
+    Power(Pins::PowerPin powerAll = Pins::Power::PowerAll,
+        Pins::PowerPin power5V = Pins::Power::Power5V,
+        Pins::PowerPin powerLDC = Pins::Power::PowerLDC);
 
     ~Power() = default;
 
     void init();
 
-    void turnOn(PowerPin);
-    void turnOff(PowerPin);
+    void turnOn(Pins::PowerPin);
+    void turnOff(Pins::PowerPin);
 
     void turnOn();
     void turnOff();
@@ -58,3 +61,4 @@ public:
 };
 
 } // namespace BlackBox
+#endif

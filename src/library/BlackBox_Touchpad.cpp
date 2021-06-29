@@ -1,3 +1,6 @@
+#include "Dsp.hpp"
+#ifdef BB_TOUCHPAD
+
 #include "library/BlackBox_Touchpad.hpp"
 
 #include <cstdio>
@@ -120,3 +123,4 @@ Coords Touchpad::calculate() {
 }
 
 } // namespace BlackBox
+#endif

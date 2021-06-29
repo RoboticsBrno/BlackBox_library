@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Dsp.hpp"
+#ifdef BB_MPU
+
 #include "driver/i2c.h"
 #include "library/BlackBox_I2C.hpp"
 #include "library/MPU6050_regs.hpp"
@@ -65,3 +68,4 @@ public:
     Scaled scale(bool update = false);
 };
 } // namespace BlackBox
+#endif

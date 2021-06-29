@@ -1,3 +1,6 @@
+#include "Dsp.hpp"
+#ifdef BB_MPU
+
 #include "library/BlackBox_MPU.hpp"
 
 #include "esp_log.h"
@@ -157,3 +160,4 @@ MPU::Scaled MPU::scale(bool i_update) {
     return out;
 }
 } // namespace BlackBox
+#endif

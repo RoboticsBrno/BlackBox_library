@@ -6,6 +6,9 @@
  */
 #pragma once
 
+#include "Dsp.hpp"
+#ifdef BB_I2C
+
 #include "library/BlackBox_pinout.hpp"
 #include "driver/i2c.h"
 #include <atomic>
@@ -333,3 +336,4 @@ bool isInitialized(i2c_port_t);
 };
 
 }
+#endif

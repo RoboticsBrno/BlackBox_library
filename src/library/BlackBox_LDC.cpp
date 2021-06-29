@@ -1,3 +1,6 @@
+#include "Dsp.hpp"
+#ifdef BB_LDC
+
 #include "library/BlackBox_LDC.hpp"
 
 #include "library/BlackBox_I2C.hpp"
@@ -140,3 +143,4 @@ std::uint32_t LDC::operator[](int i_channel) const {
 }
 
 }
+#endif

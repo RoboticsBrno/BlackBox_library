@@ -1,3 +1,6 @@
+#include "Dsp.hpp"
+#ifdef BB_I2C
+
 #include "library/BlackBox_I2C.hpp"
 
 #include "esp_log.h"
@@ -212,3 +215,4 @@ bool Ports::isInitialized(i2c_port_t i_port) {
     return initializedPorts[i_port].load();
 }
 }
+#endif

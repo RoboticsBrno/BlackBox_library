@@ -1,3 +1,6 @@
+#include "Dsp.hpp"
+#ifdef BB_RING
+
 #include "library/BlackBox_Ring.hpp"
 
 #include "library/BlackBox_pinout.hpp"
@@ -99,12 +102,10 @@ void Ring::show() {
     std::scoped_lock l(m_mutex);
     Index j = m_beginning;
     for (int i = 0; i < m_count; i++) {
-        #if BB_HW_VER == 0x0100
+        #if BLACK_BOX == 0x0100
             m_leds[j] = (*this)[m_count - i];
-        #elif BB_HW_VER == 0x0101
-            m_leds[j] = (*this)[i];
         #else
-        #error "Invalid BB_HW_VER"
+            m_leds[j] = (*this)[i];
         #endif
         if (m_isDarkModeEnabled)
             m_leds[j].stretchChannelsEvenly(m_darkModeValue);
@@ -192,3 +193,4 @@ void Ring::rotate(Index i_beginning) {
 }
 
 } // namespace BlackBox
+#endif

@@ -7,6 +7,9 @@
 
 #pragma once
 
+#include "Dsp.hpp"
+#ifdef BB_RING
+
 #include "library/BlackBox_pinout.hpp"
 #include "library/BlackBox_Touchpad.hpp"
 #include <SmartLeds.h>
@@ -171,3 +174,4 @@ public:
 };
 
 } // namespace BlackBox
+#endif

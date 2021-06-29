@@ -7,6 +7,9 @@
 
 #pragma once
 
+#include "Dsp.hpp"
+#ifdef BB_LDC
+
 #include "library/BlackBox_I2C.hpp"
 #include "library/LDC16XX_regs.h"
 #include "driver/i2c.h"
@@ -126,3 +129,4 @@ public:
     std::uint32_t operator[](int channel) const;
 };
 } // namespace BlackBox
+#endif

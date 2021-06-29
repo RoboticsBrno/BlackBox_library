@@ -3,12 +3,15 @@
 #include "freertos/task.h"
 #include <iostream>
 
+#ifdef BB_MPU
 using namespace BlackBox;
+#endif
 using namespace std;
 
 extern "C" {
 
 void app_main() {
+    #ifdef BB_MPU
     MPU mpu;
     mpu.init();
 
@@ -40,5 +43,6 @@ void app_main() {
 
         vTaskDelay(200 / portTICK_PERIOD_MS);
     }
+    #endif
 }
 }

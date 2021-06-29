@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "Dsp.hpp"
+
 #include "library/BlackBox_LDC.hpp"
 #include "library/BlackBox_Lock.hpp"
 #include "library/BlackBox_Power.hpp"
@@ -22,13 +24,29 @@ namespace BlackBox {
 class Manager {
 private:
     Manager();
-
+#ifdef BB_LDC
     LDC m_ldc;
+#endif
+
+#ifdef BB_LOCK
     Lock m_lock;
+#endif
+
+#ifdef BB_POWER
     Power m_power;
+#endif
+
+#ifdef BB_RING
     Ring m_ring;
+#endif
+
+#ifdef BB_RTC
     RTC m_rtc;
+#endif
+
+#ifdef BB_TOUCHPAD
     Touchpad m_touchpad;
+#endif
 
 public:
     Manager(Manager const&) = delete;
@@ -42,12 +60,29 @@ public:
 
     void init();
 
+#ifdef BB_LDC
     LDC& ldc();
+#endif
+
+#ifdef BB_LOCK
     Lock& lock();
+#endif
+
+#ifdef BB_POWER
     Power& power();
+#endif
+
+#ifdef BB_RING
     Ring& ring();
+#endif
+
+#ifdef BB_RTC
     RTC& rtc();
+#endif
+
+#ifdef BB_TOUCHPAD
     Touchpad& touchpad();
+#endif
 
 };
 

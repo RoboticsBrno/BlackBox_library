@@ -7,6 +7,9 @@
 
 #pragma once
 
+#include "Dsp.hpp"
+#ifdef BB_TOUCHPAD
+
 #include "library/BlackBox_LDC.hpp"
 #include <cstdint>
 
@@ -58,3 +61,4 @@ public:
     Coords calculate();
 };
 } // namespace BlackBox
+#endif

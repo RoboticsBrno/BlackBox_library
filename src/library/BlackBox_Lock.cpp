@@ -1,3 +1,6 @@
+#include "Dsp.hpp"
+#ifdef BB_LOCK
+
 #include "library/BlackBox_Lock.hpp"
 
 #include "library/BlackBox_pinout.hpp"
@@ -10,7 +13,7 @@ namespace BlackBox {
 void Lock::drive(bool i_locked, int i_duty) {
     std::scoped_lock l(m_mutex);
     printf("%i::%i\n", i_locked, m_isLocked);
-    printf("%i:%i\n", i_locked, gpio_get_level(m_encoderA)== s_locked);
+    printf("%i:%i\n", i_locked, gpio_get_level(m_encoderA) == s_locked);
 
     if (i_locked != m_isLocked) {
         ledc_set_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel, i_duty);
@@ -95,3 +98,4 @@ bool Lock::locked() {
 }
 
 } // namespace BlackBox
+#endif

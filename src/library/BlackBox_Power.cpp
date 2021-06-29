@@ -1,3 +1,6 @@
+#include "Dsp.hpp"
+#ifdef BB_POWER
+
 #include "library/BlackBox_Power.hpp"
 
 #include "library/BlackBox_pinout.hpp"
@@ -13,9 +16,9 @@ void Power::setDefault() {
     gpio_set_level(m_power5V.pinNumber, m_power5V.defaultLevel);
 }
 
-Power::Power(PowerPin i_powerAll,
-    PowerPin i_power5V,
-    PowerPin i_powerLDC)
+Power::Power(Pins::PowerPin i_powerAll,
+    Pins::PowerPin i_power5V,
+    Pins::PowerPin i_powerLDC)
     : m_powerAll(i_powerAll)
     , m_power5V(i_power5V)
     , m_powerLDC(i_powerLDC)
@@ -37,12 +40,12 @@ void Power::init() {
     gpio_config(&m_powerConfig);
 }
 
-void Power::turnOn(PowerPin i_powerPin) {
+void Power::turnOn(Pins::PowerPin i_powerPin) {
     std::scoped_lock l(m_mutex);
     gpio_set_level(i_powerPin.pinNumber, i_powerPin.onLevel);
 }
 
-void Power::turnOff(PowerPin i_powerPin) {
+void Power::turnOff(Pins::PowerPin i_powerPin) {
     std::scoped_lock l(m_mutex);
     gpio_set_level(i_powerPin.pinNumber, !i_powerPin.onLevel);
 }
@@ -71,3 +74,4 @@ void Power::turnOff5V() {
     turnOff(m_power5V);
 }
 } // namespace BlackBox
+#endif

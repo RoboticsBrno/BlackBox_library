@@ -7,6 +7,9 @@
 
 #pragma once
 
+#include "Dsp.hpp"
+#ifdef BB_LOCK
+
 #include "library/BlackBox_pinout.hpp"
 #include "driver/gpio.h"
 #include "driver/ledc.h"
@@ -87,3 +90,4 @@ public:
     bool locked();
 };
 } // namespace BlackBox
+#endif
