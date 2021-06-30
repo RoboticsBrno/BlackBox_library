@@ -37,7 +37,7 @@ private:
     void writeRegister(M41T62Regs::registerAddresses address, std::uint8_t value); // Write register to RTC
     
 public:
-    RTC(std::uint16_t address = 0x68, i2c_port_t = 0);
+    RTC(std::uint16_t address = 0x68, i2c_port_t = I2C_NUM_0);
     ~RTC() = default;
 
     virtual void init() final;

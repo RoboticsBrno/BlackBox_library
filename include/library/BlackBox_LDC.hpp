@@ -46,7 +46,7 @@ public:
      * @param address Address of LDC (0x2A or 0x2B)
      * @param port ESP32s i2c port on which LDC is connected
      */
-    LDC(std::uint16_t address = 0x2A, i2c_port_t = 0);
+    LDC(std::uint16_t address = 0x2A, i2c_port_t = I2C_NUM_0);
     ~LDC() = default;
 
     /**

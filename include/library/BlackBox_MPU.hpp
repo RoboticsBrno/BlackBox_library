@@ -41,7 +41,7 @@ private:
 
 public:
     void writeRegister(MPU6050Regs::registerAddresses address, std::uint8_t value); // Write register to MPU
-    MPU(std::uint16_t address = 0x69, i2c_port_t = 0);
+    MPU(std::uint16_t address = 0x69, i2c_port_t = I2C_NUM_0);
     ~MPU() = default;
 
     virtual void init() override;

@@ -62,14 +62,14 @@ esp_err_t Transmission::readByte(std::uint8_t* o_data, ACKValue i_ackValue) {
     return i2c_master_read_byte(m_handle, o_data, static_cast<i2c_ack_type_t>(i_ackValue));
 }
 
-esp_err_t Transmission::write(std::uint8_t* i_data, size_t i_dataLengt, bool i_ackCheck) {
+esp_err_t Transmission::write(std::uint8_t* i_data, size_t i_dataLength, bool i_ackCheck) {
     std::scoped_lock lock(m_mutex);
-    return i2c_master_write(m_handle, i_data, i_dataLengt, i_ackCheck);
+    return i2c_master_write(m_handle, i_data, i_dataLength, i_ackCheck);
 }
 
-esp_err_t Transmission::read(std::uint8_t* o_data, size_t i_dataLengt, ACKValue i_ackValue) {
+esp_err_t Transmission::read(std::uint8_t* o_data, size_t i_dataLength, ACKValue i_ackValue) {
     std::scoped_lock lock(m_mutex);
-    return i2c_master_read(m_handle, o_data, i_dataLengt, static_cast<i2c_ack_type_t>(i_ackValue));
+    return i2c_master_read(m_handle, o_data, i_dataLength, static_cast<i2c_ack_type_t>(i_ackValue));
 }
 
 esp_err_t Transmission::send(i2c_port_t i_i2cNum, TickType_t i_ticksToWait) {
@@ -95,6 +95,95 @@ i2c_cmd_handle_t Transmission::raw() {
 void Transmission::detach() {
     std::scoped_lock lock(m_mutex);
     m_handle = NULL;
+}
+
+constexpr Port::Port(int i_port)
+    : m_port(i_port)
+    , m_config(defaultConfig) {
+}
+
+void Port::init(i2c_port_t i_port, const i2c_config_t& i_config, size_t i_slaveRxBuffer, size_t i_slaveTxBuffer, int i_intrAllockationFlag) {
+    bool expected = false;
+    if (!s_initializedPorts[i_port].compare_exchange_strong(expected, true))
+        return;
+    ESP_ERROR_CHECK(i2c_param_config(i_port, &i_config));
+    ESP_ERROR_CHECK(i2c_driver_install(i_port, i_config.mode, i_slaveRxBuffer, i_slaveTxBuffer, i_intrAllockationFlag));
+    stop(i_port);
+}
+
+void Port::config(i2c_port_t i_port, const i2c_config_t& i_config) {
+    if (isInitialized(i_port)) {
+        ESP_ERROR_CHECK(i2c_param_config(i_port, &i_config));
+    } else {
+        ESP_LOGE(s_tag, "Trying configuring without init on port: %i", i_port);
+    }
+}
+
+void Port::deinit(i2c_port_t i_port) {
+    if (isInitialized(i_port)) {
+        ESP_ERROR_CHECK(i2c_driver_delete(i_port));
+        s_initializedPorts[i_port].store(false);
+    } else {
+        ESP_LOGE(s_tag, "Trying to deinit without init on port: %i", i_port);
+    }
+}
+
+bool Port::isInitialized(i2c_port_t i_port) {
+    return s_initializedPorts[i_port].load();
+}
+
+void Port::sendSoftwareReset(i2c_port_t i_port) {
+    I2C::Transmission transmission;
+    transmission.startBit();
+    transmission.writeByte(0, false);
+    transmission.writeByte(0b00000110, false);
+    transmission.stopBit();
+    transmission.send(i_port);
+}
+
+void Port::stop(i2c_port_t i_port) {
+    I2C::Transmission transmission;
+    transmission.stopBit();
+    transmission.send(i_port);
+}
+
+void Port::init(const i2c_config_t& i_config, size_t i_slaveRxBuffer, size_t i_slaveTxBuffer, int i_intrAllocationFlag) {
+    init(m_port, i_config, i_slaveRxBuffer, i_slaveTxBuffer, i_intrAllocationFlag);
+}
+
+void Port::config(const i2c_config_t& i_config) {
+    config(m_port, i_config);
+}
+
+void Port::deinit() {
+    deinit(m_port);
+}
+
+bool Port::isInitialized() {
+    return isInitialized(m_port);
+}
+
+void Port::sendSoftwareReset() {
+    sendSoftwareReset(m_port);
+}
+
+void Port::stop() {
+    stop(m_port);
+}
+
+constexpr i2c_port_t Port::port() {
+    return m_port;
+}
+
+constexpr Port::operator i2c_port_t() const {
+    return m_port;
+}
+
+std::array<std::atomic<bool>, I2C_NUM_MAX> Port::s_initializedPorts = {};
+
+Device::Device(std::uint16_t i_address, Port i_port)
+    : m_address(i_address)
+    , m_port(i_port) {
 }
 
 Device::Device(std::uint16_t i_address, i2c_port_t i_port)
@@ -178,41 +267,12 @@ std::uint16_t Device::address() const {
     return m_address;
 }
 
-i2c_port_t Device::port() const {
+Port Device::port() const {
     return m_port;
 }
 
 void Device::init() {
-    I2C::Ports::init(m_port);
-}
-
-void Ports::init(i2c_port_t i_port, const i2c_config_t& i_config, size_t i_slaveRxBuffer, size_t i_slaveTxBuffer, int i_intrAllockationFlag) {
-    bool expected = false;
-    if (!initializedPorts[i_port].compare_exchange_strong(expected, true))
-        return;
-    ESP_ERROR_CHECK(i2c_param_config(i_port, &i_config));
-    ESP_ERROR_CHECK(i2c_driver_install(i_port, i_config.mode, i_slaveRxBuffer, i_slaveTxBuffer, i_intrAllockationFlag));
-}
-
-void Ports::config(i2c_port_t i_port, const i2c_config_t& i_config) {
-    if (isInitialized(i_port)) {
-        ESP_ERROR_CHECK(i2c_param_config(i_port, &i_config));
-    } else {
-        ESP_LOGE(tag, "Trying configuring without init on port: %i", i_port);
-    }
-}
-
-void Ports::deinit(i2c_port_t i_port) {
-    if (isInitialized(i_port)) {
-        ESP_ERROR_CHECK(i2c_driver_delete(i_port));
-        initializedPorts[i_port].store(false);
-    } else {
-        ESP_LOGE(tag, "Trying to deinit without init on port: %i", i_port);
-    }
-}
-
-bool Ports::isInitialized(i2c_port_t i_port) {
-    return initializedPorts[i_port].load();
+    m_port.init();
 }
 }
 #endif

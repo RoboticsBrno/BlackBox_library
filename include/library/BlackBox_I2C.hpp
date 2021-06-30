@@ -12,6 +12,7 @@
 #include "library/BlackBox_pinout.hpp"
 #include "driver/i2c.h"
 #include <atomic>
+#include <array>
 #include <cstdint>
 #include <mutex>
 
@@ -174,6 +175,96 @@ public:
     void detach();
 };
 
+class Port {
+private:
+    static constexpr char const* s_tag = "I2C_Port_Guard";
+
+    static std::array<std::atomic<bool>, I2C_NUM_MAX> s_initializedPorts;
+
+    const i2c_port_t m_port;
+    i2c_config_t m_config;
+
+public:
+    constexpr Port(i2c_port_t);
+    /**
+     * \~czech @brief Výchozí nastavení kompatibilní se všemi zabudovanými I2C periferiemi BlackBoxu
+     * \~english @brief Default configuration to be used with all built-in I2C devices on BlackBox
+     */
+    static constexpr i2c_config_t defaultConfig = {
+        // FIXME: Make this overritable easily
+        .mode = I2C_MODE_MASTER,
+        .sda_io_num = ::BlackBox::Pins::I2C::SDA,
+        .scl_io_num = ::BlackBox::Pins::I2C::SCL,
+        .sda_pullup_en = true,
+        .scl_pullup_en = true,
+        .master = {
+            .clk_speed = 400000, // FIXME: Do all devices support this speed?
+        },
+    };
+
+    // FIXME: Should I implement counting on inits and call deinit after all I2C::Devices are destroyed?
+    /**
+     * \~czech @brief Inicializuje daný I2C port.
+     * \~english @brief Initialize given I2C port.
+     * 
+     * @param port 
+     * @param config 
+     * @param slaveRxBuffer 
+     * @param slaveTxBuffer 
+     * @param intrAllocationFlag 
+     */
+    static void init(i2c_port_t, const i2c_config_t& = defaultConfig, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllocationFlag = 0);
+
+    /**
+     * \~czech @brief Nastav daný I2C port.
+     *                @note
+     *                Port musí být již inicializovaný, jinak se nic nestane
+     * \~english @brief Configure given I2C port.
+     *                @note
+     *                The port must already be initialized otherwise the configuration won't happen
+     * 
+     * @param port 
+     * @param config 
+     */
+    static void config(i2c_port_t, const i2c_config_t& config = defaultConfig);
+
+    /**
+     * \~czech @brief De-inicializuje daný I2C port.
+     *                @note
+     *                Port musí být již inicializovaný
+     * \~english @brief Deinitialize given I2C port.
+     *           @note
+     *           The port must already be initialized
+     * 
+     * @param port
+     */
+    static void deinit(i2c_port_t);
+
+    /**
+     * \~czech @brief Vrátí zda je daný I2C port již inicializovaný
+     * \~english @brief Returns whether or not is given I2C port initialized
+     * 
+     * @param port
+     * 
+     * @return initialization state
+     */
+    static bool isInitialized(i2c_port_t);
+
+    static void sendSoftwareReset(i2c_port_t);
+
+    static void stop(i2c_port_t);
+
+    void init(const i2c_config_t& = defaultConfig, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllocationFlag = 0);
+    void config(const i2c_config_t& config = defaultConfig);
+    void deinit();
+    bool isInitialized();
+    void sendSoftwareReset();
+    void stop();
+
+    constexpr i2c_port_t port();
+    constexpr operator i2c_port_t() const;
+};
+
 /**
  * \~czech @brief Základní třída pro I2C zařízení
  * \~english @brief Base class for I2C devices
@@ -182,7 +273,7 @@ class Device { // FIXME: This has to change to be implemented as "universal", wr
 protected:
     std::uint16_t m_address;
 
-    i2c_port_t m_port;
+    Port m_port;
 
     Device() = delete;
 public:
@@ -252,6 +343,7 @@ public:
      * @param port i2c port on which device is connected
      */
     Device(std::uint16_t address, i2c_port_t);
+    Device(std::uint16_t address, Port);
 
     /**
      * \~czech @brief Vrátí adresu I2C zařízení specifikovanou při inicializaci
@@ -260,80 +352,9 @@ public:
      */
     std::uint16_t address() const;
 
-    i2c_port_t port() const;
+    Port port() const;
 
     virtual void init(); // FIXME: Write init for i2c device
 };
-
-namespace Ports {
-constexpr char const* tag = "I2C_Port_Guard";
-
-static std::atomic<bool> initializedPorts[I2C_NUM_MAX];
-
-/**
- * \~czech @brief Výchozí nastavení kompatibilní se všemi zabudovanými I2C periferiemi BlackBoxu
- * \~english @brief Default configuration to be used with all built-in I2C devices on BlackBox
- */
-constexpr i2c_config_t defaultConfig = {
-    // FIXME: Make this overritable easily
-    .mode = I2C_MODE_MASTER,
-    .sda_io_num = ::BlackBox::Pins::I2C::SDA,
-    .scl_io_num = ::BlackBox::Pins::I2C::SCL,
-    .sda_pullup_en = true,
-    .scl_pullup_en = true,
-    .master = {
-        .clk_speed = 400000, // FIXME: Do all devices support this speed?
-    },
-};
-
-// FIXME: Should I implement counting on inits and call deinit after all I2C::Devices are destroyed?
-/**
- * \~czech @brief Inicializuje daný I2C port.
- * \~english @brief Initialize given I2C port.
- * 
- * @param port 
- * @param config 
- * @param slaveRxBuffer 
- * @param slaveTxBuffer 
- * @param intrAllocationFlag 
- */
-void init(i2c_port_t, const i2c_config_t& = defaultConfig, size_t slaveRxBuffer = 0, size_t slaveTxBuffer = 0, int intrAllocationFlag = 0);
-
-/**
- * \~czech @brief Nastav daný I2C port.
- *                @note
- *                Port musí být již inicializovaný, jinak se nic nestane
- * \~english @brief Configure given I2C port.
- *                @note
- *                The port must already be initialized otherwise the configuration won't happen
- * 
- * @param port 
- * @param config 
- */
-void config(i2c_port_t, const i2c_config_t& config = defaultConfig);
-
-/**
- * \~czech @brief De-inicializuje daný I2C port.
- *                @note
- *                Port musí být již inicializovaný
- * \~english @brief Deinitialize given I2C port.
- *           @note
- *           The port must already be initialized
- * 
- * @param port
- */
-void deinit(i2c_port_t);
-
-/**
- * \~czech @brief Vrátí zda je daný I2C port již inicializovaný
- * \~english @brief Returns whether or not is given I2C port initialized
- * 
- * @param port
- * 
- * @return initialization state
- */
-bool isInitialized(i2c_port_t);
-};
-
 }
 #endif

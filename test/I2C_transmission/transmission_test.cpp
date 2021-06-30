@@ -49,7 +49,7 @@ void app_main() {
             .clk_speed = 400000,
         }
     };
-    I2C::Ports::init(I2C_NUM_0, conf_master);
+    I2C::Port::init(I2C_NUM_0, conf_master);
 
     RUN_TEST(communicate);
 

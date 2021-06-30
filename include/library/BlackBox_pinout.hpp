@@ -8,6 +8,7 @@
 #pragma once
 
 #include "Dsp.hpp"
+#include "driver/gpio.h"
 
 namespace BlackBox {
 

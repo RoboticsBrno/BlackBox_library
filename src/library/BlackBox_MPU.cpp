@@ -35,7 +35,7 @@ MPU::MPU(std::uint16_t i_address, i2c_port_t i_port)
 }
 
 void MPU::init() {
-    I2C::Ports::init(m_port);
+    m_port.init();
     reset();
     configure();
 }

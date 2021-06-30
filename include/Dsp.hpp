@@ -1,7 +1,5 @@
 #pragma once
 
-#include "driver/gpio.h"
-
 #if defined(BLACK_BOX) && defined(LANTERN)
     #error "You can not have multiple types of board!"
 #endif

@@ -64,7 +64,7 @@ LDC::LDC(std::uint16_t i_address, i2c_port_t i_port)
 }
 
 void LDC::init() { // FIXME: implement this, GPIO
-    I2C::Ports::init(m_port);
+    m_port.init();
     reset();
     configure();
 }
