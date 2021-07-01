@@ -3,27 +3,27 @@
 
 #include "library/BlackBox_Lock.hpp"
 
-#include "library/BlackBox_pinout.hpp"
 #include "driver/gpio.h"
 #include "driver/ledc.h"
+#include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "library/BlackBox_pinout.hpp"
 
 namespace BlackBox {
 void Lock::drive(bool i_locked, int i_duty) {
     std::scoped_lock l(m_mutex);
-    printf("%i::%i\n", i_locked, m_isLocked);
-    printf("%i:%i\n", i_locked, gpio_get_level(m_encoderA) == s_locked);
+    ESP_LOGV(m_tag, "Driving lock to: %i;\t Previous state: %i;\t Physical state: %i", i_locked, m_isLocked, gpio_get_level(m_encoderA) == s_locked);
 
     if (i_locked != m_isLocked) {
         ledc_set_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel, i_duty);
         ledc_update_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel);
         if (i_locked) {
-            while (gpio_get_level(m_encoderA) == s_locked) {
+            while (gpio_get_level(m_encoderA) != s_locked) { // FIXME: Change this to use interrupts rather than polling == make this non-blocking
                 vTaskDelay(10 / portTICK_PERIOD_MS);
             }
         } else {
-            while (gpio_get_level(m_encoderA) != s_locked) {
+            while (gpio_get_level(m_encoderA) == s_locked) {
                 vTaskDelay(10 / portTICK_PERIOD_MS);
             }
         }
@@ -31,7 +31,6 @@ void Lock::drive(bool i_locked, int i_duty) {
         ledc_update_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel);
         m_isLocked = i_locked;
     }
-    printf("%i:%i\n", i_locked, gpio_get_level(m_encoderA));
 }
 
 void Lock::readState() {
