@@ -15,6 +15,9 @@
 #include "library/BlackBox_Ring.hpp"
 #include "library/BlackBox_RTC.hpp"
 #include "library/BlackBox_Touchpad.hpp"
+#include "library/BlackBox_Door.hpp"
+
+#include <array>
 
 namespace BlackBox {
 /**
@@ -46,6 +49,10 @@ private:
 
 #ifdef BB_TOUCHPAD
     Touchpad m_touchpad;
+#endif
+
+#ifdef BB_DOORS
+    std::array<Door, 4> m_doors;
 #endif
 
 public:
@@ -82,6 +89,11 @@ public:
 
 #ifdef BB_TOUCHPAD
     Touchpad& touchpad();
+#endif
+
+#ifdef BB_DOORS
+    Door& door(int number);
+    std::array<Door, 4>& doors();
 #endif
 
 };
