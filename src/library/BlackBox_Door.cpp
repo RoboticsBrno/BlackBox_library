@@ -10,8 +10,8 @@ namespace BlackBox {
 void Door::drive(bool i_closed) {
     std::scoped_lock l(m_mutex);
 
-    ledc_set_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel, s_duty[i_closed]);
-    ledc_update_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel);
+    ledc_set_duty(LEDC_LOW_SPEED_MODE, m_channelConfig.channel, s_duty[i_closed]);
+    ledc_update_duty(LEDC_LOW_SPEED_MODE, m_channelConfig.channel);
 
     m_isClosed = i_closed;
 }
@@ -21,7 +21,7 @@ Door::Door(Pins::DoorPin i_pins,
     ledc_channel_t i_channel)
     : m_pins(i_pins)
     , m_timerConfig {
-        .speed_mode = LEDC_HIGH_SPEED_MODE,
+        .speed_mode = LEDC_LOW_SPEED_MODE,
         .duty_resolution = LEDC_TIMER_16_BIT,
         .timer_num = i_timer,
         .freq_hz = 50,
@@ -29,7 +29,7 @@ Door::Door(Pins::DoorPin i_pins,
     }
     , m_channelConfig {
         .gpio_num = m_pins.servo,
-        .speed_mode = LEDC_HIGH_SPEED_MODE,
+        .speed_mode = LEDC_LOW_SPEED_MODE,
         .channel = i_channel,
         .intr_type = LEDC_INTR_DISABLE,
         .timer_sel = i_timer,
@@ -47,8 +47,8 @@ Door::Door(Pins::DoorPin i_pins,
 void Door::init() {
     std::scoped_lock l(m_mutex);
 
-    ledc_timer_config(&m_timerConfig);
-    ledc_channel_config(&m_channelConfig);
+    ESP_ERROR_CHECK(ledc_timer_config(&m_timerConfig));
+    ESP_ERROR_CHECK(ledc_channel_config(&m_channelConfig));
 
     gpio_config(&m_tamperCheckConfig);
     isClosed(true);
