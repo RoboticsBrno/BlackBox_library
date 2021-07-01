@@ -44,6 +44,8 @@ private:
     const Pins::PowerPin m_power5V;
     const Pins::PowerPin m_powerLDC;
 
+    const gpio_num_t m_usbConnectionCheck;
+
     const adc1_channel_t m_channel;
     const adc_bits_width_t m_width;
 
@@ -56,6 +58,7 @@ private:
     unsigned m_voltage;
 
     gpio_config_t m_powerConfig;
+    gpio_config_t m_usbConnectionCheckConfig;
 
     void setDefault();
 
@@ -65,6 +68,7 @@ public:
     Power(Pins::PowerPin powerAll = Pins::Power::PowerAll,
         Pins::PowerPin power5V = Pins::Power::Power5V,
         Pins::PowerPin powerLDC = Pins::Power::PowerLDC,
+        gpio_num_t usbConnectionCheck = Pins::USB::IsUSBConnected,
         adc1_channel_t = ADC1_GPIO39_CHANNEL,
         adc_bits_width_t = ADC_WIDTH_BIT_12);
 
@@ -86,6 +90,10 @@ public:
 
     unsigned batteryVoltage(bool update = false);
     unsigned batteryPercentage(bool update = false);
+
+    bool checkBatteryLevel(unsigned batteryLevel = s_baseVoltage, bool act = false);
+
+    bool usbConnected();
 };
 
 } // namespace BlackBox
