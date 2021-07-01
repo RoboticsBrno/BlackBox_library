@@ -1,0 +1,29 @@
+.. _exhale_struct_structBlackBox_1_1MPU_1_1Scaled:
+
+Struct MPU::Scaled
+==================
+
+- Defined in :ref:`file_include_library_BlackBox_MPU.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classBlackBox_1_1MPU`.
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structBlackBox_1_1MPU_1_1Scaled_1_1Accelerometer`
+- :ref:`exhale_struct_structBlackBox_1_1MPU_1_1Scaled_1_1Gyroscope`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: BlackBox::MPU::Scaled
+   :members:
+   :protected-members:
+   :undoc-members:

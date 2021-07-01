@@ -1,0 +1,13 @@
+.. _exhale_union_unionMPU6050Regs_1_1MPU6050__dev__t:
+
+Union MPU6050_dev_t
+===================
+
+- Defined in :ref:`file_include_library_MPU6050_regs.hpp`
+
+
+Union Documentation
+-------------------
+
+
+.. doxygenunion:: MPU6050Regs::MPU6050_dev_t

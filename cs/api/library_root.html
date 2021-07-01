@@ -42,7 +42,7 @@
     
     <link rel="index" title="Rejstřík" href="../genindex.html" />
     <link rel="search" title="Vyhledávání" href="../search.html" />
-    <link rel="next" title="Namespace BlackBox" href="namespace_BlackBox.html" />
+    <link rel="next" title="Namespace BE" href="namespace_BE.html" />
     <link rel="prev" title="Welcome to BlackBox’s documentation!" href="../index.html" /> 
 </head>
 
@@ -94,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_BE.html">Namespace BE</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_BlackBox.html">Namespace BlackBox</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_BlackBox__Pins.html">Namespace BlackBox::Pins</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_BlackBox__Pins__I2C.html">Namespace BlackBox::Pins::I2C</a></li>
@@ -107,17 +108,23 @@
 <li class="toctree-l4"><a class="reference internal" href="namespace_I2C__Ports.html">Namespace I2C::Ports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_LDCRegs.html">Namespace LDCRegs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_M41T62Regs.html">Namespace M41T62Regs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_MPU6050Regs.html">Namespace MPU6050Regs</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#classes-and-structs">Classes and Structs</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="structBlackBox_1_1Coords.html">Struct Coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled.html">Struct MPU::Scaled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled_1_1Accelerometer.html">Struct Scaled::Accelerometer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled_1_1Gyroscope.html">Struct Scaled::Gyroscope</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structBlackBox_1_1PowerPin.html">Struct PowerPin</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structBlackBox_1_1Timers_1_1timer__t.html">Struct Timers::timer_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBE_1_1BigEndian.html">Template Class BigEndian</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classBlackBox_1_1BlackBox__page.html">Class BlackBox_page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classBlackBox_1_1Index.html">Class Index</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classBlackBox_1_1LDC.html">Class LDC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classBlackBox_1_1Lock.html">Class Lock</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classBlackBox_1_1Manager.html">Class Manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBlackBox_1_1MPU.html">Class MPU</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classBlackBox_1_1Power.html">Class Power</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classBlackBox_1_1Ring.html">Class Ring</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classBlackBox_1_1RTC.html">Class RTC</a></li>
@@ -136,11 +143,19 @@
 <li class="toctree-l4"><a class="reference internal" href="enum_M41T62__regs_8hpp_1a8a4152e98fd23891cd299739be57df3a.html">Enum AlarmRepeatMode</a></li>
 <li class="toctree-l4"><a class="reference internal" href="enum_M41T62__regs_8hpp_1a8b8d6e207fc56a5d44a003f0261b842d.html">Enum registerAddresses</a></li>
 <li class="toctree-l4"><a class="reference internal" href="enum_M41T62__regs_8hpp_1aeac36ec2c2107e738381724ecd3a791e.html">Enum WatchdogResolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1ac84172727a877e6287137a6bd0d13a5a.html">Enum AccelerometerFullScaleSelect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a271b78d8a0c4d6654afb4e778a0cdaf2.html">Enum ClockSelection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1aad937b66748dbbc4855193e2fae8606a.html">Enum ExternalSyncSettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a8d3b2647001fc3b0d7510d418629c787.html">Enum GyroscopeFullScaleSelect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a35f0866da4f8e857ce4b3446419955d9.html">Enum I2CMasterClockSpeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1af50da72678e8ee44655b205c331695c9.html">Enum registerAddresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a931573917cbd028dce3f8673434f06f5.html">Enum WakeUpFrequency</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#unions">Unions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="unionLDCRegs_1_1LDC16XX__dev__t.html">Union LDC16XX_dev_t</a></li>
 <li class="toctree-l4"><a class="reference internal" href="unionM41T62Regs_1_1M41T62__dev__t.html">Union M41T62_dev_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unionMPU6050Regs_1_1MPU6050__dev__t.html">Union MPU6050_dev_t</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
@@ -170,6 +185,7 @@
 <li class="toctree-l4"><a class="reference internal" href="variable_v1__0_8hpp_1a8588f76f8015cbe467d3d84c2f693f3e.html">Variable BlackBox::Pins::Leds::Data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_v1__0_8hpp_1a0e9c1cc35ff704d2b56f41b0e2285866.html">Variable BlackBox::Pins::Lock::A</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_v1__0_8hpp_1a7b73bcff601c4c98f8711ba6484fc510.html">Variable BlackBox::Pins::Lock::B</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_v1__1_8hpp_1ae65e801abbc48a18b71c1e1a6579266b.html">Variable BlackBox::Pins::Lock::IsUSBConnected</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_v1__0_8hpp_1a888166943486da40004016731348624d.html">Variable BlackBox::Pins::Lock::Motor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_v1__0_8hpp_1a2b4206a9b5d82bd6b025edf8e63b8a31.html">Variable BlackBox::Pins::Power::BatteryLevel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_v1__0_8hpp_1a82692eeac64f4c53b4197dbd8da17ef3.html">Variable BlackBox::Pins::Power::Power5V</a></li>
@@ -184,9 +200,18 @@
 <li class="toctree-l4"><a class="reference internal" href="variable_LDC16XX__regs_8h_1af1f713d680b02cb69ce908b5b11e6be3.html">Variable LDCRegs::resetValues</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_LDC16XX__regs_8h_1a59bbd8b9f9f2510bd289d91a21d6781c.html">Variable LDCRegs::writeMask</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_M41T62__regs_8hpp_1a5a6f6c40a7f54fb464d8337d69538f74.html">Variable M41T62Regs::defaultValues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_MPU6050__regs_8hpp_1a1a34d007bfbe0cd3a3bfb58ff3d0d319.html">Variable MPU6050Regs::dmpProgram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_MPU6050__regs_8hpp_1a4488fc30e70794428aa6b1e3d717d237.html">Variable MPU6050Regs::dmpProgramSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_MPU6050__regs_8hpp_1af365947f1d35d947b5e164f4cecd4852.html">Variable MPU6050Regs::writableRegisters</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1aff075653edd5bb36fa1b5780b33b6d0b.html">Typedef BE::Int16</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a660ccc9c013ce198c5615c0988cbbe6c.html">Typedef BE::Int32</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a279099aba2017617eda0abb3642b7d7e.html">Typedef BE::Int64</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a607dae8d7a7b6f563058c06ea381917c.html">Typedef BE::Uint16</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1aa101cfedecde452a91d4a66a94441ead.html">Typedef BE::Uint32</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a9d9e3a118db7d2c8891aec984f0b0ace.html">Typedef BE::Uint64</a></li>
 <li class="toctree-l4"><a class="reference internal" href="typedef_BlackBox__page_8hpp_1a6f8e95ec81e4dd5a1efe4c5f4a4aeee5.html">Typedef BlackBox::interface_btn_t</a></li>
 </ul>
 </li>
@@ -268,7 +293,7 @@
 <ul class="treeView" id="class-treeView">
   <li>
     <ul class="collapsibleList">
-      <li>Namespace <a href="namespace_BlackBox.html#namespace-BlackBox">BlackBox</a><ul><li>Struct <a href="structBlackBox_1_1Coords.html#exhale-struct-structBlackBox-1-1Coords">Coords</a></li><li>Struct <a href="structBlackBox_1_1PowerPin.html#exhale-struct-structBlackBox-1-1PowerPin">PowerPin</a></li><li>Class <a href="classBlackBox_1_1BlackBox__page.html#exhale-class-classBlackBox-1-1BlackBox-page">BlackBox_page</a></li><li>Class <a href="classBlackBox_1_1Index.html#exhale-class-classBlackBox-1-1Index">Index</a></li><li>Class <a href="classBlackBox_1_1LDC.html#exhale-class-classBlackBox-1-1LDC">LDC</a></li><li>Class <a href="classBlackBox_1_1Lock.html#exhale-class-classBlackBox-1-1Lock">Lock</a></li><li>Class <a href="classBlackBox_1_1Manager.html#exhale-class-classBlackBox-1-1Manager">Manager</a></li><li>Class <a href="classBlackBox_1_1Power.html#exhale-class-classBlackBox-1-1Power">Power</a></li><li>Class <a href="classBlackBox_1_1Ring.html#exhale-class-classBlackBox-1-1Ring">Ring</a></li><li>Class <a href="classBlackBox_1_1RTC.html#exhale-class-classBlackBox-1-1RTC">RTC</a></li><li>Class <a href="classBlackBox_1_1Task.html#exhale-class-classBlackBox-1-1Task">Task</a></li><li>Class <a href="classBlackBox_1_1Timers.html#exhale-class-classBlackBox-1-1Timers">Timers</a><ul><li class="lastChild">Struct <a href="structBlackBox_1_1Timers_1_1timer__t.html#exhale-struct-structBlackBox-1-1Timers-1-1timer-t">Timers::timer_t</a></li></ul></li><li>Class <a href="classBlackBox_1_1Touchpad.html#exhale-class-classBlackBox-1-1Touchpad">Touchpad</a></li><li class="lastChild">Enum <a href="enum_BlackBox__Ring_8hpp_1a6b1286f7195f099e9ed63b0e5fc1f534.html#exhale-enum-BlackBox-Ring-8hpp-1a6b1286f7195f099e9ed63b0e5fc1f534">ArcType</a></li></ul></li><li>Namespace <a href="namespace_I2C.html#namespace-I2C">I2C</a><ul><li>Class <a href="classI2C_1_1Device.html#exhale-class-classI2C-1-1Device">Device</a></li><li>Class <a href="classI2C_1_1Transmission.html#exhale-class-classI2C-1-1Transmission">Transmission</a></li><li>Enum <a href="enum_BlackBox__I2C_8hpp_1a5b6e6a5b7059b4a5570174d32521a7ef.html#exhale-enum-BlackBox-I2C-8hpp-1a5b6e6a5b7059b4a5570174d32521a7ef">ACKCheck</a></li><li class="lastChild">Enum <a href="enum_BlackBox__I2C_8hpp_1a752c57f9e255a633d4871bc98832d7fb.html#exhale-enum-BlackBox-I2C-8hpp-1a752c57f9e255a633d4871bc98832d7fb">ACKValue</a></li></ul></li><li>Namespace <a href="namespace_LDCRegs.html#namespace-LDCRegs">LDCRegs</a><ul><li>Enum <a href="enum_LDC16XX__regs_8h_1a7f2f50b6147a553bdb7f3509900273d2.html#exhale-enum-LDC16XX-regs-8h-1a7f2f50b6147a553bdb7f3509900273d2">registerAddresses</a></li><li class="lastChild">Union <a href="unionLDCRegs_1_1LDC16XX__dev__t.html#exhale-union-unionLDCRegs-1-1LDC16XX-dev-t">LDC16XX_dev_t</a></li></ul></li><li class="lastChild">Namespace <a href="namespace_M41T62Regs.html#namespace-M41T62Regs">M41T62Regs</a><ul><li>Enum <a href="enum_M41T62__regs_8hpp_1a8a4152e98fd23891cd299739be57df3a.html#exhale-enum-M41T62-regs-8hpp-1a8a4152e98fd23891cd299739be57df3a">AlarmRepeatMode</a></li><li>Enum <a href="enum_M41T62__regs_8hpp_1a8b8d6e207fc56a5d44a003f0261b842d.html#exhale-enum-M41T62-regs-8hpp-1a8b8d6e207fc56a5d44a003f0261b842d">registerAddresses</a></li><li>Enum <a href="enum_M41T62__regs_8hpp_1aeac36ec2c2107e738381724ecd3a791e.html#exhale-enum-M41T62-regs-8hpp-1aeac36ec2c2107e738381724ecd3a791e">WatchdogResolution</a></li><li class="lastChild">Union <a href="unionM41T62Regs_1_1M41T62__dev__t.html#exhale-union-unionM41T62Regs-1-1M41T62-dev-t">M41T62_dev_t</a></li></ul></li>
+      <li>Namespace <a href="namespace_BE.html#namespace-BE">BE</a><ul><li class="lastChild">Template Class <a href="classBE_1_1BigEndian.html#exhale-class-classBE-1-1BigEndian">BigEndian</a></li></ul></li><li>Namespace <a href="namespace_BlackBox.html#namespace-BlackBox">BlackBox</a><ul><li>Struct <a href="structBlackBox_1_1Coords.html#exhale-struct-structBlackBox-1-1Coords">Coords</a></li><li>Struct <a href="structBlackBox_1_1PowerPin.html#exhale-struct-structBlackBox-1-1PowerPin">PowerPin</a></li><li>Class <a href="classBlackBox_1_1BlackBox__page.html#exhale-class-classBlackBox-1-1BlackBox-page">BlackBox_page</a></li><li>Class <a href="classBlackBox_1_1Index.html#exhale-class-classBlackBox-1-1Index">Index</a></li><li>Class <a href="classBlackBox_1_1LDC.html#exhale-class-classBlackBox-1-1LDC">LDC</a></li><li>Class <a href="classBlackBox_1_1Lock.html#exhale-class-classBlackBox-1-1Lock">Lock</a></li><li>Class <a href="classBlackBox_1_1Manager.html#exhale-class-classBlackBox-1-1Manager">Manager</a></li><li>Class <a href="classBlackBox_1_1MPU.html#exhale-class-classBlackBox-1-1MPU">MPU</a><ul><li class="lastChild">Struct <a href="structBlackBox_1_1MPU_1_1Scaled.html#exhale-struct-structBlackBox-1-1MPU-1-1Scaled">MPU::Scaled</a><ul><li>Struct <a href="structBlackBox_1_1MPU_1_1Scaled_1_1Accelerometer.html#exhale-struct-structBlackBox-1-1MPU-1-1Scaled-1-1Accelerometer">Scaled::Accelerometer</a></li><li class="lastChild">Struct <a href="structBlackBox_1_1MPU_1_1Scaled_1_1Gyroscope.html#exhale-struct-structBlackBox-1-1MPU-1-1Scaled-1-1Gyroscope">Scaled::Gyroscope</a></li></ul></li></ul></li><li>Class <a href="classBlackBox_1_1Power.html#exhale-class-classBlackBox-1-1Power">Power</a></li><li>Class <a href="classBlackBox_1_1Ring.html#exhale-class-classBlackBox-1-1Ring">Ring</a></li><li>Class <a href="classBlackBox_1_1RTC.html#exhale-class-classBlackBox-1-1RTC">RTC</a></li><li>Class <a href="classBlackBox_1_1Task.html#exhale-class-classBlackBox-1-1Task">Task</a></li><li>Class <a href="classBlackBox_1_1Timers.html#exhale-class-classBlackBox-1-1Timers">Timers</a><ul><li class="lastChild">Struct <a href="structBlackBox_1_1Timers_1_1timer__t.html#exhale-struct-structBlackBox-1-1Timers-1-1timer-t">Timers::timer_t</a></li></ul></li><li>Class <a href="classBlackBox_1_1Touchpad.html#exhale-class-classBlackBox-1-1Touchpad">Touchpad</a></li><li class="lastChild">Enum <a href="enum_BlackBox__Ring_8hpp_1a6b1286f7195f099e9ed63b0e5fc1f534.html#exhale-enum-BlackBox-Ring-8hpp-1a6b1286f7195f099e9ed63b0e5fc1f534">ArcType</a></li></ul></li><li>Namespace <a href="namespace_I2C.html#namespace-I2C">I2C</a><ul><li>Class <a href="classI2C_1_1Device.html#exhale-class-classI2C-1-1Device">Device</a></li><li>Class <a href="classI2C_1_1Transmission.html#exhale-class-classI2C-1-1Transmission">Transmission</a></li><li>Enum <a href="enum_BlackBox__I2C_8hpp_1a5b6e6a5b7059b4a5570174d32521a7ef.html#exhale-enum-BlackBox-I2C-8hpp-1a5b6e6a5b7059b4a5570174d32521a7ef">ACKCheck</a></li><li class="lastChild">Enum <a href="enum_BlackBox__I2C_8hpp_1a752c57f9e255a633d4871bc98832d7fb.html#exhale-enum-BlackBox-I2C-8hpp-1a752c57f9e255a633d4871bc98832d7fb">ACKValue</a></li></ul></li><li>Namespace <a href="namespace_LDCRegs.html#namespace-LDCRegs">LDCRegs</a><ul><li>Enum <a href="enum_LDC16XX__regs_8h_1a7f2f50b6147a553bdb7f3509900273d2.html#exhale-enum-LDC16XX-regs-8h-1a7f2f50b6147a553bdb7f3509900273d2">registerAddresses</a></li><li class="lastChild">Union <a href="unionLDCRegs_1_1LDC16XX__dev__t.html#exhale-union-unionLDCRegs-1-1LDC16XX-dev-t">LDC16XX_dev_t</a></li></ul></li><li>Namespace <a href="namespace_M41T62Regs.html#namespace-M41T62Regs">M41T62Regs</a><ul><li>Enum <a href="enum_M41T62__regs_8hpp_1a8a4152e98fd23891cd299739be57df3a.html#exhale-enum-M41T62-regs-8hpp-1a8a4152e98fd23891cd299739be57df3a">AlarmRepeatMode</a></li><li>Enum <a href="enum_M41T62__regs_8hpp_1a8b8d6e207fc56a5d44a003f0261b842d.html#exhale-enum-M41T62-regs-8hpp-1a8b8d6e207fc56a5d44a003f0261b842d">registerAddresses</a></li><li>Enum <a href="enum_M41T62__regs_8hpp_1aeac36ec2c2107e738381724ecd3a791e.html#exhale-enum-M41T62-regs-8hpp-1aeac36ec2c2107e738381724ecd3a791e">WatchdogResolution</a></li><li class="lastChild">Union <a href="unionM41T62Regs_1_1M41T62__dev__t.html#exhale-union-unionM41T62Regs-1-1M41T62-dev-t">M41T62_dev_t</a></li></ul></li><li class="lastChild">Namespace <a href="namespace_MPU6050Regs.html#namespace-MPU6050Regs">MPU6050Regs</a><ul><li>Enum <a href="enum_MPU6050__regs_8hpp_1ac84172727a877e6287137a6bd0d13a5a.html#exhale-enum-MPU6050-regs-8hpp-1ac84172727a877e6287137a6bd0d13a5a">AccelerometerFullScaleSelect</a></li><li>Enum <a href="enum_MPU6050__regs_8hpp_1a271b78d8a0c4d6654afb4e778a0cdaf2.html#exhale-enum-MPU6050-regs-8hpp-1a271b78d8a0c4d6654afb4e778a0cdaf2">ClockSelection</a></li><li>Enum <a href="enum_MPU6050__regs_8hpp_1aad937b66748dbbc4855193e2fae8606a.html#exhale-enum-MPU6050-regs-8hpp-1aad937b66748dbbc4855193e2fae8606a">ExternalSyncSettings</a></li><li>Enum <a href="enum_MPU6050__regs_8hpp_1a8d3b2647001fc3b0d7510d418629c787.html#exhale-enum-MPU6050-regs-8hpp-1a8d3b2647001fc3b0d7510d418629c787">GyroscopeFullScaleSelect</a></li><li>Enum <a href="enum_MPU6050__regs_8hpp_1a35f0866da4f8e857ce4b3446419955d9.html#exhale-enum-MPU6050-regs-8hpp-1a35f0866da4f8e857ce4b3446419955d9">I2CMasterClockSpeed</a></li><li>Enum <a href="enum_MPU6050__regs_8hpp_1af50da72678e8ee44655b205c331695c9.html#exhale-enum-MPU6050-regs-8hpp-1af50da72678e8ee44655b205c331695c9">registerAddresses</a></li><li>Enum <a href="enum_MPU6050__regs_8hpp_1a931573917cbd028dce3f8673434f06f5.html#exhale-enum-MPU6050-regs-8hpp-1a931573917cbd028dce3f8673434f06f5">WakeUpFrequency</a></li><li class="lastChild">Union <a href="unionMPU6050Regs_1_1MPU6050__dev__t.html#exhale-union-unionMPU6050Regs-1-1MPU6050-dev-t">MPU6050_dev_t</a></li></ul></li>
     </ul>
   </li><!-- only tree view element -->
 </ul><!-- /treeView class-treeView --></div>
@@ -277,7 +302,7 @@
 <ul class="treeView" id="file-treeView">
   <li>
     <ul class="collapsibleList">
-      <li class="lastChild">Directory <a href="dir_include.html#dir-include">include</a><ul><li class="lastChild">Directory <a href="dir_include_library.html#dir-include-library">library</a><ul><li>Directory <a href="dir_include_library_pinout.html#dir-include-library-pinout">pinout</a><ul><li class="lastChild">File <a href="file_include_library_pinout_v1_0.hpp.html#file-include-library-pinout-v1-0.hpp">v1_0.hpp</a></li></ul></li><li>File <a href="file_include_library_BlackBox_I2C.hpp.html#file-include-library-BlackBox-I2C.hpp">BlackBox_I2C.hpp</a></li><li>File <a href="file_include_library_BlackBox_LDC.hpp.html#file-include-library-BlackBox-LDC.hpp">BlackBox_LDC.hpp</a></li><li>File <a href="file_include_library_BlackBox_Lock.hpp.html#file-include-library-BlackBox-Lock.hpp">BlackBox_Lock.hpp</a></li><li>File <a href="file_include_library_BlackBox_Manager.hpp.html#file-include-library-BlackBox-Manager.hpp">BlackBox_Manager.hpp</a></li><li>File <a href="file_include_library_BlackBox_page.hpp.html#file-include-library-BlackBox-page.hpp">BlackBox_page.hpp</a></li><li>File <a href="file_include_library_BlackBox_pinout.hpp.html#file-include-library-BlackBox-pinout.hpp">BlackBox_pinout.hpp</a></li><li>File <a href="file_include_library_BlackBox_Power.hpp.html#file-include-library-BlackBox-Power.hpp">BlackBox_Power.hpp</a></li><li>File <a href="file_include_library_BlackBox_Ring.hpp.html#file-include-library-BlackBox-Ring.hpp">BlackBox_Ring.hpp</a></li><li>File <a href="file_include_library_BlackBox_RTC.hpp.html#file-include-library-BlackBox-RTC.hpp">BlackBox_RTC.hpp</a></li><li>File <a href="file_include_library_BlackBox_task.hpp.html#file-include-library-BlackBox-task.hpp">BlackBox_task.hpp</a></li><li>File <a href="file_include_library_BlackBox_timers.hpp.html#file-include-library-BlackBox-timers.hpp">BlackBox_timers.hpp</a></li><li>File <a href="file_include_library_BlackBox_Touchpad.hpp.html#file-include-library-BlackBox-Touchpad.hpp">BlackBox_Touchpad.hpp</a></li><li>File <a href="file_include_library_LDC16XX_regs.h.html#file-include-library-LDC16XX-regs.h">LDC16XX_regs.h</a></li><li class="lastChild">File <a href="file_include_library_M41T62_regs.hpp.html#file-include-library-M41T62-regs.hpp">M41T62_regs.hpp</a></li></ul></li></ul></li>
+      <li class="lastChild">Directory <a href="dir_include.html#dir-include">include</a><ul><li class="lastChild">Directory <a href="dir_include_library.html#dir-include-library">library</a><ul><li>Directory <a href="dir_include_library_pinout.html#dir-include-library-pinout">pinout</a><ul><li>File <a href="file_include_library_pinout_v1_0.hpp.html#file-include-library-pinout-v1-0.hpp">v1_0.hpp</a></li><li class="lastChild">File <a href="file_include_library_pinout_v1_1.hpp.html#file-include-library-pinout-v1-1.hpp">v1_1.hpp</a></li></ul></li><li>File <a href="file_include_library_BlackBox_BigEndian.hpp.html#file-include-library-BlackBox-BigEndian.hpp">BlackBox_BigEndian.hpp</a></li><li>File <a href="file_include_library_BlackBox_I2C.hpp.html#file-include-library-BlackBox-I2C.hpp">BlackBox_I2C.hpp</a></li><li>File <a href="file_include_library_BlackBox_LDC.hpp.html#file-include-library-BlackBox-LDC.hpp">BlackBox_LDC.hpp</a></li><li>File <a href="file_include_library_BlackBox_Lock.hpp.html#file-include-library-BlackBox-Lock.hpp">BlackBox_Lock.hpp</a></li><li>File <a href="file_include_library_BlackBox_Manager.hpp.html#file-include-library-BlackBox-Manager.hpp">BlackBox_Manager.hpp</a></li><li>File <a href="file_include_library_BlackBox_MPU.hpp.html#file-include-library-BlackBox-MPU.hpp">BlackBox_MPU.hpp</a></li><li>File <a href="file_include_library_BlackBox_page.hpp.html#file-include-library-BlackBox-page.hpp">BlackBox_page.hpp</a></li><li>File <a href="file_include_library_BlackBox_pinout.hpp.html#file-include-library-BlackBox-pinout.hpp">BlackBox_pinout.hpp</a></li><li>File <a href="file_include_library_BlackBox_Power.hpp.html#file-include-library-BlackBox-Power.hpp">BlackBox_Power.hpp</a></li><li>File <a href="file_include_library_BlackBox_Ring.hpp.html#file-include-library-BlackBox-Ring.hpp">BlackBox_Ring.hpp</a></li><li>File <a href="file_include_library_BlackBox_RTC.hpp.html#file-include-library-BlackBox-RTC.hpp">BlackBox_RTC.hpp</a></li><li>File <a href="file_include_library_BlackBox_task.hpp.html#file-include-library-BlackBox-task.hpp">BlackBox_task.hpp</a></li><li>File <a href="file_include_library_BlackBox_timers.hpp.html#file-include-library-BlackBox-timers.hpp">BlackBox_timers.hpp</a></li><li>File <a href="file_include_library_BlackBox_Touchpad.hpp.html#file-include-library-BlackBox-Touchpad.hpp">BlackBox_Touchpad.hpp</a></li><li>File <a href="file_include_library_LDC16XX_regs.h.html#file-include-library-LDC16XX-regs.h">LDC16XX_regs.h</a></li><li>File <a href="file_include_library_M41T62_regs.hpp.html#file-include-library-M41T62-regs.hpp">M41T62_regs.hpp</a></li><li class="lastChild">File <a href="file_include_library_MPU6050_regs.hpp.html#file-include-library-MPU6050-regs.hpp">MPU6050_regs.hpp</a></li></ul></li></ul></li>
     </ul>
   </li><!-- only tree view element -->
 </ul><!-- /treeView file-treeView --></div>
@@ -285,6 +310,15 @@
 <h2>Full API<a class="headerlink" href="#full-api" title="Trvalý odkaz na tento nadpis">¶</a></h2>
 <div class="section" id="namespaces">
 <h3>Namespaces<a class="headerlink" href="#namespaces" title="Trvalý odkaz na tento nadpis">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_BE.html">Namespace BE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_BE.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_BE.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="namespace_BlackBox.html">Namespace BlackBox</a><ul>
@@ -402,6 +436,16 @@
 </li>
 </ul>
 </div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_MPU6050Regs.html">Namespace MPU6050Regs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_MPU6050Regs.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_MPU6050Regs.html#unions">Unions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_MPU6050Regs.html#variables">Variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="classes-and-structs">
 <h3>Classes and Structs<a class="headerlink" href="#classes-and-structs" title="Trvalý odkaz na tento nadpis">¶</a></h3>
@@ -409,6 +453,36 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="structBlackBox_1_1Coords.html">Struct Coords</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="structBlackBox_1_1Coords.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled.html">Struct MPU::Scaled</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled.html#nested-relationships">Nested Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled.html#nested-types">Nested Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled_1_1Accelerometer.html">Struct Scaled::Accelerometer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled_1_1Accelerometer.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled_1_1Accelerometer.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled_1_1Gyroscope.html">Struct Scaled::Gyroscope</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled_1_1Gyroscope.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structBlackBox_1_1MPU_1_1Scaled_1_1Gyroscope.html#struct-documentation">Struct Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -426,6 +500,14 @@
 <li class="toctree-l1"><a class="reference internal" href="structBlackBox_1_1Timers_1_1timer__t.html">Struct Timers::timer_t</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="structBlackBox_1_1Timers_1_1timer__t.html#nested-relationships">Nested Relationships</a></li>
 <li class="toctree-l2"><a class="reference internal" href="structBlackBox_1_1Timers_1_1timer__t.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classBE_1_1BigEndian.html">Template Class BigEndian</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classBE_1_1BigEndian.html#class-documentation">Class Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -470,6 +552,22 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="classBlackBox_1_1Manager.html">Class Manager</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="classBlackBox_1_1Manager.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classBlackBox_1_1MPU.html">Class MPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classBlackBox_1_1MPU.html#nested-relationships">Nested Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classBlackBox_1_1MPU.html#nested-types">Nested Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classBlackBox_1_1MPU.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classBlackBox_1_1MPU.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classBlackBox_1_1MPU.html#class-documentation">Class Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -609,6 +707,62 @@
 </li>
 </ul>
 </div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1ac84172727a877e6287137a6bd0d13a5a.html">Enum AccelerometerFullScaleSelect</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1ac84172727a877e6287137a6bd0d13a5a.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a271b78d8a0c4d6654afb4e778a0cdaf2.html">Enum ClockSelection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a271b78d8a0c4d6654afb4e778a0cdaf2.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1aad937b66748dbbc4855193e2fae8606a.html">Enum ExternalSyncSettings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1aad937b66748dbbc4855193e2fae8606a.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a8d3b2647001fc3b0d7510d418629c787.html">Enum GyroscopeFullScaleSelect</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a8d3b2647001fc3b0d7510d418629c787.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a35f0866da4f8e857ce4b3446419955d9.html">Enum I2CMasterClockSpeed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a35f0866da4f8e857ce4b3446419955d9.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1af50da72678e8ee44655b205c331695c9.html">Enum registerAddresses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1af50da72678e8ee44655b205c331695c9.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a931573917cbd028dce3f8673434f06f5.html">Enum WakeUpFrequency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_MPU6050__regs_8hpp_1a931573917cbd028dce3f8673434f06f5.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="unions">
 <h3>Unions<a class="headerlink" href="#unions" title="Trvalý odkaz na tento nadpis">¶</a></h3>
@@ -624,6 +778,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="unionM41T62Regs_1_1M41T62__dev__t.html">Union M41T62_dev_t</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="unionM41T62Regs_1_1M41T62__dev__t.html#union-documentation">Union Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="unionMPU6050Regs_1_1MPU6050__dev__t.html">Union MPU6050_dev_t</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unionMPU6050Regs_1_1MPU6050__dev__t.html#union-documentation">Union Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -820,6 +982,14 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_v1__1_8hpp_1ae65e801abbc48a18b71c1e1a6579266b.html">Variable BlackBox::Pins::Lock::IsUSBConnected</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_v1__1_8hpp_1ae65e801abbc48a18b71c1e1a6579266b.html#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="variable_v1__0_8hpp_1a888166943486da40004016731348624d.html">Variable BlackBox::Pins::Lock::Motor</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="variable_v1__0_8hpp_1a888166943486da40004016731348624d.html#variable-documentation">Variable Documentation</a></li>
 </ul>
@@ -930,9 +1100,81 @@
 </li>
 </ul>
 </div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_MPU6050__regs_8hpp_1a1a34d007bfbe0cd3a3bfb58ff3d0d319.html">Variable MPU6050Regs::dmpProgram</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_MPU6050__regs_8hpp_1a1a34d007bfbe0cd3a3bfb58ff3d0d319.html#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_MPU6050__regs_8hpp_1a4488fc30e70794428aa6b1e3d717d237.html">Variable MPU6050Regs::dmpProgramSize</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_MPU6050__regs_8hpp_1a4488fc30e70794428aa6b1e3d717d237.html#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_MPU6050__regs_8hpp_1af365947f1d35d947b5e164f4cecd4852.html">Variable MPU6050Regs::writableRegisters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_MPU6050__regs_8hpp_1af365947f1d35d947b5e164f4cecd4852.html#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="typedefs">
 <h3>Typedefs<a class="headerlink" href="#typedefs" title="Trvalý odkaz na tento nadpis">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1aff075653edd5bb36fa1b5780b33b6d0b.html">Typedef BE::Int16</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1aff075653edd5bb36fa1b5780b33b6d0b.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a660ccc9c013ce198c5615c0988cbbe6c.html">Typedef BE::Int32</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a660ccc9c013ce198c5615c0988cbbe6c.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a279099aba2017617eda0abb3642b7d7e.html">Typedef BE::Int64</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a279099aba2017617eda0abb3642b7d7e.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a607dae8d7a7b6f563058c06ea381917c.html">Typedef BE::Uint16</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a607dae8d7a7b6f563058c06ea381917c.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1aa101cfedecde452a91d4a66a94441ead.html">Typedef BE::Uint32</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1aa101cfedecde452a91d4a66a94441ead.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a9d9e3a118db7d2c8891aec984f0b0ace.html">Typedef BE::Uint64</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_BlackBox__BigEndian_8hpp_1a9d9e3a118db7d2c8891aec984f0b0ace.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="typedef_BlackBox__page_8hpp_1a6f8e95ec81e4dd5a1efe4c5f4a4aeee5.html">Typedef BlackBox::interface_btn_t</a><ul>
@@ -951,7 +1193,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="namespace_BlackBox.html" class="btn btn-neutral float-right" title="Namespace BlackBox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="namespace_BE.html" class="btn btn-neutral float-right" title="Namespace BE" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to BlackBox’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

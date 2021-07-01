@@ -27,17 +27,17 @@ Program Listing for File v1_0.hpp
    
    namespace Leds {
    constexpr gpio_num_t Data = GPIO_NUM_19;
-   }
+   } // namespace BlackBox::Pins::Leds
    
    namespace I2C {
    constexpr gpio_num_t SCL = GPIO_NUM_22;
    constexpr gpio_num_t SDA = GPIO_NUM_23;
-   }
+   } // namespace BlackBox::Pins::I2C
    
    namespace UART {
    constexpr gpio_num_t TX = GPIO_NUM_1;
    constexpr gpio_num_t RX = GPIO_NUM_3;
-   }
+   } // namespace BlackBox::Pins::UART
    
    namespace Interrupts {
    constexpr gpio_num_t LDC = GPIO_NUM_0;
@@ -53,19 +53,19 @@ Program Listing for File v1_0.hpp
    
    constexpr gpio_num_t Accelerometer1 = GPIO_NUM_34;
    constexpr gpio_num_t Accelerometer2 = GPIO_NUM_35;
-   }
+   } // namespace BlackBox::Pins::Interrupts
    
    namespace Lock {
    constexpr gpio_num_t A = GPIO_NUM_4;
    constexpr gpio_num_t B = GPIO_NUM_13;
    
    constexpr gpio_num_t Motor = GPIO_NUM_12;
-   }
+   } // namespace BlackBox::Pins::Lock
    
    namespace IR {
    constexpr gpio_num_t Receiver = GPIO_NUM_15;
    constexpr gpio_num_t Transmitter = GPIO_NUM_2;
-   }
+   } // namespace BlackBox::Pins::IR
    
    namespace Power {
    constexpr PowerPin PowerAll = {
@@ -85,6 +85,6 @@ Program Listing for File v1_0.hpp
    };
    
    constexpr gpio_num_t BatteryLevel = GPIO_NUM_39;
-   }
+   } // namespace BlackBox::Pins::Power
    } // namespace BlackBox::Pins
    } // namespace BlackBox

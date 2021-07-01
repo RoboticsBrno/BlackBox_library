@@ -1,0 +1,50 @@
+
+.. _namespace_MPU6050Regs:
+
+Namespace MPU6050Regs
+=====================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_MPU6050__regs_8hpp_1ac84172727a877e6287137a6bd0d13a5a`
+
+- :ref:`exhale_enum_MPU6050__regs_8hpp_1a271b78d8a0c4d6654afb4e778a0cdaf2`
+
+- :ref:`exhale_enum_MPU6050__regs_8hpp_1aad937b66748dbbc4855193e2fae8606a`
+
+- :ref:`exhale_enum_MPU6050__regs_8hpp_1a8d3b2647001fc3b0d7510d418629c787`
+
+- :ref:`exhale_enum_MPU6050__regs_8hpp_1a35f0866da4f8e857ce4b3446419955d9`
+
+- :ref:`exhale_enum_MPU6050__regs_8hpp_1af50da72678e8ee44655b205c331695c9`
+
+- :ref:`exhale_enum_MPU6050__regs_8hpp_1a931573917cbd028dce3f8673434f06f5`
+
+
+Unions
+------
+
+
+- :ref:`exhale_union_unionMPU6050Regs_1_1MPU6050__dev__t`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_MPU6050__regs_8hpp_1a1a34d007bfbe0cd3a3bfb58ff3d0d319`
+
+- :ref:`exhale_variable_MPU6050__regs_8hpp_1a4488fc30e70794428aa6b1e3d717d237`
+
+- :ref:`exhale_variable_MPU6050__regs_8hpp_1af365947f1d35d947b5e164f4cecd4852`

@@ -1,0 +1,16 @@
+.. _exhale_class_classBE_1_1BigEndian:
+
+Template Class BigEndian
+========================
+
+- Defined in :ref:`file_include_library_BlackBox_BigEndian.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: BE::BigEndian
+   :members:
+   :protected-members:
+   :undoc-members:

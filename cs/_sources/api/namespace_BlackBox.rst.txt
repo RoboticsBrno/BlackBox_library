@@ -26,6 +26,12 @@ Classes
 
 - :ref:`exhale_struct_structBlackBox_1_1Coords`
 
+- :ref:`exhale_struct_structBlackBox_1_1MPU_1_1Scaled`
+
+- :ref:`exhale_struct_structBlackBox_1_1MPU_1_1Scaled_1_1Accelerometer`
+
+- :ref:`exhale_struct_structBlackBox_1_1MPU_1_1Scaled_1_1Gyroscope`
+
 - :ref:`exhale_struct_structBlackBox_1_1PowerPin`
 
 - :ref:`exhale_struct_structBlackBox_1_1Timers_1_1timer__t`
@@ -39,6 +45,8 @@ Classes
 - :ref:`exhale_class_classBlackBox_1_1Lock`
 
 - :ref:`exhale_class_classBlackBox_1_1Manager`
+
+- :ref:`exhale_class_classBlackBox_1_1MPU`
 
 - :ref:`exhale_class_classBlackBox_1_1Power`
 

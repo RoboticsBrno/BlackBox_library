@@ -1,0 +1,13 @@
+.. _exhale_variable_v1__1_8hpp_1ae65e801abbc48a18b71c1e1a6579266b:
+
+Variable BlackBox::Pins::Lock::IsUSBConnected
+=============================================
+
+- Defined in :ref:`file_include_library_pinout_v1_1.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: BlackBox::Pins::Lock::IsUSBConnected

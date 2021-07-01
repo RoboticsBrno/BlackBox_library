@@ -57,6 +57,8 @@ Included By
 
 - :ref:`file_include_library_BlackBox_LDC.hpp`
 
+- :ref:`file_include_library_BlackBox_MPU.hpp`
+
 - :ref:`file_include_library_BlackBox_RTC.hpp`
 
 

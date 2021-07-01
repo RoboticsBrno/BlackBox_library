@@ -1,0 +1,13 @@
+.. _exhale_typedef_BlackBox__BigEndian_8hpp_1a279099aba2017617eda0abb3642b7d7e:
+
+Typedef BE::Int64
+=================
+
+- Defined in :ref:`file_include_library_BlackBox_BigEndian.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: BE::Int64

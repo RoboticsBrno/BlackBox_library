@@ -1,0 +1,13 @@
+.. _exhale_variable_MPU6050__regs_8hpp_1a4488fc30e70794428aa6b1e3d717d237:
+
+Variable MPU6050Regs::dmpProgramSize
+====================================
+
+- Defined in :ref:`file_include_library_MPU6050_regs.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MPU6050Regs::dmpProgramSize
