@@ -13,8 +13,8 @@ class Door {
 private:
     const char* m_tag = "Door";
 
-    bool m_isLocked;
-    static constexpr int s_duty[2] = {1638, 7864};
+    static constexpr int s_duty[2] = {7864, 1638};
+    static constexpr bool s_closed = 0;
 
     mutable std::recursive_mutex m_mutex;
 
@@ -25,10 +25,9 @@ private:
 
     gpio_config_t m_tamperCheckConfig;
 
-    void drive(bool locked);
+    bool m_isClosed;
 
-    void readTamperCheck();
-
+    void drive(bool closed);
 public:
     ~Door() = default;
 
@@ -38,11 +37,23 @@ public:
 
     void init();
 
+    [[deprecated]]
     void lock();
+
+    [[deprecated]]
     void unlock();
 
+    [[deprecated]]
     bool locked();
-    bool closed();
+
+    void open();
+
+    void close();
+
+    bool readTamperCheckButton();
+    bool isClosed() const;
+    bool isClosed(bool update);
+    bool tamperCheck();
 };
 } // namespace BlackBox
 #endif

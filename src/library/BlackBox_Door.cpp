@@ -7,14 +7,13 @@
 #include "driver/ledc.h"
 
 namespace BlackBox {
-void Door::drive(bool i_locked) {
+void Door::drive(bool i_closed) {
     std::scoped_lock l(m_mutex);
-    
-    ledc_set_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel, s_duty[i_locked]);
-    ledc_update_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel);
-}
 
-void Door::readTamperCheck() {
+    ledc_set_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel, s_duty[i_closed]);
+    ledc_update_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel);
+
+    m_isClosed = i_closed;
 }
 
 Door::Door(Pins::DoorPin i_pins,
@@ -51,7 +50,8 @@ void Door::init() {
     ledc_timer_config(&m_timerConfig);
     ledc_channel_config(&m_channelConfig);
 
-    gpio_config(&m_tamperCheckConfig); // FIXME: Update this to newer version with new hall sensor
+    gpio_config(&m_tamperCheckConfig);
+    isClosed(true);
 }
 
 void Door::lock() {
@@ -65,13 +65,38 @@ void Door::unlock() {
 bool Door::locked() {
     std::scoped_lock l(m_mutex);
 
-    return (ledc_get_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel) == s_duty[1]);
+    return (ledc_get_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel) == s_duty[s_closed]);
 }
 
-bool Door::closed() {
+void Door::open() {
+    drive(!s_closed);
+}
+
+void Door::close() {
+    drive(s_closed);
+}
+
+bool Door::isClosed() const {
     std::scoped_lock l(m_mutex);
 
+    return m_isClosed;
+}
+
+bool Door::isClosed(bool i_update) {
+    if (i_update) {
+        std::scoped_lock l(m_mutex);
+        m_isClosed = ledc_get_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel) == s_duty[s_closed];
+    }
+    return isClosed();
+}
+
+bool Door::readTamperCheckButton() {
+    std::scoped_lock l(m_mutex);
     return gpio_get_level(m_pins.tamperCheck);
+}
+
+bool Door::tamperCheck() {
+    return readTamperCheckButton() == isClosed(true);
 }
 
 } // namespace BlackBox
