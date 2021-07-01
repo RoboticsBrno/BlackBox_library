@@ -1,0 +1,74 @@
+
+.. _file_include_library_pinout_v1_1.hpp:
+
+File v1_1.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_library_pinout>` (``include/library/pinout``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/library/pinout/v1_1.hpp``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_library_pinout_v1_1.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``driver/gpio.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_BlackBox`
+
+- :ref:`namespace_BlackBox__Pins`
+
+- :ref:`namespace_BlackBox__Pins__I2C`
+
+- :ref:`namespace_BlackBox__Pins__Interrupts`
+
+- :ref:`namespace_BlackBox__Pins__IR`
+
+- :ref:`namespace_BlackBox__Pins__Leds`
+
+- :ref:`namespace_BlackBox__Pins__Lock`
+
+- :ref:`namespace_BlackBox__Pins__Power`
+
+- :ref:`namespace_BlackBox__Pins__UART`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structBlackBox_1_1PowerPin`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_v1__1_8hpp_1ae65e801abbc48a18b71c1e1a6579266b`
+

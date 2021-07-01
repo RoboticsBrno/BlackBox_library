@@ -9,6 +9,11 @@ Namespaces
 .. toctree::
    :maxdepth: 5
 
+   namespace_BE.rst
+
+.. toctree::
+   :maxdepth: 5
+
    namespace_BlackBox.rst
 
 .. toctree::
@@ -71,6 +76,11 @@ Namespaces
 
    namespace_M41T62Regs.rst
 
+.. toctree::
+   :maxdepth: 5
+
+   namespace_MPU6050Regs.rst
+
 Classes and Structs
 *******************
 
@@ -83,12 +93,32 @@ Classes and Structs
 .. toctree::
    :maxdepth: 5
 
+   structBlackBox_1_1MPU_1_1Scaled.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   structBlackBox_1_1MPU_1_1Scaled_1_1Accelerometer.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   structBlackBox_1_1MPU_1_1Scaled_1_1Gyroscope.rst
+
+.. toctree::
+   :maxdepth: 5
+
    structBlackBox_1_1PowerPin.rst
 
 .. toctree::
    :maxdepth: 5
 
    structBlackBox_1_1Timers_1_1timer__t.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBE_1_1BigEndian.rst
 
 .. toctree::
    :maxdepth: 5
@@ -114,6 +144,11 @@ Classes and Structs
    :maxdepth: 5
 
    classBlackBox_1_1Manager.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   classBlackBox_1_1MPU.rst
 
 .. toctree::
    :maxdepth: 5
@@ -194,6 +229,41 @@ Enums
 
    enum_M41T62__regs_8hpp_1aeac36ec2c2107e738381724ecd3a791e.rst
 
+.. toctree::
+   :maxdepth: 5
+
+   enum_MPU6050__regs_8hpp_1ac84172727a877e6287137a6bd0d13a5a.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_MPU6050__regs_8hpp_1a271b78d8a0c4d6654afb4e778a0cdaf2.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_MPU6050__regs_8hpp_1aad937b66748dbbc4855193e2fae8606a.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_MPU6050__regs_8hpp_1a8d3b2647001fc3b0d7510d418629c787.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_MPU6050__regs_8hpp_1a35f0866da4f8e857ce4b3446419955d9.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_MPU6050__regs_8hpp_1af50da72678e8ee44655b205c331695c9.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_MPU6050__regs_8hpp_1a931573917cbd028dce3f8673434f06f5.rst
+
 Unions
 ******
 
@@ -207,6 +277,11 @@ Unions
    :maxdepth: 5
 
    unionM41T62Regs_1_1M41T62__dev__t.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   unionMPU6050Regs_1_1MPU6050__dev__t.rst
 
 Functions
 *********
@@ -334,6 +409,11 @@ Variables
 .. toctree::
    :maxdepth: 5
 
+   variable_v1__1_8hpp_1ae65e801abbc48a18b71c1e1a6579266b.rst
+
+.. toctree::
+   :maxdepth: 5
+
    variable_v1__0_8hpp_1a888166943486da40004016731348624d.rst
 
 .. toctree::
@@ -401,9 +481,54 @@ Variables
 
    variable_M41T62__regs_8hpp_1a5a6f6c40a7f54fb464d8337d69538f74.rst
 
+.. toctree::
+   :maxdepth: 5
+
+   variable_MPU6050__regs_8hpp_1a1a34d007bfbe0cd3a3bfb58ff3d0d319.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_MPU6050__regs_8hpp_1a4488fc30e70794428aa6b1e3d717d237.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_MPU6050__regs_8hpp_1af365947f1d35d947b5e164f4cecd4852.rst
+
 Typedefs
 ********
 
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_BlackBox__BigEndian_8hpp_1aff075653edd5bb36fa1b5780b33b6d0b.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_BlackBox__BigEndian_8hpp_1a660ccc9c013ce198c5615c0988cbbe6c.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_BlackBox__BigEndian_8hpp_1a279099aba2017617eda0abb3642b7d7e.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_BlackBox__BigEndian_8hpp_1a607dae8d7a7b6f563058c06ea381917c.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_BlackBox__BigEndian_8hpp_1aa101cfedecde452a91d4a66a94441ead.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_BlackBox__BigEndian_8hpp_1a9d9e3a118db7d2c8891aec984f0b0ace.rst
 
 .. toctree::
    :maxdepth: 5

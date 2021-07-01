@@ -1,0 +1,13 @@
+.. _exhale_enum_MPU6050__regs_8hpp_1ac84172727a877e6287137a6bd0d13a5a:
+
+Enum AccelerometerFullScaleSelect
+=================================
+
+- Defined in :ref:`file_include_library_MPU6050_regs.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: MPU6050Regs::AccelerometerFullScaleSelect

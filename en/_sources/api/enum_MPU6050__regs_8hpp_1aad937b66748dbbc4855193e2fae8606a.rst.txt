@@ -1,0 +1,13 @@
+.. _exhale_enum_MPU6050__regs_8hpp_1aad937b66748dbbc4855193e2fae8606a:
+
+Enum ExternalSyncSettings
+=========================
+
+- Defined in :ref:`file_include_library_MPU6050_regs.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: MPU6050Regs::ExternalSyncSettings

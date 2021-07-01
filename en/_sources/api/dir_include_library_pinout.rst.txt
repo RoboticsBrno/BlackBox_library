@@ -16,5 +16,6 @@ Files
 -----
 
 - :ref:`file_include_library_pinout_v1_0.hpp`
+- :ref:`file_include_library_pinout_v1_1.hpp`
 
 

@@ -30,6 +30,11 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_include_library_BlackBox_BigEndian.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_include_library_BlackBox_I2C.hpp.rst
 
 .. toctree::
@@ -46,6 +51,11 @@ Files
    :maxdepth: 5
 
    file_include_library_BlackBox_Manager.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_include_library_BlackBox_MPU.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -100,4 +110,14 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_include_library_MPU6050_regs.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_include_library_pinout_v1_0.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_include_library_pinout_v1_1.hpp.rst

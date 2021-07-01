@@ -13,6 +13,7 @@ Derived Types
 *************
 
 - ``public BlackBox::LDC`` (:ref:`exhale_class_classBlackBox_1_1LDC`)
+- ``public BlackBox::MPU`` (:ref:`exhale_class_classBlackBox_1_1MPU`)
 - ``public BlackBox::RTC`` (:ref:`exhale_class_classBlackBox_1_1RTC`)
 
 

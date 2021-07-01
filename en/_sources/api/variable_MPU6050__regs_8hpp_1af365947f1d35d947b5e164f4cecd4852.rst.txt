@@ -1,0 +1,13 @@
+.. _exhale_variable_MPU6050__regs_8hpp_1af365947f1d35d947b5e164f4cecd4852:
+
+Variable MPU6050Regs::writableRegisters
+=======================================
+
+- Defined in :ref:`file_include_library_MPU6050_regs.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: MPU6050Regs::writableRegisters

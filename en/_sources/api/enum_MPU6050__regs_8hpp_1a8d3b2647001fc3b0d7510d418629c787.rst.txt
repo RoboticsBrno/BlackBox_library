@@ -1,0 +1,13 @@
+.. _exhale_enum_MPU6050__regs_8hpp_1a8d3b2647001fc3b0d7510d418629c787:
+
+Enum GyroscopeFullScaleSelect
+=============================
+
+- Defined in :ref:`file_include_library_MPU6050_regs.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: MPU6050Regs::GyroscopeFullScaleSelect

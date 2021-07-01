@@ -159,8 +159,10 @@
 <p>↰ <a class="reference internal" href="file_include_library_BlackBox_pinout.hpp.html#file-include-library-blackbox-pinout-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/library/BlackBox_pinout.hpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
 
-<span class="cp">#if BB_HW_VER == 0x0100</span>
+<span class="cp">#if (BB_HW_VER == 0x0100)</span>
 <span class="cp">#include</span> <span class="cpf">&quot;library/pinout/v1_0.hpp&quot;</span><span class="cp"></span>
+<span class="cp">#elif (BB_HW_VER == 0x0101)</span>
+<span class="cp">#include</span> <span class="cpf">&quot;library/pinout/v1_1.hpp&quot;</span><span class="cp"></span>
 <span class="cp">#else</span>
 <span class="cp">#error &quot;Invalid BB_HW_VER&quot;</span>
 <span class="cp">#endif</span>

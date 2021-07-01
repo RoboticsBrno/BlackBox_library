@@ -1,0 +1,13 @@
+.. _exhale_enum_MPU6050__regs_8hpp_1af50da72678e8ee44655b205c331695c9:
+
+Enum registerAddresses
+======================
+
+- Defined in :ref:`file_include_library_MPU6050_regs.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: MPU6050Regs::registerAddresses

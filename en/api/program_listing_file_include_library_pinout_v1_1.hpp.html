@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File v1_1.hpp &mdash; BlackBox  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> BlackBox
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">BlackBox API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BlackBox</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File v1_1.hpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_include_library_pinout_v1_1.hpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-v1-1-hpp">
+<span id="program-listing-file-include-library-pinout-v1-1-hpp"></span><h1>Program Listing for File v1_1.hpp<a class="headerlink" href="#program-listing-for-file-v1-1-hpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_library_pinout_v1_1.hpp.html#file-include-library-pinout-v1-1-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/library/pinout/v1_1.hpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;driver/gpio.h&quot;</span><span class="cp"></span>
+
+<span class="k">namespace</span> <span class="n">BlackBox</span> <span class="p">{</span>
+
+<span class="k">struct</span> <span class="nc">PowerPin</span> <span class="p">{</span>
+    <span class="n">gpio_num_t</span> <span class="n">pinNumber</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">onLevel</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">defaultLevel</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">namespace</span> <span class="n">Pins</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">Leds</span> <span class="p">{</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Data</span> <span class="o">=</span> <span class="n">GPIO_NUM_19</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::Leds</span>
+
+<span class="k">namespace</span> <span class="n">I2C</span> <span class="p">{</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">SCL</span> <span class="o">=</span> <span class="n">GPIO_NUM_22</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">SDA</span> <span class="o">=</span> <span class="n">GPIO_NUM_23</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::I2C</span>
+
+<span class="k">namespace</span> <span class="n">UART</span> <span class="p">{</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">TX</span> <span class="o">=</span> <span class="n">GPIO_NUM_1</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">RX</span> <span class="o">=</span> <span class="n">GPIO_NUM_3</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::UART</span>
+
+<span class="k">namespace</span> <span class="n">Interrupts</span> <span class="p">{</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">LDC</span> <span class="o">=</span> <span class="n">GPIO_NUM_0</span><span class="p">;</span>
+
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Magnetometer</span> <span class="o">=</span> <span class="n">GPIO_NUM_25</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">RTC</span> <span class="o">=</span> <span class="n">GPIO_NUM_26</span><span class="p">;</span>
+
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Barometer</span> <span class="o">=</span> <span class="n">GPIO_NUM_27</span><span class="p">;</span>
+
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Gyroscope1</span> <span class="o">=</span> <span class="n">GPIO_NUM_32</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Gyroscope2</span> <span class="o">=</span> <span class="n">GPIO_NUM_33</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Accelerometer1</span> <span class="o">=</span> <span class="n">GPIO_NUM_34</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Accelerometer2</span> <span class="o">=</span> <span class="n">GPIO_NUM_35</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::Interrupts</span>
+
+<span class="k">namespace</span> <span class="n">Lock</span> <span class="p">{</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">A</span> <span class="o">=</span> <span class="n">GPIO_NUM_4</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">B</span> <span class="o">=</span> <span class="n">GPIO_NUM_13</span><span class="p">;</span>
+
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Motor</span> <span class="o">=</span> <span class="n">GPIO_NUM_12</span><span class="p">;</span>
+
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">IsUSBConnected</span> <span class="o">=</span> <span class="n">GPIO_NUM_36</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::Lock</span>
+
+<span class="k">namespace</span> <span class="n">IR</span> <span class="p">{</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Receiver</span> <span class="o">=</span> <span class="n">GPIO_NUM_15</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Transmitter</span> <span class="o">=</span> <span class="n">GPIO_NUM_2</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::IR</span>
+
+<span class="k">namespace</span> <span class="n">Power</span> <span class="p">{</span>
+<span class="k">constexpr</span> <span class="n">PowerPin</span> <span class="n">PowerAll</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">.</span><span class="n">pinNumber</span> <span class="o">=</span> <span class="n">GPIO_NUM_5</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">onLevel</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">defaultLevel</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="k">constexpr</span> <span class="n">PowerPin</span> <span class="n">Power5V</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">.</span><span class="n">pinNumber</span> <span class="o">=</span> <span class="n">GPIO_NUM_14</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">onLevel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">defaultLevel</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="k">constexpr</span> <span class="n">PowerPin</span> <span class="n">PowerLDC</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">.</span><span class="n">pinNumber</span> <span class="o">=</span> <span class="n">GPIO_NUM_18</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">onLevel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">defaultLevel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">BatteryLevel</span> <span class="o">=</span> <span class="n">GPIO_NUM_39</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::Power</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tomáš Rohlínek.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

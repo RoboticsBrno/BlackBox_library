@@ -1,0 +1,13 @@
+.. _exhale_typedef_BlackBox__BigEndian_8hpp_1a607dae8d7a7b6f563058c06ea381917c:
+
+Typedef BE::Uint16
+==================
+
+- Defined in :ref:`file_include_library_BlackBox_BigEndian.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: BE::Uint16

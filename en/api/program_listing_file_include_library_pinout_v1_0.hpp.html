@@ -173,17 +173,17 @@
 
 <span class="k">namespace</span> <span class="n">Leds</span> <span class="p">{</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Data</span> <span class="o">=</span> <span class="n">GPIO_NUM_19</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::Leds</span>
 
 <span class="k">namespace</span> <span class="n">I2C</span> <span class="p">{</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">SCL</span> <span class="o">=</span> <span class="n">GPIO_NUM_22</span><span class="p">;</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">SDA</span> <span class="o">=</span> <span class="n">GPIO_NUM_23</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::I2C</span>
 
 <span class="k">namespace</span> <span class="n">UART</span> <span class="p">{</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">TX</span> <span class="o">=</span> <span class="n">GPIO_NUM_1</span><span class="p">;</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">RX</span> <span class="o">=</span> <span class="n">GPIO_NUM_3</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::UART</span>
 
 <span class="k">namespace</span> <span class="n">Interrupts</span> <span class="p">{</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">LDC</span> <span class="o">=</span> <span class="n">GPIO_NUM_0</span><span class="p">;</span>
@@ -199,19 +199,19 @@
 
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Accelerometer1</span> <span class="o">=</span> <span class="n">GPIO_NUM_34</span><span class="p">;</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Accelerometer2</span> <span class="o">=</span> <span class="n">GPIO_NUM_35</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::Interrupts</span>
 
 <span class="k">namespace</span> <span class="n">Lock</span> <span class="p">{</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">A</span> <span class="o">=</span> <span class="n">GPIO_NUM_4</span><span class="p">;</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">B</span> <span class="o">=</span> <span class="n">GPIO_NUM_13</span><span class="p">;</span>
 
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Motor</span> <span class="o">=</span> <span class="n">GPIO_NUM_12</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::Lock</span>
 
 <span class="k">namespace</span> <span class="n">IR</span> <span class="p">{</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Receiver</span> <span class="o">=</span> <span class="n">GPIO_NUM_15</span><span class="p">;</span>
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">Transmitter</span> <span class="o">=</span> <span class="n">GPIO_NUM_2</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::IR</span>
 
 <span class="k">namespace</span> <span class="n">Power</span> <span class="p">{</span>
 <span class="k">constexpr</span> <span class="n">PowerPin</span> <span class="n">PowerAll</span> <span class="o">=</span> <span class="p">{</span>
@@ -231,7 +231,7 @@
 <span class="p">};</span>
 
 <span class="k">constexpr</span> <span class="n">gpio_num_t</span> <span class="n">BatteryLevel</span> <span class="o">=</span> <span class="n">GPIO_NUM_39</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">}</span> <span class="c1">// namespace BlackBox::Pins::Power</span>
 <span class="p">}</span> <span class="c1">// namespace BlackBox::Pins</span>
 <span class="p">}</span> <span class="c1">// namespace BlackBox</span>
 </pre></div>
