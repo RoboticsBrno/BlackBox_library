@@ -6,6 +6,11 @@
 #include "library/BlackBox_pinout.hpp"
 
 #include "driver/gpio.h"
+#include "driver/adc.h"
+#include "esp_adc_cal.h"
+#include "esp_log.h"
+#include "soc/adc_channel.h"
+
 #include <mutex>
 
 namespace BlackBox {
@@ -16,12 +21,24 @@ void Power::setDefault() {
     gpio_set_level(m_power5V.pinNumber, m_power5V.defaultLevel);
 }
 
+void Power::readVoltage() {
+    std::scoped_lock l(m_mutex);
+
+    esp_adc_cal_get_voltage(static_cast<const adc_channel_t>(m_channel), m_characteristic.get(), &m_voltage);
+    m_voltage *= 4; 
+}
+
 Power::Power(Pins::PowerPin i_powerAll,
     Pins::PowerPin i_power5V,
-    Pins::PowerPin i_powerLDC)
+    Pins::PowerPin i_powerLDC,
+    adc1_channel_t i_channel,
+    adc_bits_width_t i_width)
     : m_powerAll(i_powerAll)
     , m_power5V(i_power5V)
     , m_powerLDC(i_powerLDC)
+    , m_channel(i_channel)
+    , m_width(i_width)
+    , m_characteristic(std::make_unique<esp_adc_cal_characteristics_t>())
     , m_isAllOn(i_powerAll.defaultLevel)
     , m_is5VOn(i_power5V.defaultLevel)
     , m_isLDCOn(i_powerLDC.defaultLevel)
@@ -38,6 +55,29 @@ void Power::init() {
     std::scoped_lock l(m_mutex);
     setDefault();
     gpio_config(&m_powerConfig);
+
+    adc1_config_width(m_width);
+    adc1_config_channel_atten(m_channel, ADC_ATTEN_DB_6);
+
+    auto valueType = esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_6, m_width, 1100, m_characteristic.get());
+
+    if (valueType == ESP_ADC_CAL_VAL_EFUSE_TP)
+        ESP_LOGI(m_tag, "Characterized using Two Point Value\n");
+    else if (valueType == ESP_ADC_CAL_VAL_EFUSE_VREF)
+        ESP_LOGI(m_tag, "Characterized using eFuse Vref\n");
+    else
+        ESP_LOGI(m_tag, "Characterized using Default Vref\n");
+
+    if (esp_adc_cal_check_efuse(ESP_ADC_CAL_VAL_EFUSE_TP) == ESP_OK)
+        ESP_LOGI(m_tag, "eFuse Two Point: Supported\n");
+    else
+        ESP_LOGI(m_tag, "eFuse Two Point: NOT supported\n");
+
+    //Check Vref is burned into eFuse
+    if (esp_adc_cal_check_efuse(ESP_ADC_CAL_VAL_EFUSE_VREF) == ESP_OK)
+        ESP_LOGI(m_tag, "eFuse Vref: Supported\n");
+    else
+        ESP_LOGI(m_tag, "eFuse Vref: NOT supported\n");
 }
 
 void Power::turnOn(Pins::PowerPin i_powerPin) {
@@ -73,5 +113,13 @@ void Power::turnOn5V() {
 void Power::turnOff5V() {
     turnOff(m_power5V);
 }
+
+unsigned Power::batteryVoltage(bool update) {
+    std::scoped_lock l(m_mutex);
+    if(update)
+        readVoltage();
+    return m_voltage;
+}
+
 } // namespace BlackBox
 #endif

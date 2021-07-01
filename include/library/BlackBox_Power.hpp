@@ -12,7 +12,11 @@
 
 #include "library/BlackBox_pinout.hpp"
 
+#include "driver/adc.h"
 #include "driver/gpio.h"
+#include "esp_adc_cal.h"
+#include "soc/adc_channel.h"
+#include <memory>
 #include <mutex>
 
 namespace BlackBox {
@@ -26,22 +30,35 @@ private:
 
     mutable std::recursive_mutex m_mutex;
 
+    static constexpr unsigned s_batteryVoltages[2] = {};
+
     const Pins::PowerPin m_powerAll;
     const Pins::PowerPin m_power5V;
     const Pins::PowerPin m_powerLDC;
+
+    const adc1_channel_t m_channel;
+    const adc_bits_width_t m_width;
+
+    std::unique_ptr<esp_adc_cal_characteristics_t> m_characteristic;
 
     bool m_isAllOn;
     bool m_is5VOn;
     bool m_isLDCOn;
 
+    unsigned m_voltage;
+
     gpio_config_t m_powerConfig;
 
     void setDefault();
 
+    void readVoltage();
+
 public:
     Power(Pins::PowerPin powerAll = Pins::Power::PowerAll,
         Pins::PowerPin power5V = Pins::Power::Power5V,
-        Pins::PowerPin powerLDC = Pins::Power::PowerLDC);
+        Pins::PowerPin powerLDC = Pins::Power::PowerLDC,
+        adc1_channel_t = ADC1_GPIO39_CHANNEL,
+        adc_bits_width_t = ADC_WIDTH_BIT_12);
 
     ~Power() = default;
 
@@ -58,6 +75,8 @@ public:
 
     void turnOn5V();
     void turnOff5V();
+
+    unsigned batteryVoltage(bool update = false);
 };
 
 } // namespace BlackBox
