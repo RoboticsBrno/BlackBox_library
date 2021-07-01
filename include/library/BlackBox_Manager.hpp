@@ -9,6 +9,7 @@
 
 #include "Dsp.hpp"
 
+#include "library/BlackBox_Beacon.hpp"
 #include "library/BlackBox_LDC.hpp"
 #include "library/BlackBox_Lock.hpp"
 #include "library/BlackBox_Power.hpp"
@@ -44,7 +45,7 @@ private:
 #endif
 
 #ifdef BB_BEACON
-    Beacon<> m_beacon;
+    Beacon<> m_beacon{Beacon<>::TopIndex(8), Beacon<>::PerimeterIndex(-10)};
 #endif
 
 #ifdef BB_RTC
@@ -52,11 +53,11 @@ private:
 #endif
 
 #ifdef BB_TOUCHPAD
-    Touchpad m_touchpad;
+    Touchpad m_touchpad{16, 0b1110, 1, 1, 1, 1};
 #endif
 
 #ifdef BB_DOORS
-    std::array<Door, 4> m_doors;
+    std::array<Door, 4> m_doors = {Door(Pins::Doors::DoorPins[0], LEDC_TIMER_0, LEDC_CHANNEL_0), Door(Pins::Doors::DoorPins[1], LEDC_TIMER_1, LEDC_CHANNEL_1), Door(Pins::Doors::DoorPins[2], LEDC_TIMER_2, LEDC_CHANNEL_2), Door(Pins::Doors::DoorPins[3], LEDC_TIMER_3, LEDC_CHANNEL_3)};
 #endif
 
 public:

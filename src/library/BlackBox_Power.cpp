@@ -31,11 +31,13 @@ void Power::readVoltage() {
 Power::Power(Pins::PowerPin i_powerAll,
     Pins::PowerPin i_power5V,
     Pins::PowerPin i_powerLDC,
+    gpio_num_t i_usbConnectionCheck,
     adc1_channel_t i_channel,
     adc_bits_width_t i_width)
     : m_powerAll(i_powerAll)
     , m_power5V(i_power5V)
     , m_powerLDC(i_powerLDC)
+    , m_usbConnectionCheck(i_usbConnectionCheck)
     , m_channel(i_channel)
     , m_width(i_width)
     , m_characteristic(std::make_unique<esp_adc_cal_characteristics_t>())
@@ -48,6 +50,13 @@ Power::Power(Pins::PowerPin i_powerAll,
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
         .intr_type = GPIO_INTR_DISABLE,
+    }
+    , m_usbConnectionCheckConfig {
+        .pin_bit_mask = (1ULL << i_usbConnectionCheck),
+        .mode = GPIO_MODE_INPUT,
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE,
     } {
 }
 
@@ -55,6 +64,7 @@ void Power::init() {
     std::scoped_lock l(m_mutex);
     setDefault();
     gpio_config(&m_powerConfig);
+    gpio_config(&m_usbConnectionCheckConfig);
 
     adc1_config_width(m_width);
     adc1_config_channel_atten(m_channel, ADC_ATTEN_DB_6);
@@ -123,6 +133,19 @@ unsigned Power::batteryVoltage(bool update) {
 
 unsigned Power::batteryPercentage(bool i_update) {
     return batteryVoltage(i_update) * 100 / s_voltageDifference + s_baseVoltage;
+}
+
+bool Power::checkBatteryLevel(unsigned i_batteryLevel, bool i_act) {
+    bool check = batteryVoltage(true) < i_batteryLevel;
+    if (check && i_act)
+        turnOff();
+    return !check;
+}
+
+bool Power::usbConnected() {
+    std::scoped_lock l(m_mutex);
+
+    return gpio_get_level(m_usbConnectionCheck);
 }
 
 } // namespace BlackBox

@@ -4,15 +4,6 @@
 
 namespace BlackBox {
 Manager::Manager()
-#if defined(BB_TOUCHPAD) && defined (BB_DOORS)
-    : m_touchpad{16, 0b1110, 1, 1, 1, 1} // FIXME: Remove this piece of ductape
-    , m_doors{Door(Pins::Doors::DoorPins[0], LEDC_TIMER_0, LEDC_CHANNEL_0), Door(Pins::Doors::DoorPins[1], LEDC_TIMER_1, LEDC_CHANNEL_1), Door(Pins::Doors::DoorPins[2], LEDC_TIMER_2, LEDC_CHANNEL_2), Door(Pins::Doors::DoorPins[3], LEDC_TIMER_3, LEDC_CHANNEL_3)}
-#elif defined(BB_TOUCHPAD)
-    : m_touchpad{16, 0b1110, 1, 1, 1, 1} // FIXME: Remove this piece of ductape
-#elif defined(BB_DOORS)
-    : m_doors{Door(Pins::Doors::DoorPins[0], LEDC_TIMER_0, LEDC_CHANNEL_0), Door(Pins::Doors::DoorPins[1], LEDC_TIMER_1, LEDC_CHANNEL_1), Door(Pins::Doors::DoorPins[2], LEDC_TIMER_2, LEDC_CHANNEL_2), Door(Pins::Doors::DoorPins[3], LEDC_TIMER_3, LEDC_CHANNEL_3)}
-#endif
-
 {
 }
 
