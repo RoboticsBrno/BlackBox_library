@@ -16,6 +16,7 @@
 #include "driver/gpio.h"
 #include "esp_adc_cal.h"
 #include "soc/adc_channel.h"
+#include <cnl/fixed_point.h>
 #include <memory>
 #include <mutex>
 
@@ -26,11 +27,18 @@ namespace BlackBox {
  */
 class Power {
 private:
+    using Number = cnl::scaled_integer<std::int32_t, cnl::power<-5>>;
+
+
     const char* m_tag = "Power";
 
     mutable std::recursive_mutex m_mutex;
 
-    static constexpr unsigned s_batteryVoltages[2] = {};
+    static constexpr unsigned s_batteryVoltages[2] = {3700, 4150};
+    static constexpr unsigned s_baseVoltage = s_batteryVoltages[0];
+    static constexpr unsigned s_maxVoltage = s_batteryVoltages[1];
+    static constexpr unsigned s_voltageDifference = s_maxVoltage - s_baseVoltage;
+
 
     const Pins::PowerPin m_powerAll;
     const Pins::PowerPin m_power5V;
@@ -77,6 +85,7 @@ public:
     void turnOff5V();
 
     unsigned batteryVoltage(bool update = false);
+    unsigned batteryPercentage(bool update = false);
 };
 
 } // namespace BlackBox

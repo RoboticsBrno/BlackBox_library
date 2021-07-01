@@ -121,5 +121,9 @@ unsigned Power::batteryVoltage(bool update) {
     return m_voltage;
 }
 
+unsigned Power::batteryPercentage(bool i_update) {
+    return batteryVoltage(i_update) * 100 / s_voltageDifference + s_baseVoltage;
+}
+
 } // namespace BlackBox
 #endif
