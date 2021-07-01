@@ -87,8 +87,7 @@ Coords Touchpad::calculate(int channels[4]) {
     out.x = -data[0]
         - data[1]
         + data[2]
-        + data[3]
-        - 760; // FIXME: Remove this piece ductape
+        + data[3];
 
     out.y = data[0]
         - data[1]
