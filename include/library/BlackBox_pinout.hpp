@@ -180,10 +180,10 @@ constexpr gpio_num_t Servo1 = GPIO_NUM_25;
 constexpr gpio_num_t Servo2 = GPIO_NUM_13;
 constexpr gpio_num_t Servo3 = GPIO_NUM_2;
 
-constexpr gpio_num_t TamperCheck0 = GPIO_NUM_4;
-constexpr gpio_num_t TamperCheck1 = GPIO_NUM_15;
-constexpr gpio_num_t TamperCheck2 = GPIO_NUM_0;
-constexpr gpio_num_t TamperCheck3 = GPIO_NUM_35;
+constexpr gpio_num_t TamperCheck0 = GPIO_NUM_15;
+constexpr gpio_num_t TamperCheck1 = GPIO_NUM_33;
+constexpr gpio_num_t TamperCheck2 = GPIO_NUM_35;
+constexpr gpio_num_t TamperCheck3 = GPIO_NUM_4;
 
 constexpr DoorPin DoorPins[4] = {
     {
