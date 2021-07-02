@@ -65,7 +65,7 @@ void Door::unlock() {
 bool Door::locked() {
     std::scoped_lock l(m_mutex);
 
-    return (ledc_get_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel) == s_duty[s_closed]);
+    return (ledc_get_duty(LEDC_LOW_SPEED_MODE, m_channelConfig.channel) == s_duty[s_closed]);
 }
 
 void Door::open() {
@@ -85,7 +85,7 @@ bool Door::isClosed() const {
 bool Door::isClosed(bool i_update) {
     if (i_update) {
         std::scoped_lock l(m_mutex);
-        m_isClosed = ledc_get_duty(LEDC_HIGH_SPEED_MODE, m_channelConfig.channel) == s_duty[s_closed];
+        m_isClosed = ledc_get_duty(LEDC_LOW_SPEED_MODE, m_channelConfig.channel) == s_duty[s_closed];
     }
     return isClosed();
 }
