@@ -11,7 +11,7 @@
 #ifdef BB_RING
 
 #include "library/BlackBox_pinout.hpp"
-#include "library/BlackBox_Touchpad.hpp"
+#include "library/BlackBox_CircularInteger.hpp"
 #include <SmartLeds.h>
 #include <memory>
 #include <mutex>
@@ -27,39 +27,7 @@ enum class ArcType {
     Clockwise,
     CounterClockwise,
 };
-
-/**
- * \~czech @brief Datový typ pro práci s pozicí na LED kruhu
- * \~english @brief Data type for handling polar coords based on LED Ring model
- */
-class Index {
-private:
-    int m_value;
-    int trim(int index);
-    Index& trimThis();
-
-public:
-    Index(int index = 0);
-    Index(Coords other);
-
-    int value() const;
-
-    Index& operator+=(const Index&);
-    Index& operator-=(const Index&);
-
-    Index& operator++();
-    Index& operator--();
-
-    bool operator<(const Index&) const;
-    bool operator>(const Index&) const;
-    bool operator<=(const Index&) const;
-    bool operator>=(const Index&) const;
-    bool operator==(const Index&) const;
-    bool operator!=(const Index&) const;
-
-    operator int() const;
-};
-
+using Index = Circular::CircularInteger<ledCount>;
 /**
  * \~czech @brief Třída pro ovládání LED kruhu
  * \~english @brief Class for controling the LED Ring

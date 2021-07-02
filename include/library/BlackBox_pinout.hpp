@@ -41,13 +41,13 @@ constexpr gpio_num_t BatteryLevel = GPIO_NUM_39;
 } // namespace BlackBox::Pins::Power
 #endif // BB_POWER
 
-#ifdef BB_RING
+#if defined(BB_RING) || defined(BB_BEACON) 
 
 namespace Leds {
 constexpr gpio_num_t Data = GPIO_NUM_19;
 } // namespace BlackBox::Pins::Leds
 
-#endif // BB_RING
+#endif // BB_RING || BB_BEACON
 
 #ifdef BB_I2C
 

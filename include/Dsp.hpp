@@ -30,7 +30,8 @@
 
 #ifdef LANTERN
     #define BB_POWER LANTERN
-    #define BB_RING LANTERN
+    // #define BB_RING LANTERN
+    #define BB_BEACON LANTERN
     #define BB_LDC LANTERN
     #define BB_RTC LANTERN
     #define BB_USB LANTERN
@@ -75,4 +76,8 @@
     #ifdef BB_QMC6310
         #define BB_I2C BB_QMC6310
     #endif
+#endif
+
+#if defined(BB_RING) && defined(BB_BEACON)
+    #error "Can not use both Ring and Beacon at the same time!"
 #endif

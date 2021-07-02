@@ -43,6 +43,10 @@ private:
     Ring m_ring;
 #endif
 
+#ifdef BB_BEACON
+    Beacon<> m_beacon;
+#endif
+
 #ifdef BB_RTC
     RTC m_rtc;
 #endif
@@ -81,6 +85,10 @@ public:
 
 #ifdef BB_RING
     Ring& ring();
+#endif
+
+#ifdef BB_BEACON
+    Beacon<>& beacon();
 #endif
 
 #ifdef BB_RTC

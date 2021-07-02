@@ -1,6 +1,7 @@
 #include "Dsp.hpp"
 #ifdef BB_RING
 
+
 #include "library/BlackBox_Ring.hpp"
 
 #include "library/BlackBox_pinout.hpp"
@@ -11,75 +12,6 @@
 #include <mutex>
 
 namespace BlackBox {
-int Index::trim(int index) {
-    return (60 + (index % ledCount)) % ledCount;
-}
-
-Index& Index::trimThis() {
-    m_value = trim(m_value);
-    return *this;
-}
-
-Index::Index(int i_index)
-    : m_value(trim(i_index)) {
-}
-
-Index::Index(Coords other)
-    : m_value(trim(atan2(other.x, other.y) * 3.14 * 3)) {
-}
-
-int Index::value() const {
-    return m_value;
-}
-
-Index& Index::operator+=(const Index& i_other) {
-    m_value += i_other.m_value;
-    return trimThis();
-}
-
-Index& Index::operator-=(const Index& i_other) {
-    m_value -= i_other.m_value;
-    return trimThis();
-}
-
-Index& Index::operator++() {
-    m_value++;
-    return trimThis();
-}
-
-Index& Index::operator--() {
-    m_value--;
-    return trimThis();
-}
-
-bool Index::operator<(const Index& i_other) const {
-    return m_value < i_other.m_value;
-}
-
-bool Index::operator>(const Index& i_other) const {
-    return m_value > i_other.m_value;
-}
-
-bool Index::operator<=(const Index& i_other) const {
-    return m_value <= i_other.m_value;
-}
-
-bool Index::operator>=(const Index& i_other) const {
-    return m_value >= i_other.m_value;
-}
-
-bool Index::operator==(const Index& i_other) const {
-    return m_value == i_other.m_value;
-}
-
-bool Index::operator!=(const Index& i_other) const {
-    return m_value != i_other.m_value;
-}
-
-Index::operator int() const {
-    return m_value;
-}
-
 // uint32 Ring::blend(unsigned color1, unsigned color2, unsigned alpha) { // https://gist.github.com/XProger/96253e93baccfbf338de
 
 //     unsigned rb = color1 & 0xff00ff;

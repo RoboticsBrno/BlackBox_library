@@ -67,6 +67,12 @@ Ring& Manager::ring() {
 }
 #endif
 
+#ifdef BB_BEACON
+    Beacon<>& Manager::beacon() {
+        return m_beacon;
+    }
+#endif
+
 #ifdef BB_RTC
 RTC& Manager::rtc() {
     return m_rtc;
