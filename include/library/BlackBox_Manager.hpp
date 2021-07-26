@@ -53,7 +53,7 @@ private:
 #endif
 
 #ifdef BB_TOUCHPAD
-    Touchpad m_touchpad{16, 0b1110, 1, 1, 1, 1};
+    Touchpad m_touchpad{16, 0b1111, 1, 1, 1, 1};
 #endif
 
 #ifdef BB_DOORS
