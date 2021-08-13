@@ -11,6 +11,7 @@
 #include "esp_log.h"
 #include "soc/adc_channel.h"
 
+#include <algorithm>
 #include <mutex>
 
 namespace BlackBox {
@@ -23,9 +24,9 @@ void Power::setDefault() {
 
 void Power::readVoltage() {
     std::scoped_lock l(m_mutex);
-
-    esp_adc_cal_get_voltage(static_cast<const adc_channel_t>(m_channel), m_characteristic.get(), &m_voltage);
-    m_voltage *= 4; 
+    unsigned voltage;
+    esp_adc_cal_get_voltage(static_cast<const adc_channel_t>(m_channel), m_characteristic.get(), &voltage);
+    m_voltage = voltage * 4; 
 }
 
 Power::Power(Pins::PowerPin i_powerAll,
@@ -124,15 +125,15 @@ void Power::turnOff5V() {
     turnOff(m_power5V);
 }
 
-unsigned Power::batteryVoltage(bool update) {
+int Power::batteryVoltage(bool update) {
     std::scoped_lock l(m_mutex);
     if(update)
         readVoltage();
     return m_voltage;
 }
 
-unsigned Power::batteryPercentage(bool i_update) {
-    return ((batteryVoltage(i_update) - s_baseVoltage) * 100 / s_voltageDifference) % 100;
+int Power::batteryPercentage(bool i_update) {
+    return std::max(std::min(((batteryVoltage(i_update) - s_baseVoltage) * 100 / s_voltageDifference), 100), 0);
 }
 
 bool Power::checkBatteryLevel(unsigned i_batteryLevel, bool i_act) {

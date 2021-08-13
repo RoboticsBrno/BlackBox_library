@@ -29,15 +29,14 @@ class Power {
 private:
     using Number = cnl::scaled_integer<std::int32_t, cnl::power<-5>>;
 
-
     const char* m_tag = "Power";
 
     mutable std::recursive_mutex m_mutex;
 
-    static constexpr unsigned s_batteryVoltages[2] = {3700, 4150};
-    static constexpr unsigned s_baseVoltage = s_batteryVoltages[0];
-    static constexpr unsigned s_maxVoltage = s_batteryVoltages[1];
-    static constexpr unsigned s_voltageDifference = s_maxVoltage - s_baseVoltage;
+    static constexpr int s_batteryVoltages[2] = {3700, 4150};
+    static constexpr int s_baseVoltage = s_batteryVoltages[0];
+    static constexpr int s_maxVoltage = s_batteryVoltages[1];
+    static constexpr int s_voltageDifference = s_maxVoltage - s_baseVoltage;
 
 
     const Pins::PowerPin m_powerAll;
@@ -55,7 +54,7 @@ private:
     bool m_is5VOn;
     bool m_isLDCOn;
 
-    unsigned m_voltage;
+    int m_voltage;
 
     gpio_config_t m_powerConfig;
     gpio_config_t m_usbConnectionCheckConfig;
@@ -88,8 +87,8 @@ public:
     void turnOn5V();
     void turnOff5V();
 
-    unsigned batteryVoltage(bool update = false);
-    unsigned batteryPercentage(bool update = false);
+    int batteryVoltage(bool update = false);
+    int batteryPercentage(bool update = false);
 
     bool checkBatteryLevel(unsigned batteryLevel = s_baseVoltage, bool act = false);
 
