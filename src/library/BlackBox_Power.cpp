@@ -26,7 +26,7 @@ void Power::readVoltage() {
     std::scoped_lock l(m_mutex);
     unsigned voltage;
     esp_adc_cal_get_voltage(static_cast<const adc_channel_t>(m_channel), m_characteristic.get(), &voltage);
-    m_voltage = voltage * 4; 
+    m_voltage = static_cast<float>(voltage) * 4.34; 
 }
 
 Power::Power(Pins::PowerPin i_powerAll,
