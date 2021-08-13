@@ -132,7 +132,7 @@ unsigned Power::batteryVoltage(bool update) {
 }
 
 unsigned Power::batteryPercentage(bool i_update) {
-    return batteryVoltage(i_update) * 100 / s_voltageDifference + s_baseVoltage;
+    return ((batteryVoltage(i_update) - s_baseVoltage) * 100 / s_voltageDifference) % 100;
 }
 
 bool Power::checkBatteryLevel(unsigned i_batteryLevel, bool i_act) {
