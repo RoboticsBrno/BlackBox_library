@@ -200,6 +200,7 @@ static const uint8_t offsettedAddresses[6] {
     0x7F,
 };
 
+[[maybe_unused]]
 static unsigned ldcGetHWAddress(unsigned i_address) {
     return (i_address < 29) ? i_address : offsettedAddresses[i_address - 29];
 }

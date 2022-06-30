@@ -74,6 +74,7 @@ uint16_t Timers::schedule(uint32_t period_ms, std::function<bool()> callback) {
         .arg = (void*)(uintptr_t)id,
         .dispatch_method = ESP_TIMER_TASK,
         .name = "rb_timer",
+        .skip_unhandled_events = false,
     };
 
     esp_timer_handle_t timer = nullptr;

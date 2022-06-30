@@ -284,6 +284,7 @@ constexpr i2c_config_t defaultConfig = {
     .master = {
         .clk_speed = 400000, // FIXME: Do all devices support this speed?
     },
+    .clk_flags = I2C_SCLK_SRC_FLAG_FOR_NOMAL,
 };
 
 // FIXME: Should I implement counting on inits and call deinit after all I2C::Devices are destroyed?
