@@ -108,7 +108,6 @@ void NVS::commit() {
 void NVS::erasePartition(const std::string& partition) {
     esp_err_t err = nvs_flash_erase_partition(partition.c_str());
     if (err != ESP_OK) {
-        ESP_LOGE(m_tag, "%s", esp_err_to_name(err));
         throw IDFException(err);
     }
 }
@@ -132,7 +131,6 @@ static Value getItem(nvs::NVSHandle* handle, Key key) {
     T val;
     esp_err_t err = handle->get_item(key.c_str(), val);
     if (err != ESP_OK) {
-        ESP_LOGE(m_tag, "%s", esp_err_to_name(err));
         throw IDFException(err);
     }
     return Value(val);
@@ -210,11 +208,21 @@ Value NVS::get(Key key) {
     }
 }
 
+Value NVS::get(Key key, Value fallback) {
+    if (key.size() >= NVS_KEY_NAME_MAX_SIZE)
+        throw std::invalid_argument("Key is too long.");
+
+    auto _types = this->types();
+    auto it = _types.find(key);
+    if (it == _types.end())
+        return fallback;
+    return get(key);
+}
+
 template <typename T>
 static void setItem(nvs::NVSHandle* handle, Key key, T value) {
     esp_err_t err = handle->set_item(key.c_str(), value);
     if (err != ESP_OK) {
-        ESP_LOGE(m_tag, "%s", esp_err_to_name(err));
         throw IDFException(err);
     }
 }

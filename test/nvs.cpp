@@ -20,7 +20,7 @@ void test_load_store() {
         NVS nvs("test");
         nvs.init();
 
-        static const Blob blob = {0x13, 0x14, 0x15};
+        static const Blob blob = { 0x13, 0x14, 0x15 };
 
         nvs.set("U8", static_cast<std::uint8_t>(64));
         nvs.set("I8", static_cast<std::int8_t>(-64));
@@ -75,11 +75,32 @@ void test_load_store() {
     }
 }
 
+void test_fallback() {
+
+    NVS nvs("test");
+    nvs.init();
+
+    nvs.eraseAll();
+    try {
+        nvs.get("test");
+        TEST_ABORT();
+    } catch (const std::exception& e) {
+    }
+
+    try {
+        auto res = nvs.get("test", 64);
+        TEST_ASSERT_EQUAL(64, std::get<int>(res));
+    } catch (const std::exception& e) {
+        TEST_ABORT();
+    }
+}
+
 extern "C" {
 void app_main() {
     UNITY_BEGIN();
     RUN_TEST(test_init);
     RUN_TEST(test_load_store);
+    RUN_TEST(test_fallback);
     UNITY_END();
     // test_task();
 }

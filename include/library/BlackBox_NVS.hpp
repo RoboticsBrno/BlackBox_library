@@ -56,6 +56,7 @@ public:
 
     nvs::ItemType type(Key);
     Value get(Key);
+    Value get(Key, Value fallback);
     void set(Key, Value);
     void erase(Key);
 
