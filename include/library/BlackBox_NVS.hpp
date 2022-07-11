@@ -8,6 +8,7 @@
 #include <iostream>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <variant>
 #include <vector>
@@ -20,13 +21,14 @@ class NVS {
     friend std::ostream& operator<<(std::ostream& stream, const NVS& nvs);
 
 private:
+    mutable std::recursive_mutex m_mutex;
     const char* m_tag = "BlackBox_NVS";
     bool m_dirty = false;
 
     std::string m_name;
     std::string m_partition;
 
-    std::shared_ptr<nvs::NVSHandle> m_handle;
+    std::unique_ptr<nvs::NVSHandle> m_handle;
 
 public:
     using Key = std::string;
@@ -43,6 +45,7 @@ public:
         Blob>;
 
     NVS(const std::string& name, const std::string partition = "nvs");
+    NVS(NVS&&);
 
     void initFlash();
     void openFlash();

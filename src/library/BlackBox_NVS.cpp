@@ -44,7 +44,16 @@ NVS::NVS(const std::string& name, const std::string partition)
     : m_name(name)
     , m_partition(partition) {}
 
+NVS::NVS(NVS&& other) {
+    std::scoped_lock lock(other.m_mutex, m_mutex);
+    m_dirty = (other.m_dirty);
+    m_name = (other.m_name);
+    m_partition = (other.m_partition);
+    m_handle = (std::move(other.m_handle));
+}
+
 void NVS::initFlash() {
+    std::scoped_lock lock(m_mutex);
     ESP_LOGI(m_tag, "Initializing NVS from partition %s", m_partition.c_str());
     esp_err_t err = nvs_flash_init_partition(m_partition.c_str());
 
@@ -55,6 +64,7 @@ void NVS::initFlash() {
 }
 
 void NVS::openFlash() {
+    std::scoped_lock lock(m_mutex);
     ESP_LOGI(m_tag, "Opening namespace %s in partition %s", m_name.c_str(), m_partition.c_str());
     esp_err_t err;
     m_handle = nvs::open_nvs_handle_from_partition(m_partition.c_str(),
@@ -69,6 +79,7 @@ void NVS::openFlash() {
 }
 
 void NVS::eraseFlash() {
+    std::scoped_lock lock(m_mutex);
     ESP_LOGI(m_tag, "Erasing partition %s", m_partition.c_str());
     esp_err_t err = nvs_flash_erase_partition(m_partition.c_str());
     if (err != ESP_OK) {
@@ -78,6 +89,7 @@ void NVS::eraseFlash() {
 }
 
 void NVS::init() {
+    std::scoped_lock lock(m_mutex);
     ESP_LOGI(m_tag, "Initializing");
     try {
         initFlash();
@@ -96,6 +108,7 @@ void NVS::init() {
 }
 
 void NVS::commit() {
+    std::scoped_lock lock(m_mutex);
     ESP_LOGI(m_tag, "Committing to namespace %s in partition %s", m_name.c_str(), m_partition.c_str());
     esp_err_t err = m_handle->commit();
     if (err != ESP_OK) {
@@ -113,6 +126,7 @@ void NVS::erasePartition(const std::string& partition) {
 }
 
 void NVS::eraseAll() {
+    std::scoped_lock lock(m_mutex);
     esp_err_t err = m_handle->erase_all();
     if (err != ESP_OK) {
         ESP_LOGE(m_tag, "%s", esp_err_to_name(err));
@@ -121,6 +135,7 @@ void NVS::eraseAll() {
 }
 
 nvs::ItemType NVS::type(Key key) {
+    std::scoped_lock lock(m_mutex);
     if (key.size() >= NVS_KEY_NAME_MAX_SIZE)
         throw std::invalid_argument("Key is too long.");
     return types().at(key);
@@ -137,6 +152,7 @@ static Value getItem(nvs::NVSHandle* handle, Key key) {
 }
 
 Value NVS::get(Key key) {
+    std::scoped_lock lock(m_mutex);
     if (key.size() >= NVS_KEY_NAME_MAX_SIZE)
         throw std::invalid_argument("Key is too long.");
 
@@ -209,6 +225,7 @@ Value NVS::get(Key key) {
 }
 
 Value NVS::get(Key key, Value fallback) {
+    std::scoped_lock lock(m_mutex);
     if (key.size() >= NVS_KEY_NAME_MAX_SIZE)
         throw std::invalid_argument("Key is too long.");
 
@@ -228,6 +245,7 @@ static void setItem(nvs::NVSHandle* handle, Key key, T value) {
 }
 
 void NVS::set(Key key, Value value) {
+    std::scoped_lock lock(m_mutex);
     if (key.size() >= NVS_KEY_NAME_MAX_SIZE)
         throw std::invalid_argument("Key is too long.");
 
@@ -245,6 +263,7 @@ void NVS::set(Key key, Value value) {
 }
 
 void NVS::erase(Key key) {
+    std::scoped_lock lock(m_mutex);
     esp_err_t err = m_handle->erase_item(key.c_str());
     if (err != ESP_OK) {
         ESP_LOGE(m_tag, "%s", esp_err_to_name(err));
@@ -253,6 +272,7 @@ void NVS::erase(Key key) {
 }
 
 std::map<Key, nvs::ItemType> NVS::types() {
+    std::scoped_lock lock(m_mutex);
     std::map<Key, nvs::ItemType> out;
     nvs_iterator_t it = nvs_entry_find(m_partition.c_str(), m_name.c_str(), NVS_TYPE_ANY);
     while (it != NULL) {
@@ -265,14 +285,17 @@ std::map<Key, nvs::ItemType> NVS::types() {
 }
 
 void NVS::dump(nvs_type_t type, std::ostream& out) const {
+    std::scoped_lock lock(m_mutex);
     dump(m_partition, m_name, type, out);
 };
 
 void NVS::dump(std::ostream& out) const {
+    std::scoped_lock lock(m_mutex);
     dump(NVS_TYPE_ANY, out);
 }
 
 NVS::~NVS() {
+    std::scoped_lock lock(m_mutex);
     if (m_dirty)
         commit();
 }

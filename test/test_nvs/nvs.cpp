@@ -6,7 +6,7 @@
 
 using namespace BlackBox;
 
-void test_init() {
+static void test_init() {
     try {
         NVS nvs("test");
         nvs.init();
@@ -15,7 +15,7 @@ void test_init() {
     }
 }
 
-void test_load_store() {
+static void test_load_store() {
     try {
         NVS nvs("test");
         nvs.init();
@@ -75,7 +75,7 @@ void test_load_store() {
     }
 }
 
-void test_fallback() {
+static void test_fallback() {
 
     NVS nvs("test");
     nvs.init();
