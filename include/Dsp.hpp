@@ -38,7 +38,7 @@
     #define BB_I2C LANTERN
     #define BB_MPU LANTERN
     #define BB_QMC6310 LANTERN
-    #define BB_DOORS LANTERN
+    //#define BB_DOORS LANTERN
     #define BB_TOUCHPAD LANTERN
 #endif
 
