@@ -109,6 +109,7 @@ private:
         Rgb& operator[](TopIndex i_index) { return m_parent.onTop(i_index); }
     };
 
+    /// TODO: the fact that these are private AND used by the public API sucks
     class Perimeter : public Portion<PerimeterIndex> {
     private:
         Beacon& m_parent;
@@ -140,6 +141,7 @@ private:
     };
 
 public:
+// TODO: this entire class is of poor quality (no doc. no formatting, impl. details here), which sucks bcause it is _forced_ on me. (There is no clear way to NOT to use it)
     Beacon(TopIndex beginningAddress, PerimeterIndex firstCornerAddress)
         : m_leds(LED_WS2812, t_totalLedsCount, Pins::Leds::Data, t_channel)
         , m_beginning(beginningAddress)

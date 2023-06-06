@@ -41,7 +41,7 @@ constexpr gpio_num_t BatteryLevel = GPIO_NUM_39;
 } // namespace BlackBox::Pins::Power
 #endif // BB_POWER
 
-#if defined(BB_RING) || defined(BB_BEACON) 
+#if defined(BB_RING) || defined(BB_BEACON)
 
 namespace Leds {
 constexpr gpio_num_t Data = GPIO_NUM_19;
@@ -56,7 +56,7 @@ constexpr gpio_num_t SCL = GPIO_NUM_22;
 constexpr gpio_num_t SDA = GPIO_NUM_23;
 } // namespace BlackBox::Pins::I2C
 
-#endif  // BB_I2C
+#endif // BB_I2C
 
 #ifdef BB_UART
 
@@ -116,8 +116,7 @@ constexpr gpio_num_t Motor = GPIO_NUM_12;
 
 #ifdef BB_USB
 
-namespace USB
-{
+namespace USB {
 constexpr gpio_num_t IsUSBConnected = GPIO_NUM_36;
 } // namespace BlackBox::Pins::USB
 
@@ -173,17 +172,16 @@ struct DoorPin {
     bool unlockedState;
 };
 
-namespace Doors
-{
-constexpr gpio_num_t Servo0 = GPIO_NUM_27;
-constexpr gpio_num_t Servo1 = GPIO_NUM_25;
-constexpr gpio_num_t Servo2 = GPIO_NUM_13;
-constexpr gpio_num_t Servo3 = GPIO_NUM_2;
+namespace Doors {
+constexpr gpio_num_t Servo0 = GPIO_NUM_27; // J8
+constexpr gpio_num_t Servo1 = GPIO_NUM_25; // J10
+constexpr gpio_num_t Servo2 = GPIO_NUM_13; // J12
+constexpr gpio_num_t Servo3 = GPIO_NUM_2; // J14
 
-constexpr gpio_num_t TamperCheck0 = GPIO_NUM_15;
-constexpr gpio_num_t TamperCheck1 = GPIO_NUM_33;
-constexpr gpio_num_t TamperCheck2 = GPIO_NUM_35;
-constexpr gpio_num_t TamperCheck3 = GPIO_NUM_4;
+constexpr gpio_num_t TamperCheck0 = GPIO_NUM_15; // T2 - J13
+constexpr gpio_num_t TamperCheck1 = GPIO_NUM_33; // T1 - J11
+constexpr gpio_num_t TamperCheck2 = GPIO_NUM_35; // T3 - J15
+constexpr gpio_num_t TamperCheck3 = GPIO_NUM_4; // T0 - J9
 
 constexpr DoorPin DoorPins[4] = {
     {

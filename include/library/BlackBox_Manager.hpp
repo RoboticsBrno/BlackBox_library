@@ -10,15 +10,17 @@
 #include "Dsp.hpp"
 
 #include "library/BlackBox_Beacon.hpp"
+#include "library/BlackBox_Door.hpp"
 #include "library/BlackBox_LDC.hpp"
 #include "library/BlackBox_Lock.hpp"
 #include "library/BlackBox_Power.hpp"
-#include "library/BlackBox_Ring.hpp"
 #include "library/BlackBox_RTC.hpp"
+#include "library/BlackBox_Ring.hpp"
 #include "library/BlackBox_Touchpad.hpp"
-#include "library/BlackBox_Door.hpp"
 
 #include <array>
+
+// TODO: aaaaaaaah this is jsut ifdef madness and I am even more convinced that this class sucks /o\
 
 namespace BlackBox {
 /**
@@ -45,7 +47,7 @@ private:
 #endif
 
 #ifdef BB_BEACON
-    Beacon<> m_beacon{Beacon<>::TopIndex(8), Beacon<>::PerimeterIndex(-10)};
+    Beacon<> m_beacon { Beacon<>::TopIndex(8), Beacon<>::PerimeterIndex(-10) };
 #endif
 
 #ifdef BB_RTC
@@ -53,19 +55,21 @@ private:
 #endif
 
 #ifdef BB_TOUCHPAD
-    Touchpad m_touchpad{16, 0b1111, 1, 1, 1, 1};
+    Touchpad m_touchpad { 16, 0b1111, 1, 1, 1, 1 };
 #endif
 
 #ifdef BB_DOORS
-    std::array<Door, 4> m_doors = {Door(Pins::Doors::DoorPins[0], LEDC_TIMER_0, LEDC_CHANNEL_0), Door(Pins::Doors::DoorPins[1], LEDC_TIMER_1, LEDC_CHANNEL_1), Door(Pins::Doors::DoorPins[2], LEDC_TIMER_2, LEDC_CHANNEL_2), Door(Pins::Doors::DoorPins[3], LEDC_TIMER_3, LEDC_CHANNEL_3)};
+    // TODO: this formatting is meh
+    std::array<Door, 1> m_doors = {
+        Door(Pins::Doors::DoorPins[3], LEDC_TIMER_3, LEDC_CHANNEL_3)
+    };
 #endif
 
 public:
     Manager(Manager const&) = delete;
     void operator=(Manager const&) = delete;
 
-    static Manager& singleton()
-    {
+    static Manager& singleton() {
         static Manager instance;
         return instance;
     }
@@ -104,7 +108,6 @@ public:
     Door& door(int number);
     std::array<Door, 4>& doors();
 #endif
-
 };
 
 } // namespace BlackBox
