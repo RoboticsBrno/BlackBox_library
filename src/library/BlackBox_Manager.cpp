@@ -3,8 +3,7 @@
 #include "library/BlackBox_pinout.hpp"
 
 namespace BlackBox {
-Manager::Manager()
-{
+Manager::Manager() {
 }
 
 void Manager::init() {
@@ -29,8 +28,8 @@ void Manager::init() {
 #endif
 
 #ifdef BB_DOORS
-for (auto& i : m_doors)
-    i.init();
+    for (auto& i : m_doors)
+        i.init();
 #endif
 }
 
@@ -59,9 +58,9 @@ Ring& Manager::ring() {
 #endif
 
 #ifdef BB_BEACON
-    Beacon<>& Manager::beacon() {
-        return m_beacon;
-    }
+Beacon<>& Manager::beacon() {
+    return m_beacon;
+}
 #endif
 
 #ifdef BB_RTC
@@ -81,7 +80,7 @@ Door& Manager::door(int number) {
     return m_doors.at(number);
 }
 
-std::array<Door, 4>& Manager::doors() {
+std::array<Door, 1>& Manager::doors() {
     return m_doors;
 }
 #endif

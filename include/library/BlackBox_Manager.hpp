@@ -106,7 +106,7 @@ public:
 
 #ifdef BB_DOORS
     Door& door(int number);
-    std::array<Door, 4>& doors();
+    std::array<Door, 1>& doors();
 #endif
 };
 
