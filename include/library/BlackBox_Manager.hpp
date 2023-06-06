@@ -20,7 +20,7 @@
 
 #include <array>
 
-// TODO: aaaaaaaah this is jsut ifdef madness and I am even more convinced that this class sucks /o\
+// TODO: aaaaaaaah this is jsut ifdef madness and I am even more convinced that this class sucks /o\....
 
 namespace BlackBox {
 /**
